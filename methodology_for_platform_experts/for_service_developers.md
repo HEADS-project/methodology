@@ -1,1 +1,0 @@
-# For Service Developers
