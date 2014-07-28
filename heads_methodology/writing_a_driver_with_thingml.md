@@ -6,7 +6,7 @@ We will use a simple random integer generator as a running example, that we will
 
 > Generating random integers could certainly be implemented directly in ThingML, however, as all programming languages already provide facilities for random generation, this would have been like... re-inventing the wheel. **Better wrap what already works!**
 
-## Defining the interface
+### Defining the interface
 
 A ThingML driver is a plain ThingML component (or *thing*). In this respect, it is usually recommended to first describe the interface of a component, and then implement it, possibly for different platforms. This is realized in two steps.
 
@@ -43,7 +43,7 @@ thing fragment RandomUser includes RandomMsg{
 }
 ```
 
-## Calling native code from ThingML
+### Calling native code from ThingML
 
 Calling native code, for any target language, is realized as follows:
 
@@ -52,7 +52,7 @@ Calling native code, for any target language, is realized as follows:
 
 The implementation (wrapping) of the random facility is given below, for C and for Java.
 
-### calling C/C++ code
+#### calling C/C++ code
 
 ```thingml
 import "../random.thingml"
@@ -76,7 +76,7 @@ thing RandomLinux includes Random
 
 First, the `@c_headers "#include <time.h>"` annotation ensure the `RandomLinux` thing includes the proper C headers. When the thing is initialized, it will initialize the random sequence by calling the C `srand(time(NULL))` function and will then wait for request and serve random integers by calling the C `rand` function.
 
-### calling Java code
+#### calling Java code
 
 ```thingml
 import "../random.thingml"
@@ -107,10 +107,10 @@ This statement mixes ThingML code: `rn` is a ThingML property (though it is mapp
 
 > ThingML Integer are actually 2-byte long and thus cannot be mapped to Java int. They are rather mapped on Java short. The `Short.MAX_VALUE + 1` expression ensures the java int produced by `nextInt`does not overflow the ThingML Integer (*i.e.*, a Java short).
 
-## Calling ThingML code from native code
+### Calling ThingML code from native code
 
 The previous example simply called native code from a ThingML program. In more advanced cases, it is however useful to be able to call ThingML code from a native API (typically when wrapping a library relying on callbacks).
 
-### in C/C++
+#### in C/C++
 
-### in Java
+#### in Java
