@@ -1,6 +1,6 @@
-#HEADS Methodology
+# HEADS IDE & Methodology
 
-This repository is a [git-book](https://www.gitbook.io/) describing the HEADS methodology. This methodology will guide platform experts (*e.g.* Java or Arduino gurus) and service designers in using the HEADS IDE to develop Heterogeneous and Distributed services (HD-services).
+This [git-book](https://www.gitbook.io/) describes the HEADS methodology. This methodology will guide platform experts (*e.g.* Java or Arduino gurus) and service designers in using the HEADS IDE to develop Heterogeneous and Distributed services (HD-services).
 
 ##Credits
 
