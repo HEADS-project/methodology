@@ -1,7 +1,7 @@
 # Summary
 
-* [The HEADS IDE](the_heads_ide/README.md)
-* [The HEADS Methodology](methodology_for_platform_experts/README.md)
-   * [For Platform Experts](methodology_for_platform_experts/for_platform_experts.md)
-   * [For Service Developers](methodology_for_platform_experts/for_service_developers.md)
+* [HEADS IDE](heads_ide/README.md)
+* [HEADS Methodology](heads_methodology/README.md)
+   * [For Platform Experts](heads_methodology/for_platform_experts.md)
+   * [For Service Developers](heads_methodology/for_service_developers.md)
 
