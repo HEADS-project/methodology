@@ -1,18 +1,23 @@
 # HEADS IDE & Methodology
 
-This [git-book](https://www.gitbook.io/) describes the HEADS methodology. This methodology will guide platform experts (*e.g.* Java or Arduino gurus) and service designers in using the HEADS IDE to develop Heterogeneous and Distributed services (HD-services).
+The main result of the HEADS project is **the HEADS IDE for HD-Services development**. The HEADS IDE and modelling languages are fully released **as open-source** using non contaminating licenses (such as LGPL or EPL) to allow both proprietary usage and extensions. The HEADS IDE is complemented by **methodology document** which
 
-###Credits
+1. guides developers of HD-Services in using the HEADS techniques and tools and
+2. guides platform experts to add support for new platforms by developing plugins for the HEADS IDE.
 
-This work has been funded by [EU FP7 HEADS project](http://heads-project.eu).
 
-<img src="http://heads-project.eu/sites/default/files/heads_large.png">
+The objective of the project is not to provide a complete set of plugins covering the whole future internet continuum but a set of selected representative plugins which
 
-###License
-<p style="text-align:center;">
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">HEADS Methodology</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://heads-project.eu" property="cc:attributionName" rel="cc:attributionURL">HEADS Consortium</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+1. demonstrate the approach,
+2. makes it available to third parties and
+3. cover the needs of the use cases.
 
-<br></br>
 
-<img src="https://creativecommons.org/images/deed/seal.png">
-</p>
+A HEADS plugin for a particular platform includes
+- a code generator for the specific platform,
+- a HEADS model library (API) exposing the capabilities of the platform and
+- a mechanism for deploying code to the platform.
+
+
+The plugins supporting different platforms can be released with different licences. All the generic code generators to general purpose language will be released as open-source. All the plugins developed by the academic partners will be released open-source. Plugins and specialization made by the industry partners and for the use cases might be kept proprietary. Third parties will be provided with the tools and documentation necessary to develop third party plugins.
+

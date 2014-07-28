@@ -1,4 +1,4 @@
-# Wrapping ThingML code into Kevoree components
+# Compile ThingML components to platform specific code
 
 State machines are a common formalism to express reactive behavior that needs to react on some events, correlate events, and produce some new events. A state machine-based programming language, and ThingML in particular, is thus a good candidate to implement Kevoree components and write the logic that orchestrates the different ports of this component.
 

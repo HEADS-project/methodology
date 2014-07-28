@@ -1,16 +1,13 @@
 # HEADS IDE
 
-The HEADS IDE is a set of Eclipse plugins, which provides languages and tools for designing and operating Heterogeneous and Distributed (HD) services.
+The conceptual architecture of the HEADS IDE together with the main HEADS actors is depicted in the figure below:
 
-Complete Eclipse bundles, integrating the HEADS languages, frameworks and tools are [available for download](https://ci.inria.fr/k3al/view/Tous/job/headside/ws/products/target/products/):
+![HEADS IDE Conceptual Architecture](architecture.png)
 
-- [Linux 64 bits](https://ci.inria.fr/k3al/view/Tous/job/headside/ws/products/target/products/heads_ide-linux.gtk.x86_64.zip)
-- [Linux 32 bits](https://ci.inria.fr/k3al/view/Tous/job/headside/ws/products/target/products/heads_ide-linux.gtk.x86.zip)
-- [MacOS X (64 bits)](https://ci.inria.fr/k3al/view/Tous/job/headside/ws/products/target/products/heads_ide-macosx.cocoa.x86_64.zip)
-- [Windows 64 bits](https://ci.inria.fr/k3al/view/Tous/job/headside/ws/products/target/products/heads_ide-win32.win32.x86_64.zip)
-- [Windows 32 bits](https://ci.inria.fr/k3al/view/Tous/job/headside/ws/products/target/products/heads_ide-win32.win32.x86.zip)
+The HEADS IDE includes 2 main parts: the design time tools in the top part of the figure and the runtime tools on the bottom part of the figure. Both parts are desrcibed in the following two sub-sections.
+
+The HEADS IDE is meant to be used by the HD-Service developer and the HD-Service operator in order to create, deploy, monitor and evolve HD-Services. The distinction between the service developer and operator is that the developer is mainly concerned with the HEADS design time tools (based on ThingML) and the operator is mainly concerned with the HEADS runtime tools (based on Kevoree).
+
+In addition, the HEADS IDE is meant to be extended by platform experts. The HEADS IDE is built as an open-source framework which has a set of extension points to support new platforms and communication channels. At this point, we have identified 4 extension points which are represented by yellow stars in the figure above. Each of these extension points allows supporting different aspects of a particular target platform.
 
 
-Just unzip the file corresponding to your OS, and you are ready to go!
-
-![HEADS IDE in Action](HEADS-IDE.png)
