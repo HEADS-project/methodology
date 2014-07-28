@@ -32,7 +32,7 @@
 
 
         
-    <div class="book"  data-level="2.1.1" data-basepath=".." data-revision="1406547976340">
+    <div class="book"  data-level="2.1.1" data-basepath=".." data-revision="1406555161460">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -156,10 +156,19 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.3" data-path="heads_methodology/implementing_a_new_kevoree_node.html">
+        <li class="chapter " data-level="2.1.3" data-path="heads_methodology/implementing_new_kevoree_nodes_and_channels.html">
             
-            <a href="../heads_methodology/implementing_a_new_kevoree_node.html">
-                <i class="fa fa-check"></i> <b>2.1.3.</b> Implementing a new Kevoree node
+            <a href="../heads_methodology/implementing_new_kevoree_nodes_and_channels.html">
+                <i class="fa fa-check"></i> <b>2.1.3.</b> Implementing new Kevoree nodes and channels
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="heads_methodology/wrapping_thingml_code_into_kevoree_components.html">
+            
+            <a href="../heads_methodology/wrapping_thingml_code_into_kevoree_components.html">
+                <i class="fa fa-check"></i> <b>2.1.4.</b> Wrapping ThingML code into Kevoree components
             </a>
             
             
@@ -200,23 +209,25 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 57.142857142857146%;min-width: 42.857142857142854%;"></div>
+        <div class="inner" style="width: 50%;min-width: 37.5%;"></div>
     </div>
     <div class="chapters">
     
         <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
     
-        <a href="../heads_ide/README.html" title="HEADS IDE" class="chapter done new-chapter" data-progress="1" style="left: 14.285714285714286%;"></a>
+        <a href="../heads_ide/README.html" title="HEADS IDE" class="chapter done new-chapter" data-progress="1" style="left: 12.5%;"></a>
     
-        <a href="../heads_methodology/README.html" title="HEADS Methodology" class="chapter done new-chapter" data-progress="2" style="left: 28.571428571428573%;"></a>
+        <a href="../heads_methodology/README.html" title="HEADS Methodology" class="chapter done new-chapter" data-progress="2" style="left: 25%;"></a>
     
-        <a href="../heads_methodology/for_platform_experts.html" title="For Platform Experts" class="chapter done " data-progress="2.1" style="left: 42.857142857142854%;"></a>
+        <a href="../heads_methodology/for_platform_experts.html" title="For Platform Experts" class="chapter done " data-progress="2.1" style="left: 37.5%;"></a>
     
-        <a href="../heads_methodology/writing_a_driver_with_thingml.html" title="Writing a driver with ThingML" class="chapter done " data-progress="2.1.1" style="left: 57.142857142857146%;"></a>
+        <a href="../heads_methodology/writing_a_driver_with_thingml.html" title="Writing a driver with ThingML" class="chapter done " data-progress="2.1.1" style="left: 50%;"></a>
     
-        <a href="../heads_methodology/implementing_a_new_thingml_compiler.html" title="Implementing a new ThingML compiler" class="chapter  " data-progress="2.1.2" style="left: 71.42857142857143%;"></a>
+        <a href="../heads_methodology/implementing_a_new_thingml_compiler.html" title="Implementing a new ThingML compiler" class="chapter  " data-progress="2.1.2" style="left: 62.5%;"></a>
     
-        <a href="../heads_methodology/implementing_a_new_kevoree_node.html" title="Implementing a new Kevoree node" class="chapter  " data-progress="2.1.3" style="left: 85.71428571428571%;"></a>
+        <a href="../heads_methodology/implementing_new_kevoree_nodes_and_channels.html" title="Implementing new Kevoree nodes and channels" class="chapter  " data-progress="2.1.3" style="left: 75%;"></a>
+    
+        <a href="../heads_methodology/wrapping_thingml_code_into_kevoree_components.html" title="Wrapping ThingML code into Kevoree components" class="chapter  " data-progress="2.1.4" style="left: 87.5%;"></a>
     
         <a href="../heads_methodology/for_service_developers.html" title="For Service Developers" class="chapter  " data-progress="2.2" style="left: 100%;"></a>
     
@@ -225,15 +236,15 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1782">
+                    <section class="normal" id="section-gitbook_687">
                     
                         <h1 id="writing-a-driver-with-thingml">Writing a driver with ThingML</h1>
-<p>This section details how to implement a driver for ThingML. A driver basically wrap an existing piece of code (in Java, C, C++, ...) and expose it as a ThingML API, which can then be seamlessly used by service designers, with no need to cope with low-level details related to Java, C, C++, ...</p>
+<p>This section details how to implement a driver for ThingML. A driver basically wraps an existing piece of code (in Java, C, C++, ...) and exposes it as a ThingML API, which can then be seamlessly used by service designers, with no need to cope with low-level details related to Java, C, C++, ...</p>
 <p>We will use a simple random integer generator as a running example, that we will wrap in C and also in Java.</p>
 <blockquote>
 <p>Generating random integers could certainly be implemented directly in ThingML, however, as all programming languages already provide facilities for random generation, this would have been like... re-inventing the wheel. <strong>Better wrap what already works!</strong></p>
 </blockquote>
-<h2 id="defining-the-interface">Defining the interface</h2>
+<h3 id="defining-the-interface">Defining the interface</h3>
 <p>A ThingML driver is a plain ThingML component (or <em>thing</em>). In this respect, it is usually recommended to first describe the interface of a component, and then implement it, possibly for different platforms. This is realized in two steps.</p>
 <p>First, declare a thing fragment containing all the messages that are relevant:</p>
 <pre><code class="lang-thingml">thing fragment RandomMsg{
@@ -261,14 +272,14 @@
         receives answer
     }
 }
-</code></pre><h2 id="calling-native-code-from-thingml">Calling native code from ThingML</h2>
+</code></pre><h3 id="calling-native-code-from-thingml">Calling native code from ThingML</h3>
 <p>Calling native code, for any target language, is realized as follows:</p>
 <ul>
 <li>for pure native statement: they should be place between simple quotes, such as <code>&#39;srand(time(NULL));</code></li>
 <li>for mixed code, typically if a call to a native function should be passed with parameters coming from ThingML, it is realized as follows: <code>&#39;&#39; &amp; rn &amp; &#39;.nextInt(Short.MAX_VALUE + 1)&#39;</code>, where rn is a ThingML variable (holding a Java type).</li>
 </ul>
 <p>The implementation (wrapping) of the random facility is given below, for C and for Java.</p>
-<h3 id="calling-c-c-code">calling C/C++ code</h3>
+<h4 id="calling-c-c-code">calling C/C++ code</h4>
 <pre><code class="lang-thingml">import &quot;../random.thingml&quot;
 
 thing RandomLinux includes Random
@@ -288,7 +299,7 @@ thing RandomLinux includes Random
 }
 </code></pre>
 <p>First, the <code>@c_headers &quot;#include &lt;time.h&gt;&quot;</code> annotation ensure the <code>RandomLinux</code> thing includes the proper C headers. When the thing is initialized, it will initialize the random sequence by calling the C <code>srand(time(NULL))</code> function and will then wait for request and serve random integers by calling the C <code>rand</code> function.</p>
-<h3 id="calling-java-code">calling Java code</h3>
+<h4 id="calling-java-code">calling Java code</h4>
 <pre><code class="lang-thingml">import &quot;../random.thingml&quot;
 
 datatype JavaRandom
@@ -315,10 +326,10 @@ thing RandomJava includes Random
 <blockquote>
 <p>ThingML Integer are actually 2-byte long and thus cannot be mapped to Java int. They are rather mapped on Java short. The <code>Short.MAX_VALUE + 1</code> expression ensures the java int produced by <code>nextInt</code>does not overflow the ThingML Integer (<em>i.e.</em>, a Java short).</p>
 </blockquote>
-<h2 id="calling-thingml-code-from-native-code">Calling ThingML code from native code</h2>
+<h3 id="calling-thingml-code-from-native-code">Calling ThingML code from native code</h3>
 <p>The previous example simply called native code from a ThingML program. In more advanced cases, it is however useful to be able to call ThingML code from a native API (typically when wrapping a library relying on callbacks).</p>
-<h3 id="in-c-c-">in C/C++</h3>
-<h3 id="in-java">in Java</h3>
+<h4 id="in-c-c-">in C/C++</h4>
+<h4 id="in-java">in Java</h4>
 
                     
                     </section>

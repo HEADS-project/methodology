@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>HEADS IDE | HEADS IDE &amp; Methodology</title>
+        <title>Implementing new Kevoree nodes and channels | HEADS IDE &amp; Methodology</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -17,10 +17,10 @@
     
     
     
-    <link rel="next" href="../heads_methodology/README.html" />
+    <link rel="next" href="../heads_methodology/wrapping_thingml_code_into_kevoree_components.html" />
     
     
-    <link rel="prev" href="../index.html" />
+    <link rel="prev" href="../heads_methodology/implementing_a_new_thingml_compiler.html" />
     
 
         
@@ -32,7 +32,7 @@
 
 
         
-    <div class="book"  data-level="1" data-basepath=".." data-revision="1406555161460">
+    <div class="book"  data-level="2.1.3" data-basepath=".." data-revision="1406555161460">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -209,7 +209,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 12.5%;min-width: 0%;"></div>
+        <div class="inner" style="width: 75%;min-width: 62.5%;"></div>
     </div>
     <div class="chapters">
     
@@ -217,15 +217,15 @@
     
         <a href="../heads_ide/README.html" title="HEADS IDE" class="chapter done new-chapter" data-progress="1" style="left: 12.5%;"></a>
     
-        <a href="../heads_methodology/README.html" title="HEADS Methodology" class="chapter  new-chapter" data-progress="2" style="left: 25%;"></a>
+        <a href="../heads_methodology/README.html" title="HEADS Methodology" class="chapter done new-chapter" data-progress="2" style="left: 25%;"></a>
     
-        <a href="../heads_methodology/for_platform_experts.html" title="For Platform Experts" class="chapter  " data-progress="2.1" style="left: 37.5%;"></a>
+        <a href="../heads_methodology/for_platform_experts.html" title="For Platform Experts" class="chapter done " data-progress="2.1" style="left: 37.5%;"></a>
     
-        <a href="../heads_methodology/writing_a_driver_with_thingml.html" title="Writing a driver with ThingML" class="chapter  " data-progress="2.1.1" style="left: 50%;"></a>
+        <a href="../heads_methodology/writing_a_driver_with_thingml.html" title="Writing a driver with ThingML" class="chapter done " data-progress="2.1.1" style="left: 50%;"></a>
     
-        <a href="../heads_methodology/implementing_a_new_thingml_compiler.html" title="Implementing a new ThingML compiler" class="chapter  " data-progress="2.1.2" style="left: 62.5%;"></a>
+        <a href="../heads_methodology/implementing_a_new_thingml_compiler.html" title="Implementing a new ThingML compiler" class="chapter done " data-progress="2.1.2" style="left: 62.5%;"></a>
     
-        <a href="../heads_methodology/implementing_new_kevoree_nodes_and_channels.html" title="Implementing new Kevoree nodes and channels" class="chapter  " data-progress="2.1.3" style="left: 75%;"></a>
+        <a href="../heads_methodology/implementing_new_kevoree_nodes_and_channels.html" title="Implementing new Kevoree nodes and channels" class="chapter done " data-progress="2.1.3" style="left: 75%;"></a>
     
         <a href="../heads_methodology/wrapping_thingml_code_into_kevoree_components.html" title="Wrapping ThingML code into Kevoree components" class="chapter  " data-progress="2.1.4" style="left: 87.5%;"></a>
     
@@ -236,20 +236,9 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_683">
+                    <section class="normal" id="section-gitbook_686">
                     
-                        <h1 id="heads-ide">HEADS IDE</h1>
-<p>The HEADS IDE is a set of Eclipse plugins, which provides languages and tools for designing and operating Heterogeneous and Distributed (HD) services.</p>
-<p>Complete Eclipse bundles, integrating the HEADS languages, frameworks and tools are <a href="https://ci.inria.fr/k3al/view/Tous/job/headside/ws/products/target/products/" target="_blank">available for download</a>:</p>
-<ul>
-<li><a href="https://ci.inria.fr/k3al/view/Tous/job/headside/ws/products/target/products/heads_ide-linux.gtk.x86_64.zip" target="_blank">Linux 64 bits</a></li>
-<li><a href="https://ci.inria.fr/k3al/view/Tous/job/headside/ws/products/target/products/heads_ide-linux.gtk.x86.zip" target="_blank">Linux 32 bits</a></li>
-<li><a href="https://ci.inria.fr/k3al/view/Tous/job/headside/ws/products/target/products/heads_ide-macosx.cocoa.x86_64.zip" target="_blank">MacOS X (64 bits)</a></li>
-<li><a href="https://ci.inria.fr/k3al/view/Tous/job/headside/ws/products/target/products/heads_ide-win32.win32.x86_64.zip" target="_blank">Windows 64 bits</a></li>
-<li><a href="https://ci.inria.fr/k3al/view/Tous/job/headside/ws/products/target/products/heads_ide-win32.win32.x86.zip" target="_blank">Windows 32 bits</a></li>
-</ul>
-<p>Just unzip the file corresponding to your OS, and you are ready to go!</p>
-<p><img src="/figures/HEADS-IDE.png" alt="HEADS IDE in Action"></p>
+                        <h1 id="implementing-new-kevoree-nodes-and-channels">Implementing new Kevoree nodes and channels</h1>
 
                     
                     </section>
@@ -259,10 +248,10 @@
         </div>
 
         
-        <a href="../index.html" class="navigation navigation-prev " aria-label="Previous page: Introduction"><i class="fa fa-angle-left"></i></a>
+        <a href="../heads_methodology/implementing_a_new_thingml_compiler.html" class="navigation navigation-prev " aria-label="Previous page: Implementing a new ThingML compiler"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../heads_methodology/README.html" class="navigation navigation-next " aria-label="Next page: HEADS Methodology"><i class="fa fa-angle-right"></i></a>
+        <a href="../heads_methodology/wrapping_thingml_code_into_kevoree_components.html" class="navigation navigation-next " aria-label="Next page: Wrapping ThingML code into Kevoree components"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

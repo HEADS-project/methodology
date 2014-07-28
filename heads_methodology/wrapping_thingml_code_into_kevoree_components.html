@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>For Service Developers | HEADS IDE &amp; Methodology</title>
+        <title>Wrapping ThingML code into Kevoree components | HEADS IDE &amp; Methodology</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -17,8 +17,10 @@
     
     
     
+    <link rel="next" href="../heads_methodology/for_service_developers.html" />
     
-    <link rel="prev" href="../heads_methodology/wrapping_thingml_code_into_kevoree_components.html" />
+    
+    <link rel="prev" href="../heads_methodology/implementing_new_kevoree_nodes_and_channels.html" />
     
 
         
@@ -30,7 +32,7 @@
 
 
         
-    <div class="book"  data-level="2.2" data-basepath=".." data-revision="1406555161460">
+    <div class="book"  data-level="2.1.4" data-basepath=".." data-revision="1406555161460">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -207,7 +209,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 100%;min-width: 87.5%;"></div>
+        <div class="inner" style="width: 87.5%;min-width: 75%;"></div>
     </div>
     <div class="chapters">
     
@@ -227,16 +229,191 @@
     
         <a href="../heads_methodology/wrapping_thingml_code_into_kevoree_components.html" title="Wrapping ThingML code into Kevoree components" class="chapter done " data-progress="2.1.4" style="left: 87.5%;"></a>
     
-        <a href="../heads_methodology/for_service_developers.html" title="For Service Developers" class="chapter done " data-progress="2.2" style="left: 100%;"></a>
+        <a href="../heads_methodology/for_service_developers.html" title="For Service Developers" class="chapter  " data-progress="2.2" style="left: 100%;"></a>
     
     </div>
 </div>
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_684">
+                    <section class="normal" id="section-gitbook_688">
                     
-                        <h1 id="for-service-developers">For Service Developers</h1>
+                        <h1 id="wrapping-thingml-code-into-kevoree-components">Wrapping ThingML code into Kevoree components</h1>
+<p>State machines are a common formalism to express reactive behavior that needs to react on some events, correlate events, and produce some new events. A state machine-based programming language, and ThingML in particular, is thus a good candidate to implement Kevoree components and write the logic that orchestrates the different ports of this component.</p>
+<h3 id="write-you-thingml-things-as-usual">Write you ThingML <em>things</em>, as usual</h3>
+<p>Let&#39;s consider a simple ThingML program made of two things, basically involving message to deal with a timer:</p>
+<pre><code>thing fragment TimerMsgs {
+    // Start the Timer
+    message timer_start(delay : Integer);
+    // Cancel the Timer
+    message timer_cancel();
+    // Notification that the timer has expired
+    message timer_timeout();
+}
+</code></pre><p>First, a timer:</p>
+<pre><code>thing fragment Timer includes TimerMsgs
+{
+    provided port timer
+    {
+        sends timer_timeout
+        receives timer_start, timer_cancel
+    }
+}
+
+//Java implementation of the timer
+datatype JavaTimer
+@java_type &quot;java.util.Timer&quot;;
+
+datatype JavaTimerTask
+@java_type &quot;java.util.TimerTask&quot;;
+
+// Manage a set of software timers.
+thing TimerJava includes Timer
+@java_interface &quot;org.thingml.timer.TimerObserver&quot;
+@thingml_maven_dep &quot;org.thingml.utils&quot;
+{
+
+    readonly property javaTimer : JavaTimer = &#39;new java.util.Timer()&#39;
+    property javaTimerTask : JavaTimerTask
+
+    function onTimeout()@override &quot;true&quot;
+    do
+        timer!timer_timeout()
+    end
+
+    function cancel()
+    do
+      if(not (javaTimerTask == &#39;null&#39;))
+      do
+        &#39;&#39; &amp; javaTimerTask &amp; &#39;.cancel();&#39;
+        &#39;&#39; &amp; javaTimerTask &amp; &#39; = null;&#39;
+      end
+      &#39;&#39; &amp; javaTimer &amp; &#39;.purge();&#39;
+    end
+
+    function start(delay : Integer)
+    do
+        cancel()
+        javaTimerTask = &#39;new org.thingml.timer.ThingMLTimerTask(this)&#39;
+        &#39;&#39; &amp; javaTimer &amp; &#39;.schedule(&#39; &amp; javaTimerTask &amp; &#39;, (long)&#39; &amp; delay &amp; &#39;);&#39;
+    end
+
+    statechart SoftTimer init default {
+        state default {
+          internal start
+            event m : timer?timer_start
+            guard m.delay &gt; 0
+            action do
+                start(m.delay)
+            end
+
+          internal cancel
+            event m : timer?timer_cancel
+            action cancel()
+        }
+    }
+}
+</code></pre><p>Second, a simple client:</p>
+<pre><code>thing fragment TimerClient includes TimerMsgs
+{
+    required port timer
+    {
+        receives timer_timeout
+        sends timer_start, timer_cancel
+    }
+
+}
+
+thing TimerClientJava includes TimerClient
+{
+    statechart Default init Tick {
+
+        property counter : Integer = 0
+
+        state Tick {
+            on entry
+            do
+                timer!timer_start(1000)
+            end
+
+
+            transition tock -&gt; Tick
+            event timer?timer_timeout
+            guard counter%2 == 0
+            action do
+                print(&quot;tick&quot;)
+                print(counter)
+                counter = counter + 1
+            end
+
+            internal event tick : timer?timer_timeout
+            guard counter%2 == 1
+            action do
+                print(&quot;tock&quot;)
+                print(counter)
+                counter = counter + 1
+                timer!timer_start(5000)
+            end
+        }
+
+    }
+
+}
+</code></pre><p>We then need to define a configuration, specifying how to connect the timer and the client:</p>
+<pre><code>configuration TestTimerJava {
+    instance timer : TimerJava
+    instance client : TimerClientJava
+    connector client.timer =&gt; timer.timer
+}
+</code></pre><h3 id="test-your-things-in-a-standalone-mode">Test your <em>things</em> in a standalone mode</h3>
+<p>This ThingML program can then be compiled (using the standalone editor) to Java. In the compiler Menu, select Java/JASM. This will generate the Java code, wrap it into a Maven project, compile it and run it. In the terminal/console, you should see:</p>
+<pre><code>tick
+0
+tock
+1
+tick
+2
+tock
+3
+</code></pre><h3 id="wrap-your-things-into-kevoree-components">Wrap your <em>things</em> into Kevoree components</h3>
+<p>Now, to wrap this program into Kevoree, just select, in the compiler menu, Java/Kevoree. This will generate a set of wrappers that exposes the ThingML components (things) as Kevoree components, and will update the pom.xml file to include the necessary Kevoree plugins. In addition, it will also generate a Kevscript file corresponding to the initial configuration of the system, as described in the ThingML configuration:</p>
+<pre><code>repo &quot;http://repo1.maven.org/maven2&quot;
+repo &quot;http://maven.thingml.org&quot;
+
+//include standard Kevoree libraries
+include mvn:org.kevoree.library.java:org.kevoree.library.java.javaNode:release
+include mvn:org.kevoree.library.java:org.kevoree.library.java.channels:release
+include mvn:org.kevoree.library.java:org.kevoree.library.java.ws:release
+
+//include external libraries that may be needed by ThingML components
+include mvn:org.thingml:org.thingml.utils:snapshot
+
+//include Kevoree wrappers of ThingML components
+include mvn:org.thingml.generated:TestTimerJava:1.0-SNAPSHOT
+
+//create a default Java node
+add node0 : JavaNode
+set node0.log = &quot;false&quot;
+//create a default group to manage the node(s)
+add sync : WSGroup
+set sync.port/node0 = &quot;9000&quot;
+attach node0 sync
+
+//instantiate Kevoree/ThingML components
+add node0.TimerClientJava_TestTimerJava_client : KTimerClientJava
+add node0.TimerJava_TestTimerJava_timer : KTimerJava
+
+//instantiate Kevoree channels and bind component
+add channel_1324969411 : SyncBroadcast
+bind node0.TimerClientJava_TestTimerJava_client.timerPort_out channel_1324969411
+bind node0.TimerJava_TestTimerJava_timer.timerPort channel_1324969411
+add channel_1324969411_re : SyncBroadcast
+bind node0.TimerClientJava_TestTimerJava_client.timerPort channel_1324969411_re
+bind node0.TimerJava_TestTimerJava_timer.timerPort_out channel_1324969411_re
+start sync
+start node0
+</code></pre><h3 id="deploy-and-adapt-with-kevoree-as-usual">Deploy and adapt with Kevoree, as usual</h3>
+<p>After you recompile the project (using <code>mvn clean install</code>), you can open this KevScripts into the Kevoree editor and deploy it using Kevoree as a normal Java node.</p>
 
                     
                     </section>
@@ -246,8 +423,10 @@
         </div>
 
         
-        <a href="../heads_methodology/wrapping_thingml_code_into_kevoree_components.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Wrapping ThingML code into Kevoree components"><i class="fa fa-angle-left"></i></a>
+        <a href="../heads_methodology/implementing_new_kevoree_nodes_and_channels.html" class="navigation navigation-prev " aria-label="Previous page: Implementing new Kevoree nodes and channels"><i class="fa fa-angle-left"></i></a>
         
+        
+        <a href="../heads_methodology/for_service_developers.html" class="navigation navigation-next " aria-label="Next page: For Service Developers"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
