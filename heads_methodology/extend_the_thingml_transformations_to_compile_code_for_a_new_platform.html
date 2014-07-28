@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>For Platform Experts | HEADS IDE &amp; Methodology</title>
+        <title>Extend the ThingML transformations to compile code for a new platform | HEADS IDE &amp; Methodology</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -17,10 +17,10 @@
     
     
     
-    <link rel="next" href="../heads_methodology/create_libraries_to_support_platform_specific_features__library__component.html" />
+    <link rel="next" href="../heads_methodology/extend_kevoree_to_deploy_code_for_a_new_platform.html" />
     
     
-    <link rel="prev" href="../heads_methodology/README.html" />
+    <link rel="prev" href="../heads_methodology/create_libraries_to_support_platform_specific_features__library__component.html" />
     
 
         
@@ -32,7 +32,7 @@
 
 
         
-    <div class="book"  data-level="3.1" data-basepath=".." data-revision="1406579587290">
+    <div class="book"  data-level="3.1.2" data-basepath=".." data-revision="1406579587290">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -386,7 +386,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 40%;min-width: 36%;"></div>
+        <div class="inner" style="width: 48%;min-width: 44%;"></div>
     </div>
     <div class="chapters">
     
@@ -412,9 +412,9 @@
     
         <a href="../heads_methodology/for_platform_experts.html" title="For Platform Experts" class="chapter done " data-progress="3.1" style="left: 40%;"></a>
     
-        <a href="../heads_methodology/create_libraries_to_support_platform_specific_features__library__component.html" title="Create libraries to support platform specific features / library / component" class="chapter  " data-progress="3.1.1" style="left: 44%;"></a>
+        <a href="../heads_methodology/create_libraries_to_support_platform_specific_features__library__component.html" title="Create libraries to support platform specific features / library / component" class="chapter done " data-progress="3.1.1" style="left: 44%;"></a>
     
-        <a href="../heads_methodology/extend_the_thingml_transformations_to_compile_code_for_a_new_platform.html" title="Extend the ThingML transformations to compile code for a new platform" class="chapter  " data-progress="3.1.2" style="left: 48%;"></a>
+        <a href="../heads_methodology/extend_the_thingml_transformations_to_compile_code_for_a_new_platform.html" title="Extend the ThingML transformations to compile code for a new platform" class="chapter done " data-progress="3.1.2" style="left: 48%;"></a>
     
         <a href="../heads_methodology/extend_kevoree_to_deploy_code_for_a_new_platform.html" title="Extend Kevoree to deploy code for a new platform" class="chapter  " data-progress="3.1.3" style="left: 52%;"></a>
     
@@ -447,10 +447,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_430">
+                    <section class="normal" id="section-gitbook_438">
                     
-                        <h1 id="for-platform-experts">For Platform Experts</h1>
-<p>The platform expert is responsible for writing plugins for the HEADS IDE in order to support different target platforms. The HEADS IDE has 4 different extension points which can be used to support specific platforms.</p>
+                        <h1 id="extend-the-thingml-transformations-to-compile-code-for-a-new-platform">Extend the ThingML transformations to compile code for a new platform</h1>
+<p>When new target languages, operating systems or core libraries need to be supported, the platform expect has to extend the ThingML compilers/transformation. The ThingML compiler will be made modular so that different parts can be reused and extended separately.</p>
+<p>ThingML supports for adding annotations on all elements of the language. The platform expert can define specific annotations which are exploited in the code generator in order to support platform specific features.</p>
+<p>Examples (to be elaborated): Using Linux Threads (annotation <code>@fork_linux_thread</code>, <a href="https://github.com/SINTEF-9012/ThingML/blob/master/org.thingml.compilers/src/main/resources/ctemplates/fork.c" target="_blank">code generation template</a>, <a href="https://github.com/SINTEF-9012/ThingML/blob/master/org.thingml.samples/src/main/thingml/core/_linux/serial.thingml" target="_blank">example usage in the linux serial component</a>)</p>
 
                     
                     </section>
@@ -460,10 +462,10 @@
         </div>
 
         
-        <a href="../heads_methodology/README.html" class="navigation navigation-prev " aria-label="Previous page: HEADS Methodology"><i class="fa fa-angle-left"></i></a>
+        <a href="../heads_methodology/create_libraries_to_support_platform_specific_features__library__component.html" class="navigation navigation-prev " aria-label="Previous page: Create libraries to support platform specific features / library / component"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../heads_methodology/create_libraries_to_support_platform_specific_features__library__component.html" class="navigation navigation-next " aria-label="Next page: Create libraries to support platform specific features / library / component"><i class="fa fa-angle-right"></i></a>
+        <a href="../heads_methodology/extend_kevoree_to_deploy_code_for_a_new_platform.html" class="navigation navigation-next " aria-label="Next page: Extend Kevoree to deploy code for a new platform"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

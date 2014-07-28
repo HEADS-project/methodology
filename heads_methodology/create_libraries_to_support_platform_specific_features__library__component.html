@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>For Platform Experts | HEADS IDE &amp; Methodology</title>
+        <title>Create libraries to support platform specific features / library / component | HEADS IDE &amp; Methodology</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -17,10 +17,10 @@
     
     
     
-    <link rel="next" href="../heads_methodology/create_libraries_to_support_platform_specific_features__library__component.html" />
+    <link rel="next" href="../heads_methodology/extend_the_thingml_transformations_to_compile_code_for_a_new_platform.html" />
     
     
-    <link rel="prev" href="../heads_methodology/README.html" />
+    <link rel="prev" href="../heads_methodology/for_platform_experts.html" />
     
 
         
@@ -32,7 +32,7 @@
 
 
         
-    <div class="book"  data-level="3.1" data-basepath=".." data-revision="1406579587290">
+    <div class="book"  data-level="3.1.1" data-basepath=".." data-revision="1406579587290">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -386,7 +386,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 40%;min-width: 36%;"></div>
+        <div class="inner" style="width: 44%;min-width: 40%;"></div>
     </div>
     <div class="chapters">
     
@@ -412,7 +412,7 @@
     
         <a href="../heads_methodology/for_platform_experts.html" title="For Platform Experts" class="chapter done " data-progress="3.1" style="left: 40%;"></a>
     
-        <a href="../heads_methodology/create_libraries_to_support_platform_specific_features__library__component.html" title="Create libraries to support platform specific features / library / component" class="chapter  " data-progress="3.1.1" style="left: 44%;"></a>
+        <a href="../heads_methodology/create_libraries_to_support_platform_specific_features__library__component.html" title="Create libraries to support platform specific features / library / component" class="chapter done " data-progress="3.1.1" style="left: 44%;"></a>
     
         <a href="../heads_methodology/extend_the_thingml_transformations_to_compile_code_for_a_new_platform.html" title="Extend the ThingML transformations to compile code for a new platform" class="chapter  " data-progress="3.1.2" style="left: 48%;"></a>
     
@@ -447,10 +447,101 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_430">
+                    <section class="normal" id="section-gitbook_432">
                     
-                        <h1 id="for-platform-experts">For Platform Experts</h1>
-<p>The platform expert is responsible for writing plugins for the HEADS IDE in order to support different target platforms. The HEADS IDE has 4 different extension points which can be used to support specific platforms.</p>
+                        <h1 id="create-libraries-to-support-platform-specific-features-library-component">Create libraries to support platform specific features / library / component</h1>
+<p>In the case that the target language is supported by an existing transformation, support for platform specific features can be added by creating platform specific libraries in ThingML. These platform specific libraries integrated ThingML structures and code together with code written in the target language and specific to the target platform.</p>
+<p>This section details how to implement a driver for ThingML. A driver basically wraps an existing piece of code (in Java, C, C++, ...) and exposes it as a ThingML API, which can then be seamlessly used by service designers, with no need to cope with low-level details related to Java, C, C++, ...</p>
+<p>We will use a simple random integer generator as a running example, that we will wrap in C and also in Java.</p>
+<blockquote>
+<p>Generating random integers could certainly be implemented directly in ThingML, however, as all programming languages already provide facilities for random generation, this would have been like... re-inventing the wheel. <strong>Better wrap what already works!</strong></p>
+</blockquote>
+<h3 id="defining-the-interface">Defining the interface</h3>
+<p>A ThingML driver is a plain ThingML component (or <em>thing</em>). In this respect, it is usually recommended to first describe the interface of a component, and then implement it, possibly for different platforms. This is realized in two steps.</p>
+<p>First, declare a thing fragment containing all the messages that are relevant:</p>
+<pre><code class="lang-thingml">thing fragment RandomMsg{
+    message request();
+    message answer(v: Integer);
+}
+</code></pre>
+<blockquote>
+<p>As ThingML is asynchronous, <strong>the request and the answer should be defined in two distinct messages</strong>. In synchronous Java, this would have been a single method like <code>public int random()</code>, blocking the caller until the random is computed.</p>
+</blockquote>
+<p>Then declare a second thing fragment, which includes the former one, and group messages into a port:</p>
+<pre><code class="lang-thingml">thing fragment Random includes RandomMsg{
+    provided port random {
+        receives request
+        sends answer
+    }
+}
+</code></pre>
+<blockquote>
+<p>ThingML would allow defining only one thing fragment containing both the message declarations and the port. However, if a thing want to use a timer, it will need to include the timer messages. <strong>Splitting message and port declarations favors a better reuse</strong>:</p>
+</blockquote>
+<pre><code>thing fragment RandomUser includes RandomMsg{
+    required port random {
+        sends request
+        receives answer
+    }
+}
+</code></pre><h3 id="calling-native-code-from-thingml">Calling native code from ThingML</h3>
+<p>Calling native code, for any target language, is realized as follows:</p>
+<ul>
+<li>for pure native statement: they should be place between simple quotes, such as <code>&#39;srand(time(NULL));</code></li>
+<li>for mixed code, typically if a call to a native function should be passed with parameters coming from ThingML, it is realized as follows: <code>&#39;&#39; &amp; rn &amp; &#39;.nextInt(Short.MAX_VALUE + 1)&#39;</code>, where rn is a ThingML variable (holding a Java type).</li>
+</ul>
+<p>The implementation (wrapping) of the random facility is given below, for C and for Java.</p>
+<h4 id="calling-c-c-code">calling C/C++ code</h4>
+<pre><code class="lang-thingml">import &quot;../random.thingml&quot;
+
+thing RandomLinux includes Random
+@c_headers &quot;#include &lt;time.h&gt;&quot;
+{
+    statechart Random init start {
+        state start {
+            on entry &#39;srand(time(NULL));&#39;
+            transition -&gt;waiting
+        }
+        state waiting {
+          internal waiting
+            event random?request
+            action random!answer(&#39;rand()&#39;)
+        }
+    }
+}
+</code></pre>
+<p>First, the <code>@c_headers &quot;#include &lt;time.h&gt;&quot;</code> annotation ensure the <code>RandomLinux</code> thing includes the proper C headers. When the thing is initialized, it will initialize the random sequence by calling the C <code>srand(time(NULL))</code> function and will then wait for request and serve random integers by calling the C <code>rand</code> function.</p>
+<h4 id="calling-java-code">calling Java code</h4>
+<pre><code class="lang-thingml">import &quot;../random.thingml&quot;
+
+datatype JavaRandom
+@java_type &quot;java.util.Random&quot;;
+
+thing RandomJava includes Random
+{
+    property rn : JavaRandom = &#39;new java.util.Random()&#39;
+    statechart Random init waiting {
+        state waiting {
+          internal waiting
+            event random?request
+            action random!answer(&#39;&#39; &amp; rn &amp; &#39;.nextInt(Short.MAX_VALUE + 1)&#39;)
+        }
+    }
+}
+</code></pre>
+<p>First, a datatype is created, backed by the <code>java.util.Random</code> class. This datatype is initialized in the <code>RandomJava</code> thing as follows: <code>property rn : JavaRandom = &#39;new java.util.Random()&#39;</code>.</p>
+<blockquote>
+<p>The call to <code>new</code> is actually plain Java code, as it is placed between single quotes.</p>
+</blockquote>
+<p>Similarly to the C thing, this thing will then wait for request and serve random integers using <code>&#39;&#39; &amp; rn &amp; &#39;.nextInt(Short.MAX_VALUE + 1)&#39;</code>.</p>
+<p>This statement mixes ThingML code: <code>rn</code> is a ThingML property (though it is mapped to a Java type), while <code>.nextInt(Short.MAX_VALUE + 1)</code> is plain Java code.</p>
+<blockquote>
+<p>ThingML Integer are actually 2-byte long and thus cannot be mapped to Java int. They are rather mapped on Java short. The <code>Short.MAX_VALUE + 1</code> expression ensures the java int produced by <code>nextInt</code>does not overflow the ThingML Integer (<em>i.e.</em>, a Java short).</p>
+</blockquote>
+<h3 id="calling-thingml-code-from-native-code">Calling ThingML code from native code</h3>
+<p>The previous example simply called native code from a ThingML program. In more advanced cases, it is however useful to be able to call ThingML code from a native API (typically when wrapping a library relying on callbacks).</p>
+<h4 id="in-c-c-">in C/C++</h4>
+<h4 id="in-java">in Java</h4>
 
                     
                     </section>
@@ -460,10 +551,10 @@
         </div>
 
         
-        <a href="../heads_methodology/README.html" class="navigation navigation-prev " aria-label="Previous page: HEADS Methodology"><i class="fa fa-angle-left"></i></a>
+        <a href="../heads_methodology/for_platform_experts.html" class="navigation navigation-prev " aria-label="Previous page: For Platform Experts"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../heads_methodology/create_libraries_to_support_platform_specific_features__library__component.html" class="navigation navigation-next " aria-label="Next page: Create libraries to support platform specific features / library / component"><i class="fa fa-angle-right"></i></a>
+        <a href="../heads_methodology/extend_the_thingml_transformations_to_compile_code_for_a_new_platform.html" class="navigation navigation-next " aria-label="Next page: Extend the ThingML transformations to compile code for a new platform"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
