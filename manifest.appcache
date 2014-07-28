@@ -1,11 +1,11 @@
 CACHE MANIFEST
-# Revision 1406555161460
+# Revision 1406556668978
 
 CACHE:
 index.html
+heads_ide/README.html
 heads_methodology/README.html
 heads_methodology/for_platform_experts.html
-heads_ide/README.html
 heads_methodology/for_service_developers.html
 heads_methodology/implementing_a_new_thingml_compiler.html
 heads_methodology/implementing_new_kevoree_nodes_and_channels.html
