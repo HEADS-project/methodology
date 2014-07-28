@@ -1,6 +1,6 @@
 # Writing a driver with ThingML
 
-This section details how to implement a driver for ThingML. A driver basically wrap an existing piece of code (in Java, C, C++, ...) and expose it as a ThingML API, which can then be seamlessly used by service designers, with no need to cope with low-level details related to Java, C, C++, ...
+This section details how to implement a driver for ThingML. A driver basically wraps an existing piece of code (in Java, C, C++, ...) and exposes it as a ThingML API, which can then be seamlessly used by service designers, with no need to cope with low-level details related to Java, C, C++, ...
 
 We will use a simple random integer generator as a running example, that we will wrap in C and also in Java.
 
