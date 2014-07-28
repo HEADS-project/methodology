@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Revision 1406542504535
+# Revision 1406547976341
 
 CACHE:
 index.html
@@ -7,6 +7,9 @@ heads_ide/README.html
 heads_methodology/README.html
 heads_methodology/for_platform_experts.html
 heads_methodology/for_service_developers.html
+heads_methodology/implementing_a_new_thingml_compiler.html
+heads_methodology/writing_a_driver_with_thingml.html
+heads_methodology/implementing_a_new_kevoree_node.html
 gitbook\app.js
 gitbook\fonts\fontawesome\FontAwesome.otf
 gitbook\fonts\fontawesome\fontawesome-webfont.eot
