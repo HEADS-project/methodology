@@ -13,4 +13,4 @@ Complete Eclipse bundles, integrating the HEADS languages, frameworks and tools 
 
 Just unzip the file corresponding to your OS, and you are ready to go!
 
-![HEADS IDE in Action](/figures/HEADS-IDE.png)
+![HEADS IDE in Action](HEADS-IDE.png)
