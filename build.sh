@@ -3,7 +3,8 @@ git add -A
 git commit -m 'update sources'
 git push
 git checkout gh-pages
-mv /tmp/heads/* .
+rm -rf *
+mv -f /tmp/heads/* .
 git add -A
 git commit -m 'update website'
 git push
