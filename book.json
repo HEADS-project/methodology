@@ -1,12 +1,4 @@
 {
-    "plugins": [
-        "richquotes"
-    ],
-    "pluginsConfig": {
-        "richquotes": {
-            "todos": true
-        }
-    },
     "links": {
         "home": "https://heads-project.github.io/methodology/",
         "about": "http://heads-project.eu",
