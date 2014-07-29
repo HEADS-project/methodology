@@ -101,7 +101,7 @@ thing RandomJava includes Random
 
 First, a datatype is created, backed by the `java.util.Random` class. This datatype is initialized in the `RandomJava` thing as follows: `property rn : JavaRandom = 'new java.util.Random()'`.
 
-> The call to `new` is actually plain Java code, as it is placed between single quotes.
+> The call to `new` is actually plain Java code and not a ThingML keyword, as it is placed between single quotes.
 
 Similarly to the C thing, this thing will then wait for request and serve random integers using `'' & rn & '.nextInt(Short.MAX_VALUE + 1)'`.
 

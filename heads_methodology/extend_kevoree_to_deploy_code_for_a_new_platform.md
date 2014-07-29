@@ -10,3 +10,5 @@ https://github.com/kevoree/kevoree-js
 
 We will also support here the definition of new Node Type
 http://kevoree.org/practices/level5
+
+> **todo** Inria to complete this part

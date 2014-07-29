@@ -1,15 +1,9 @@
 {
-   // Links in template (null: default, false: remove, string: new value)
     "links": {
-        // Link to home in the top-left corner
-        "home": "https://heads-project.github.io/methodology/,
-
-        // Links in top of sidebar
+        "home": "https://heads-project.github.io/methodology/",
         "about": "http://heads-project.eu",
         "issues": false,
         "contribute": "https://github.com/HEADS-project/methodology",
-
-        // Sharing links
         "sharing": {
             "google": false,
             "facebook": false,

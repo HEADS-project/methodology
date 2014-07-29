@@ -13,3 +13,5 @@ http://kevoree.org/practices/level1
 
 Here we should discuss the integration between the ThingML implementation models and the Kevoree deployment models.
 
+> **todo** Inria to complete this part
+

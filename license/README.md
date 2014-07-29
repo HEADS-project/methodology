@@ -12,4 +12,6 @@
 
 ### HEADS IDE
 
-TODO: license of the different languages, framework and tools composing the IDE
+- [**ThingML**](http://thingml.org): LGPL-3.0
+- [**Kevoree**](http://kevoree.org): LGPL-3.0
+- [**SoftwareAG's Terracotta**](http://www.softwareag.com/corporate/products/az/terracotta/default.asp): Commercial (with possibilities for academic licenses)
