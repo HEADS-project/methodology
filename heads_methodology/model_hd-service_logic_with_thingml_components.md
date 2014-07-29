@@ -4,3 +4,5 @@ The service developer uses ThingML to define the components of the HD-Service an
 
 Documentation: http://www.thingml.org/ (especially the Documentation sub-sections)
 Examples: https://github.com/SINTEF-9012/ThingML/tree/master/org.thingml.samples
+
+> **todo** SINTEF to complete this part

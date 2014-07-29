@@ -5,3 +5,4 @@ To support different communication protocols, HEADS relies on the definition of 
 We will also support here the definition of new Node Type
 http://kevoree.org/practices/level6
 
+> **todo** Inria to complete this part

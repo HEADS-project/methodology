@@ -1,5 +1,15 @@
 {
-   // Links in template (null: default, false: remove, string: new value)
+
+    "plugins"       : ["richquotes"]
+    ,"pluginsConfig":
+    {
+        "richquotes" :
+        {
+            "todos" : true /*false by default*/
+        }
+    }   
+
+    // Links in template (null: default, false: remove, string: new value)
     "links": {
         // Link to home in the top-left corner
         "home": "https://heads-project.github.io/methodology/,
