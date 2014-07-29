@@ -1,13 +1,11 @@
 {
 
-    "plugins"       : ["richquotes"]
-    ,"pluginsConfig":
-    {
-        "richquotes" :
-        {
+    "plugins"       : ["richquotes"],
+    "pluginsConfig": {
+        "richquotes" :  {
             "todos" : true /*false by default*/
         }
-    }   
+    },   
 
     // Links in template (null: default, false: remove, string: new value)
     "links": {
