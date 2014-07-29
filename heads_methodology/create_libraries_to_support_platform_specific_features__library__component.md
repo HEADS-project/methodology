@@ -6,7 +6,7 @@ This section details how to implement a driver for ThingML. A driver basically w
 
 We will use a simple random integer generator as a running example, that we will wrap in C and also in Java.
 
-> Generating random integers could certainly be implemented directly in ThingML, however, as all programming languages already provide facilities for random generation, this would have been like... re-inventing the wheel. **Better wrap what already works!**
+> **Info** Generating random integers could certainly be implemented directly in ThingML, however, as all programming languages already provide facilities for random generation, this would have been like... re-inventing the wheel. **Better wrap what already works!**
 
 ### Defining the interface
 
@@ -21,7 +21,7 @@ thing fragment RandomMsg{
 }
 ```
 
-> As ThingML is asynchronous, **the request and the answer should be defined in two distinct messages**. In synchronous Java, this would have been a single method like `public int random()`, blocking the caller until the random is computed.
+> **Info** As ThingML is asynchronous, **the request and the answer should be defined in two distinct messages**. In synchronous Java, this would have been a single method like `public int random()`, blocking the caller until the random is computed.
 
 Then declare a second thing fragment, which includes the former one, and group messages into a port:
 
@@ -34,7 +34,7 @@ thing fragment Random includes RandomMsg{
 }
 ```
 
-> ThingML would allow defining only one thing fragment containing both the message declarations and the port. However, if a thing want to use a timer, it will need to include the timer messages. **Splitting message and port declarations favors a better reuse**:
+> **Hint** ThingML would allow defining only one thing fragment containing both the message declarations and the port. However, if a thing want to use a timer, it will need to include the timer messages. **Splitting message and port declarations favors a better reuse**:
 
 ```
 thing fragment RandomUser includes RandomMsg{
@@ -101,13 +101,13 @@ thing RandomJava includes Random
 
 First, a datatype is created, backed by the `java.util.Random` class. This datatype is initialized in the `RandomJava` thing as follows: `property rn : JavaRandom = 'new java.util.Random()'`.
 
-> The call to `new` is actually plain Java code, as it is placed between single quotes.
+> **Info** The call to `new` is actually plain Java code and not a ThingML keyword, as it is placed between single quotes.
 
 Similarly to the C thing, this thing will then wait for request and serve random integers using `'' & rn & '.nextInt(Short.MAX_VALUE + 1)'`.
 
 This statement mixes ThingML code: `rn` is a ThingML property (though it is mapped to a Java type), while `.nextInt(Short.MAX_VALUE + 1)` is plain Java code.
 
-> ThingML Integer are actually 2-byte long and thus cannot be mapped to Java int. They are rather mapped on Java short. The `Short.MAX_VALUE + 1` expression ensures the java int produced by `nextInt`does not overflow the ThingML Integer (*i.e.*, a Java short).
+> **Info** ThingML Integer are actually 2-byte long and thus cannot be mapped to Java int. They are rather mapped on Java short. The `Short.MAX_VALUE + 1` expression ensures the java int produced by `nextInt`does not overflow the ThingML Integer (*i.e.*, a Java short).
 
 ### Calling ThingML code from native code
 
