@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="HEADS-project/methodology" data-level="3.1.4" data-basepath=".." data-revision="1409746788535">
+    <div class="book" data-github="HEADS-project/methodology" data-level="3.1.4" data-basepath=".." data-revision="1409748079110">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -648,14 +648,29 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_16">
+                    <section class="normal" id="section-gitbook_14">
                     
                         <h1 id="extend-kevoree-to-support-a-new-communication-channel">Extend Kevoree to support a new communication channel</h1>
 <p>To support different communication protocols, HEADS relies on the definition of communication channels. Kevoree allows defining channel types which can then be deployed between components. The channel types can wrap low level protocols (such as binary on a serial link) as well as high level protocols (such as emails or skype calls).</p>
-<p>You can follow this tutorial on how to <a href="http://kevoree.org/practices/level5/" target="_blank">make your own Kevoree channel</a></p>
-<blockquote>
-<p><strong>todo</strong> Inria to complete this part</p>
-</blockquote>
+<p>A channel in Kevoree is implemented as follows:</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@ChannelType</span>
+<span class="hljs-annotation">@Library</span>(name = <span class="hljs-string">"Java"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyFirstChannel</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ChannelDispatch</span> {</span>
+
+    <span class="hljs-annotation">@KevoreeInject</span>
+    ChannelContext channelContext;
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dispatch</span>(<span class="hljs-keyword">final</span> Object payload, <span class="hljs-keyword">final</span> Callback callback) {
+        <span class="hljs-keyword">for</span> (Port p : channelContext.getLocalPorts()) {
+            p.call(payload, callback);
+        }
+    }
+}
+</code></pre>
+<p>This naive implementation basically implements a direct call. However, instead of a simple <code>p.call</code> it is possible to call third-party API for example publishing a message on a MQTT topic.</p>
+<p>The channel context gives you access to the model. The dispatch method is called automatically when a message is received by one of the channel fragment. You must have in mind that this channel is instantiated for any node on which bound component are deployed.</p>
+<p>You can follow this tutorial on how to <a href="http://kevoree.org/practices/level5/" target="_blank">make your own Kevoree channel</a> for more details about channels.</p>
 
                     
                     </section>
