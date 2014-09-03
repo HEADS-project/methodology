@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="HEADS-project/methodology" data-level="3.2.2" data-basepath=".." data-revision="1409736497302">
+    <div class="book" data-github="HEADS-project/methodology" data-level="3.2.2" data-basepath=".." data-revision="1409743643899">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -651,127 +651,7 @@
                     <section class="normal" id="section-gitbook_17">
                     
                         <h1 id="compile-thingml-components-to-platform-specific-code">Compile ThingML components to platform specific code</h1>
-<p>State machines are a common formalism to express reactive behavior that needs to react on some events, correlate events, and produce some new events. A state machine-based programming language, and ThingML in particular, is thus a good candidate to implement Kevoree components and write the logic that orchestrates the different ports of this component.</p>
-<h3 id="write-you-thingml-things-as-usual">Write you ThingML <em>things</em>, as usual</h3>
-<p>Let&#39;s consider a simple ThingML program made of two things, basically involving message to deal with a timer:</p>
-<pre><code>thing fragment TimerMsgs {
-    // Start the Timer
-    message timer_start(delay : Integer);
-    // Cancel the Timer
-    message timer_cancel();
-    // Notification that the timer has expired
-    message timer_timeout();
-}
-</code></pre><p>First, a timer:</p>
-<pre><code>thing fragment Timer includes TimerMsgs
-{
-    provided port timer
-    {
-        sends timer_timeout
-        receives timer_start, timer_cancel
-    }
-}
-
-//Java implementation of the timer
-datatype JavaTimer
-@java_type &quot;java.util.Timer&quot;;
-
-datatype JavaTimerTask
-@java_type &quot;java.util.TimerTask&quot;;
-
-// Manage a set of software timers.
-thing TimerJava includes Timer
-@java_interface &quot;org.thingml.timer.TimerObserver&quot;
-@thingml_maven_dep &quot;org.thingml.utils&quot;
-{
-
-    readonly property javaTimer : JavaTimer = &#39;new java.util.Timer()&#39;
-    property javaTimerTask : JavaTimerTask
-
-    function onTimeout()@override &quot;true&quot;
-    do
-        timer!timer_timeout()
-    end
-
-    function cancel()
-    do
-      if(not (javaTimerTask == &#39;null&#39;))
-      do
-        &#39;&#39; &amp; javaTimerTask &amp; &#39;.cancel();&#39;
-        &#39;&#39; &amp; javaTimerTask &amp; &#39; = null;&#39;
-      end
-      &#39;&#39; &amp; javaTimer &amp; &#39;.purge();&#39;
-    end
-
-    function start(delay : Integer)
-    do
-        cancel()
-        javaTimerTask = &#39;new org.thingml.timer.ThingMLTimerTask(this)&#39;
-        &#39;&#39; &amp; javaTimer &amp; &#39;.schedule(&#39; &amp; javaTimerTask &amp; &#39;, (long)&#39; &amp; delay &amp; &#39;);&#39;
-    end
-
-    statechart SoftTimer init default {
-        state default {
-          internal start
-            event m : timer?timer_start
-            guard m.delay &gt; 0
-            action do
-                start(m.delay)
-            end
-
-          internal cancel
-            event m : timer?timer_cancel
-            action cancel()
-        }
-    }
-}
-</code></pre><p>Second, a simple client:</p>
-<pre><code>thing fragment TimerClient includes TimerMsgs
-{
-    required port timer
-    {
-        receives timer_timeout
-        sends timer_start, timer_cancel
-    }
-
-}
-
-thing TimerClientJava includes TimerClient
-{
-    statechart Default init Tick {
-
-        property counter : Integer = 0
-
-        state Tick {
-            on entry
-            do
-                timer!timer_start(1000)
-            end
-
-
-            transition tock -&gt; Tick
-            event timer?timer_timeout
-            guard counter%2 == 0
-            action do
-                print(&quot;tick&quot;)
-                print(counter)
-                counter = counter + 1
-            end
-
-            internal event tick : timer?timer_timeout
-            guard counter%2 == 1
-            action do
-                print(&quot;tock&quot;)
-                print(counter)
-                counter = counter + 1
-                timer!timer_start(5000)
-            end
-        }
-
-    }
-
-}
-</code></pre><p>We then need to define a configuration, specifying how to connect the timer and the client:</p>
+<p>In order to produce executable code, a ThingML configuration should be defined, where components (both platform-independent and platform-specific) need to be instantiated and connected togather:</p>
 <pre><code>configuration TestTimerJava {
     instance timer : TimerJava
     instance client : TimerClientJava
