@@ -116,3 +116,9 @@ The previous example simply called native code from a ThingML program. In more a
 #### in C/C++
 
 #### in Java
+
+In Java, the easiest way to call ThingML code from a plain Java class is to
+
+1. Make the Thing extend a Java interface. This is realized by annotating the thing: `thing MyThing @java_interface "my.package.MyInterface"`. The methods defined in this Java interface should be implemented in the thing. As ThingML functions are private by default, the function corresponding to the Java methods to be implemented need to be annotated: `function myFunction()@override "true"`. This function needs to have the exact same signature as the one defined in the Java interface.
+2. In the external Java class, import the Java interface, define a pointer to that interface (a reference or a list), and call the methods of that interface in the Java class
+3. Implement a registration mechanism in the Java class, so that I can actually call the class generated from the thing (and extending the interface). This can typically be done by defining an extra argument (typed by the interface) in the constructor. The plain Java class can then be created from the thing as follows: `'new my.package.MyClass(this)'`. The Java class can then hold a reference to the thingml object (`this`) and call methods on it.
