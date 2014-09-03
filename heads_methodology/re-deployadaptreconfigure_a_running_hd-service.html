@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="HEADS-project/methodology" data-level="3.3.3" data-basepath=".." data-revision="1409743643899">
+    <div class="book" data-github="HEADS-project/methodology" data-level="3.3.3" data-basepath=".." data-revision="1409746788535">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -651,11 +651,34 @@
                     <section class="normal" id="section-gitbook_24">
                     
                         <h1 id="re-deployadaptreconfigure-a-running-hd-service">Re-deploy/adapt/reconfigure a running HD-Service</h1>
-<p><a href="http://kevoree.org/practices/level2" target="_blank">http://kevoree.org/practices/level2</a></p>
-<p><a href="http://kevoree.org/practices/level3" target="_blank">http://kevoree.org/practices/level3</a></p>
+<p>In order to reconfigure a Kevoree model and trigger adaptations of your system after re-deployment you need a
+ <code>Kevoree Editor</code> (<a href="http://oss.sonatype.org/service/local/artifact/maven/redirect?r=public&amp;g=org.kevoree.tools&amp;a=org.kevoree.tools.ui.editor&amp;v=RELEASE" target="_blank">Java Editor</a> 
+or <a href="http://editor.kevoree.org" target="_blank">Web Editor</a>) and some knowledge of the Kevoree Script (<a href="http://kevoree.github.io/kevoree-book/kevoree_script_aka_kevscript/README.html" target="_blank">KevScript</a>) language.</p>
+<h2 id="using-the-java-editor">Using the Java Editor</h2>
 <blockquote>
-<p><strong>todo</strong> Inria to complete this part</p>
+<p><strong>todo</strong></p>
 </blockquote>
+<h2 id="using-the-web-editor">Using the Web Editor</h2>
+<blockquote>
+<p>You need to have a group providing a WebSocket endpoint in order to pull/push your models with the Kevoree Web Editor
+ (i.e WSGroup - Java platform or WebSocketGroup - JavaScript platform)  </p>
+</blockquote>
+<h3 id="pulling-your-model">Pulling your model</h3>
+<p>Open a Web browser to this location: <code>http://editor.kevoree.org/?host=SOME_HOST&amp;port=SOME_PORT</code><br>This will automatically pull the model using WebSocket and the <code>host:port</code> you specified in the URL parameters.<br>Now you should have your model displayed in the editor.  </p>
+<p><img src="kwe_overview.png" alt="Kevoree Web Editor overview"></p>
+<h3 id="reconfigure-your-model">Reconfigure your model</h3>
+<h4 id="using-kevscript">Using KevScript</h4>
+<p>If you open the KevScript editor (using the button in the top panel) the content is updated to reflect your current 
+model content.<br>You can edit this KevScript directly and then press <strong>Run</strong> so that it modifies your model.<br>Once you are done reconfiguring your model you are going to want to deploy it. (You can skip to <strong>Re-deploy your model</strong>)</p>
+<h4 id="using-the-graphical-editor">Using the graphical editor</h4>
+<blockquote>
+<p><strong>todo</strong></p>
+</blockquote>
+<h3 id="re-deploy-your-model">Re-deploy your model</h3>
+<p>To deploy your model you just have to click on the node you want to deploy the model to.<br>You now have its properties displayed in a pop-up window (instance name, dictionary attributes, network settings). 
+Because you pulled your model directly from your node in the first you don&#39;t have to specify the network settings to 
+push a model to it.<br>You can just simply press the <strong>Push</strong> button, and your reconfigured model will be send to your Kevoree platform and it 
+will make the necessary adaptations.</p>
 
                     
                     </section>

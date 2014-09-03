@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="HEADS-project/methodology" data-level="3.1.1" data-basepath=".." data-revision="1409743643899">
+    <div class="book" data-github="HEADS-project/methodology" data-level="3.1.1" data-basepath=".." data-revision="1409746788535">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -648,7 +648,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_12">
+                    <section class="normal" id="section-gitbook_11">
                     
                         <h1 id="create-libraries-to-support-platform-specific-features--library--component">Create libraries to support platform specific features / library / component</h1>
 <p>In the case that the target language is supported by an existing transformation, support for platform specific features can be added by creating platform specific libraries in ThingML. These platform specific libraries integrated ThingML structures and code together with code written in the target language and specific to the target platform.</p>
@@ -742,6 +742,122 @@ thing RandomJava includes Random
 <h3 id="calling-thingml-code-from-native-code">Calling ThingML code from native code</h3>
 <p>The previous example simply called native code from a ThingML program. In more advanced cases, it is however useful to be able to call ThingML code from a native API (typically when wrapping a library relying on callbacks).</p>
 <h4 id="in-cc">in C/C++</h4>
+<p>To do so one should adapt/wrap a native C/C++ library (wrapped library) in such a away that the library (wrapping library) can call callbacks which execute some of the ThingML generated code. We suggest the following mechanism to call the generated code in ThingML from the native library. However, there are other ways to achieve the goal as well. The explanation below is given using C++, but the same approach can be used in C as well.</p>
+<p>1) Create a type definition for a callback and structure which holds the callback to call from the wrapping library. The type definition and structure should look as follows:</p>
+<pre><code>typedef void (*pthingMLCallback)(void* _instance, ...);
+
+struct ThingMLCallback {
+    pthingMLCallback fn_callback;
+    void* instance;
+
+    ThingMLCallback(pthingMLCallback _callback, void* _instance):
+        fn_callback(_callback),
+        instance(_instance){
+    };
+};
+</code></pre><p>As one may notice, we use the ellipsis (&quot;...&quot;). Thus, the wrapping library can call a function with any number of arguments following <code>_instance</code>. The <code>_instance</code> argument is used by ThingML to identify a thing. Therefore, <code>_instance</code> is an internal concern of ThingML. One should just make sure that a reference to a thing (<code>_instance</code>) is passed together with a reference to the callback. ThingMLCallback has two arguments, i.e. a reference <code>_callback</code> to the callback and void reference <code>_instance</code> to the thing, which is passed as the first argument when the callback is called.</p>
+<p>2) The wrapping library that calls the callback should hold a reference to an instance of ThingMLCallback. For example:</p>
+<pre><code>class BinarySensor {
+    private:
+        ThingMLCallback* valueUpdatedCallback;
+    public:
+        ...
+        //set ThingML callback
+        void setValueUpdatedCallback(ThingMLCallback* _callback){valueUpdatedCallback = _callback;};
+
+        //function is called by a native library
+        void valueupdate(int value);
+        ...
+}
+</code></pre><p>3) Call the callback from the wrapping libarary as follows.</p>
+<pre><code>void BinarySensor::valueupdate(int value){
+    this-&gt;valueUpdatedCallback-&gt;fn_callback(this-&gt;valueUpdatedCallback-&gt;instance, value);
+}
+</code></pre><p>Note, that the <code>valueupdate(int value)</code> function is called by the native (wrapped) library.</p>
+<p>4) Define a thing which uses the wrapping library. The wrapping library calls the callback <code>function value_change_binarysensor_callback()</code> defined in the thing <code>ZWaveBinarySensor</code>.</p>
+<pre><code>import &quot;thingml.thingml&quot;
+
+datatype BinarySensor
+@c_type &quot;BinarySensor*&quot;;
+
+thing ZWaveBinarySensor 
+@c_header &quot;
+#include &lt;stdlib.h&gt;
+#include &lt;cstdarg&gt;
+#include \&quot;BinarySensor.h\&quot;
+
+using namespace TinyOpenZWaveApi;
+&quot;
+{
+    property bs : BinarySensor
+
+    provided port bsport {
+        receives initialize
+    }
+
+    //these are two internal ports shoud be bound together
+    provided port bsportintsend {
+        sends status
+    }
+
+    required port bsportintrecv {
+        receives status
+    }
+
+
+    function value_change_binarysensor_callback()
+    @c_prototype &quot;void value_change_binarysensor_callback(void *_instance, ...)&quot;
+    @c_instance_var_name &quot;(ZWaveBinarySensor_Instance *) _instance&quot;
+    do
+        &#39;va_list arguments;&#39;
+        &#39;va_start(arguments, _instance);&#39;
+        &#39;int state = va_arg(arguments, int);&#39;
+        &#39;va_end(arguments);&#39;
+        bsportintsend!status(&#39;state&#39;)
+    end
+
+    function init_binarysensor() do
+        print &quot;ZwaveBinarySensor: initializing ... \n&quot;
+        &#39;ThingMLCallback* value_changed = new ThingMLCallback(value_change_binarysensor_callback, _instance);&#39;
+        bs = &#39;new BinarySensor();&#39;
+        &#39;&#39;&amp;bs&amp;&#39;-&gt;setValueUpdatedCallback(value_changed);&#39;
+    end
+
+    function getState() : Integer do
+        return &#39;&#39;&amp;bs&amp;&#39;-&gt;getCurrentValue()&#39;
+    end
+
+
+    statechart behavior init Start {
+
+
+        state Start {
+            on entry do
+                print &quot;ZwaveBinarySensor: waiting for initialize command ...\n&quot;
+            end
+            transition-&gt;Ready
+            event bsport?initialize
+            action do
+                init_binarysensor()
+            end
+        }
+
+        state Ready {
+            on entry do
+                print &quot;ZwaveBinarySensor: ready ...\n&quot;
+            end
+
+            internal event e : bsportintrecv?status
+            action do
+                // here may go some code
+            end
+        }
+
+    }
+}
+</code></pre><p>Note, we use the ThingML capability to bland the ThingML code and sources which are native to some platform (in this case C++). The C++ code is enclosed by the single quotes. </p>
+<p>We have defined the callback <code>value_change_binarysensor_callback</code> with the signature that corresponds to the <code>typedef</code> from point 1. Make sure that this callback in ThingML should be annotated with <code>@c_prototype</code> and <code>@c_instance_var_name</code>. The annotation <code>@c_prototype</code> instructs ThingML to generate a function with the signature given in the double quotes, <code>@c_instance_var_name</code> casts <code>_instance</code> to the proper type. These annotations are required to perform a call of the callback on the right thing (it is the <code>ZWaveBinarySensor</code> thing in our case) </p>
+<p>Further, we create an instance of ThingMLCallback that holds references to the callback <code>value_change_binarysensor_callback</code> and <code>ZWaveBinarySensor</code> thing (<code>_instance</code>), i.e. <code>ThingMLCallback* value_changed = new ThingMLCallback(value_change_binarysensor_callback, _instance);</code>. Subsequently, <code>value_changed</code> is passed to the wrapping library, i.e. <code>&#39;&#39;&amp;bs&amp;&#39;-&gt;setValueUpdatedCallback(value_changed);&#39;</code>. Now if the native (wrapped) library calls the function which we have implemented in the wrrapping library, i.e. <code>void valueupdate(int)</code>(see the point  2), the wrapper calls the callback <code>function value_change_binarysensor_callback()</code>. Finnally, we can extract a value passed to the callback using <code>va_list</code> and <code>va_arg</code> in <code>function value_change_binarysensor_callback()</code> as well as we can use any ThingML instructions. </p>
 <h4 id="in-java">in Java</h4>
 <p>In Java, the easiest way to call ThingML code from a plain Java class is to</p>
 <ol>
