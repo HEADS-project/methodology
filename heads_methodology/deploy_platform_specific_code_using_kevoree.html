@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="HEADS-project/methodology" data-level="3.2.4" data-basepath=".." data-revision="1406627142998">
+    <div class="book" data-github="HEADS-project/methodology" data-level="3.2.4" data-basepath=".." data-revision="1409736497302">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -648,12 +648,72 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_13">
+                    <section class="normal" id="section-gitbook_14">
                     
                         <h1 id="deploy-platform-specific-code-using-kevoree">Deploy platform specific code using Kevoree</h1>
 <p>After the platform specific binaries have been compiled, Kevoree should be used to deploy, initialize and monitor the application.</p>
+<h1 id="java-environment">Java environment</h1>
+<h2 id="the-kevoree-maven-plugin">The Kevoree Maven Plugin</h2>
+<p>The Kevoree Maven plugin extracts the Component-Model from the annotations placed in your code, and stores it into a Kevoree Model packed along with the compiled class files.
+Also, for the ease of use, the Kevoree Maven plugin embeds a Kevoree runner. This runner launches a Kevoree runtime using a KevScript file. This file is supposed to be <code>src/main/resources/kevs/main.kevs</code> in the project. Alternatively, you can specify the location of the KevScript file you want to use in the configuration of the plugin.
+You can also specify the name of the node you want to launch.</p>
+<pre><code>&lt;plugin&gt;
+    &lt;groupId&gt;org.kevoree.tools&lt;/groupId&gt;
+    &lt;artifactId&gt;org.kevoree.tools.mavenplugin&lt;/artifactId&gt;
+    &lt;version&gt;${kevoree.version}&lt;/version&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;generate&lt;/goal&gt;
+            &lt;/goals&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+    &lt;configuration&gt;
+        &lt;nodename&gt;MyNode&lt;/nodename&gt;
+        &lt;model&gt;src/main/kevs/main.kevs&lt;/model&gt;
+    &lt;/configuration&gt;
+&lt;/plugin&gt;
+</code></pre><h3 id="available-actions">Available actions</h3>
+<p>Mainly the Kevoree maven plugin is automatically executed at compile time in order to put additional informations in the JAR. <em>(Mainly model fragment of currently developed type definitions)</em>.</p>
+<p>Additionally, user can execute directly the root kevScript file refered in the configuration using the following command:</p>
+<p><code>mvn kev:run</code></p>
+<p>This will execute Kevoree directly in the maven environement.  </p>
+<h1 id="javascript">Javascript</h1>
+<p>Kevoree-js has 2 different Grunt tasks to process and deploy your project:</p>
+<ul>
+<li><strong>grunt-kevoree-genmodel</strong>: parses your sources in order to create the corresponding Kevoree model</li>
+<li><strong>grunt-kevoree</strong>: starts a Kevoree JavaScript runtime using <code>kevs/main.kevs</code> KevScript file and <code>node0</code> as a default node name.  </li>
+</ul>
+<p>Those Grunt tasks must be defined in a <code>Gruntfile.js</code> at the root of your project.</p>
+<pre><code class="lang-js">module.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(grunt)</span> {</span>
+
+    grunt.initConfig({
+        <span class="hljs-comment">// grunt-kevoree-genmodel</span>
+        kevoree_genmodel: {
+            main: {
+                options: {
+                    quiet: <span class="hljs-literal">false</span>,
+                    verbose: <span class="hljs-literal">true</span>
+                }
+            }
+        },
+
+        <span class="hljs-comment">// grunt-kevoree</span>
+        kevoree: {
+            options: {
+                name: <span class="hljs-string">'node0'</span>
+            },
+            run: {
+                kevscript: <span class="hljs-string">'kevs/main.kevs'</span>
+            }
+        }
+    });
+};
+</code></pre>
+<p>You can get more details on their own repos <a href="https://github.com/kevoree/kevoree-js/blob/master/tools/grunt-kevoree/README.md" target="_blank"><code>grunt-kevoree</code></a> and <a href="https://github.com/kevoree/kevoree-js/blob/master/tools/grunt-kevoree-genmodel/README.md" target="_blank"><code>grunt-kevoree-genmodel</code></a></p>
+<h1 id="c">C++</h1>
 <blockquote>
-<p><strong>todo</strong> Inria to complete this part</p>
+<p>todo</p>
 </blockquote>
 
                     

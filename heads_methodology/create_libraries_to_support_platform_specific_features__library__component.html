@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="HEADS-project/methodology" data-level="3.1.1" data-basepath=".." data-revision="1406627142998">
+    <div class="book" data-github="HEADS-project/methodology" data-level="3.1.1" data-basepath=".." data-revision="1409736497302">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -648,7 +648,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_12">
+                    <section class="normal" id="section-gitbook_13">
                     
                         <h1 id="create-libraries-to-support-platform-specific-features--library--component">Create libraries to support platform specific features / library / component</h1>
 <p>In the case that the target language is supported by an existing transformation, support for platform specific features can be added by creating platform specific libraries in ThingML. These platform specific libraries integrated ThingML structures and code together with code written in the target language and specific to the target platform.</p>
@@ -743,6 +743,12 @@ thing RandomJava includes Random
 <p>The previous example simply called native code from a ThingML program. In more advanced cases, it is however useful to be able to call ThingML code from a native API (typically when wrapping a library relying on callbacks).</p>
 <h4 id="in-cc">in C/C++</h4>
 <h4 id="in-java">in Java</h4>
+<p>In Java, the easiest way to call ThingML code from a plain Java class is to</p>
+<ol>
+<li>Make the Thing extend a Java interface. This is realized by annotating the thing: <code>thing MyThing @java_interface &quot;my.package.MyInterface&quot;</code>. The methods defined in this Java interface should be implemented in the thing. As ThingML functions are private by default, the function corresponding to the Java methods to be implemented need to be annotated: <code>function myFunction()@override &quot;true&quot;</code>. This function needs to have the exact same signature as the one defined in the Java interface.</li>
+<li>In the external Java class, import the Java interface, define a pointer to that interface (a reference or a list), and call the methods of that interface in the Java class</li>
+<li>Implement a registration mechanism in the Java class, so that I can actually call the class generated from the thing (and extending the interface). This can typically be done by defining an extra argument (typed by the interface) in the constructor. The plain Java class can then be created from the thing as follows: <code>&#39;new my.package.MyClass(this)&#39;</code>. The Java class can then hold a reference to the thingml object (<code>this</code>) and call methods on it.</li>
+</ol>
 
                     
                     </section>
