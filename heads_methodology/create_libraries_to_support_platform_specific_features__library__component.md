@@ -115,7 +115,7 @@ The previous example simply called native code from a ThingML program. In more a
 
 #### in C/C++
 
-To do so one should adopt/wrap a native C/C++ library (wrapped library) in such a away that the library (wrapping library) can call callbacks which execute some of the ThingML generated code. We suggest the following mechanism to call the generated code in ThingML from the native library. However, there are other ways to achieve the goal as well. The explanation below is given using C++, but the same approach can be used in C as well.
+To do so one should adapt/wrap a native C/C++ library (wrapped library) in such a away that the library (wrapping library) can call callbacks which execute some of the ThingML generated code. We suggest the following mechanism to call the generated code in ThingML from the native library. However, there are other ways to achieve the goal as well. The explanation below is given using C++, but the same approach can be used in C as well.
 
 1) Create a type definition for a callback and structure which holds the callback to call from the wrapping library. The type definition and structure should look as follows:
 ```
