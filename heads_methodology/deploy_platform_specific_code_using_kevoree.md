@@ -39,7 +39,40 @@ Additionally, user can execute directly the root kevScript file refered in the c
 This will execute Kevoree directly in the maven environement.  
 
 # Javascript
-> todo
+Kevoree-js has 2 different Grunt tasks to process and deploy your project:
+- **grunt-kevoree-genmodel**: parses your sources in order to create the corresponding Kevoree model
+- **grunt-kevoree**: starts a Kevoree JavaScript runtime using `kevs/main.kevs` KevScript file and `node0` as a default node name.  
+
+Those Grunt tasks must be defined in a `Gruntfile.js` at the root of your project.
+
+```js
+module.exports = function (grunt) {
+
+    grunt.initConfig({
+    	// grunt-kevoree-genmodel
+    	kevoree_genmodel: {
+            main: {
+                options: {
+                    quiet: false,
+                    verbose: true
+                }
+            }
+        },
+    	
+    	// grunt-kevoree
+    	kevoree: {
+    	    options: {
+    	    	name: 'node0'
+    	    },
+            run: {
+                kevscript: 'kevs/main.kevs'
+            }
+        }
+    });
+};
+```
+
+You can get more details on their own repos [`grunt-kevoree`](https://github.com/kevoree/kevoree-js/blob/master/tools/grunt-kevoree/README.md) and [`grunt-kevoree-genmodel`](https://github.com/kevoree/kevoree-js/blob/master/tools/grunt-kevoree-genmodel/README.md)
 
 # C++
 > todo
