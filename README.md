@@ -1,6 +1,6 @@
 # HEADS IDE & Methodology
 
-The main result of the HEADS project is **the HEADS IDE for HD-Services development**. The HEADS IDE and modelling languages are fully released **as open-source** using non contaminating licenses (such as LGPL or EPL) to allow both proprietary usage and extensions. The HEADS IDE is complemented by **methodology document** which
+The main result of the HEADS project is **the HEADS IDE for HD-Services development**. The HEADS IDE and modelling languages are fully released **as open-source** using non contaminating licenses (such as LGPL or EPL) to allow both proprietary usage and extensions. The HEADS IDE is complemented by this **methodology document** which
 
 1. guides developers of HD-Services in using the HEADS techniques and tools and
 2. guides platform experts to add support for new platforms by developing plugins for the HEADS IDE.
