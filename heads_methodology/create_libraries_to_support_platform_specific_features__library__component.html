@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="HEADS-project/methodology" data-level="3.1.1" data-basepath=".." data-revision="1409748079110">
+    <div class="book" data-github="HEADS-project/methodology" data-level="3.1.1" data-basepath=".." data-revision="1409749000696">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -648,7 +648,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_15">
+                    <section class="normal" id="section-gitbook_13">
                     
                         <h1 id="create-libraries-to-support-platform-specific-features--library--component">Create libraries to support platform specific features / library / component</h1>
 <p>In the case that the target language is supported by an existing transformation, support for platform specific features can be added by creating platform specific libraries in ThingML. These platform specific libraries integrated ThingML structures and code together with code written in the target language and specific to the target platform.</p>
@@ -742,7 +742,9 @@ thing RandomJava includes Random
 <h3 id="calling-thingml-code-from-native-code">Calling ThingML code from native code</h3>
 <p>The previous example simply called native code from a ThingML program. In more advanced cases, it is however useful to be able to call ThingML code from a native API (typically when wrapping a library relying on callbacks).</p>
 <h4 id="in-cc">in C/C++</h4>
-<p>To do so one should adapt/wrap a native C/C++ library (wrapped library) in such a away that the library (wrapping library) can call callbacks which execute some of the ThingML generated code. We suggest the following mechanism to call the generated code in ThingML from the native library. However, there are other ways to achieve the goal as well. The explanation below is given using C++, but the same approach can be used in C as well.</p>
+<p>To do so one should adapt/wrap a native C/C++ library in such a away that the library can call callbacks which execute the ThingML generated code. We propose to adapt/wrap the native (wrapped) library in a library (wrapping library) which can call the generated code in ThingML. The explanation below is given using C++, but the same approach can be used in C as well.</p>
+<p>Context:
+A sensor returns a value once in a while. There is a library that handles a value update. The library provides a callback which is called on the value update. Thus, a user can implement this callback to process the value or define some logic when a new value is returned. We would like to use this library in ThingML and define logic and process the given value.</p>
 <p>1) Create a type definition for a callback and structure which holds the callback to call from the wrapping library. The type definition and structure should look as follows:</p>
 <pre><code>typedef void (*pthingMLCallback)(void* _instance, ...);
 
