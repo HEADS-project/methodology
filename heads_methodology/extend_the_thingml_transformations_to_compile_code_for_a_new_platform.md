@@ -290,7 +290,7 @@ timer.timer_start_via_timer(5000);//timeout! to be displayed in 5000 ms
 
 Similarly in JavaScript:
 
-```
+```js
 // Public methods on the timer
 TimerJS.prototype.timer_startOntimer = function(delay) {
 ...
