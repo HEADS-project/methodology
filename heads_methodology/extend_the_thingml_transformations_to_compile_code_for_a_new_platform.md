@@ -64,3 +64,55 @@ This part of the code generator is in charge of generating the entry point and i
 ### Project structure / Build script
 
 The last extension point is not generating code as such, but the required file structure and builds scripts in order to make the generated code well packaged and easy to compile and deploy on the target platform. The HEADS transformation framework provides access to all the buffers in which the code has been generated and allows creating the file structure which fits the particular target platform. For example, the Arduino compiler concatenates all the generated code into a single file which can be opened by the Arduino IDE. The Linux C code generator creates separate C modules with header files and generates a Makefile to compile the application. The Java and Scala code generators create Maven project and pom.xml files in order to allow compiling and deploying the generated code. The platform expert can customize the project structure and build scripts in order to fit the best practices of the target platform.
+
+## How to write a (family of) compiler(s)?
+
+To illustrate the HEADS transformation framework and show how to implement a family of compilers, we will take the example of the C family, composed of two compilers: Linux/POSIX and Arduino. Those two compilers share most of their code and re-define a few extension points for the parts where they differ.
+
+### Actions / Expressions / Functions
+
+The HEADS action language is fairly aligned with common programming languages, such as Java, C or JavaScript. Most of the actions and expressions can actually be factorized in a generic class:
+
+```java
+public class CommonThingActionCompiler extends ThingActionCompiler {
+    @Override
+    public void generate(ConditionalAction action, StringBuilder builder, Context ctx) {
+        builder.append("if(");
+        generate(action.getCondition(), builder, ctx);
+        builder.append(") {\n");
+        generate(action.getAction(), builder, ctx);
+        builder.append("\n}");
+        if (action.getElseAction() != null) {
+            builder.append(" else {\n");
+            generate(action.getElseAction(), builder, ctx);
+            builder.append("\n}");
+        }
+        builder.append("\n");
+    }
+
+    @Override
+    public void generate(LoopAction action, StringBuilder builder, Context ctx) {
+        builder.append("while(");
+        generate(action.getCondition(), builder, ctx);
+        builder.append(") {\n");
+        generate(action.getAction(), builder, ctx);
+        builder.append("\n}\n");
+    }
+    
+    @Override
+    public void generate(PlusExpression expression, StringBuilder builder, Context ctx) {
+        generate(expression.getLhs(), builder, ctx);
+        builder.append(" + ");
+        generate(expression.getRhs(), builder, ctx);
+    }
+
+    @Override
+    public void generate(MinusExpression expression, StringBuilder builder, Context ctx) {
+        generate(expression.getLhs(), builder, ctx);
+        builder.append(" - ");
+        generate(expression.getRhs(), builder, ctx);
+    }
+    
+    ...
+}
+```
