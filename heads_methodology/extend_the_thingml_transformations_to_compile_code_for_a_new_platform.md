@@ -59,7 +59,7 @@ The HEADS action language is fairly aligned with common programming languages, s
 ```java
 public class CommonThingActionCompiler extends ThingActionCompiler {
     @Override
-    public void generate(ConditionalAction action, StringBuilder builder, Context ctx) {
+    public void generate(ConditionalAction action, StringBuilder builder, Context ctx) {//if(...) {...} else {...}
         builder.append("if(");
         generate(action.getCondition(), builder, ctx);
         builder.append(") {\n");
@@ -74,7 +74,7 @@ public class CommonThingActionCompiler extends ThingActionCompiler {
     }
 
     @Override
-    public void generate(LoopAction action, StringBuilder builder, Context ctx) {
+    public void generate(LoopAction action, StringBuilder builder, Context ctx) {//while(...) {...}
         builder.append("while(");
         generate(action.getCondition(), builder, ctx);
         builder.append(") {\n");
@@ -83,14 +83,14 @@ public class CommonThingActionCompiler extends ThingActionCompiler {
     }
     
     @Override
-    public void generate(PlusExpression expression, StringBuilder builder, Context ctx) {
+    public void generate(PlusExpression expression, StringBuilder builder, Context ctx) {// ... + ...
         generate(expression.getLhs(), builder, ctx);
         builder.append(" + ");
         generate(expression.getRhs(), builder, ctx);
     }
 
     @Override
-    public void generate(MinusExpression expression, StringBuilder builder, Context ctx) {
+    public void generate(MinusExpression expression, StringBuilder builder, Context ctx) {// ... - ...
         generate(expression.getLhs(), builder, ctx);
         builder.append(" - ");
         generate(expression.getRhs(), builder, ctx);
@@ -258,3 +258,32 @@ The following code snippet instantiate a composite state by using the state.js J
 ```
 
 > Based on its extensive suite of tests, the HEADS transformation framework was able to detect a few bugs in the popular [state.js library](https://github.com/steelbreeze/state.js) (~200 likes on GitHub and ~1000 Download a month on NPM), that were rapidly fixed by the repository maintainer.
+
+### Ports / Messages / Thing APIs
+
+The goal of this extension point is to generate proper interface so that the generated code can easily be used and integrated by third-parties, using or not the HEADS technologies. For example a timer component which can receive two messages `timer_start` and `timer_cancel` on a port timer and can emit a `timer_timeout` message on a port timer can be addressed in Java through a couple of interface (the second one serving as a callback):
+
+```java
+public interface ITimerJava_timer{
+    void timer_start_via_timer(short TimerMsgs_timer_start_delay__var);
+    void timer_cancel_via_timer();
+}
+
+public interface ITimerJava_timerClient{
+    void timer_timeout_from_timer();
+}
+```
+
+A third-party wanting to use this simple HEADS-enabled timer would thus, in plain Java implement `ITimerJava_timerClient` interface, and after instantiating a timer, register as a listener:
+```
+TimerJava timer = new TimerJava().buildBehavior();
+timer.registerOnTimer(new ITimerJava_timerClient(){
+    @Override 
+    timer_timeout_from_timer(){
+        System.out.println("timeout!");
+    }
+});
+timer.init();
+timer.start();
+timer.timer_start_via_timer(5000);//timeout! to be displayed in 5000 ms
+```
