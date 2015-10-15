@@ -48,9 +48,11 @@ The last extension point is not generating code as such, but the required file s
 
 ## How to write a (family of) compiler(s)?
 
-To illustrate the HEADS transformation framework and show how to implement a family of compilers, we will take the example of the C family, composed of two compilers: Linux/POSIX and Arduino. Those two compilers share most of their code and re-define a few extension points for the parts where they differ.
+For the different extension point we have presented earlier, we will use concrete compilers that we have implemented to show how to write your own compiler. 
 
 ### Actions / Expressions / Functions
+
+To illustrate the HEADS Action compiler and show how to implement a family of compilers, we will take the example of the C family, composed of two compilers: Linux/POSIX and Arduino. Those two compilers share most of their code and re-define a few extension points for the parts where they differ.
 
 The HEADS action language is fairly aligned with common programming languages, such as Java, C or JavaScript. Most of the actions and expressions can actually be factorized in a generic class:
 
@@ -195,4 +197,64 @@ The C compiler will interprete this annotation and generate multi-threaded code,
 
 ### Behavior Implementation
 
+Different approaches exist when it comes to the compilation of the behavior (mostly state machine-based, with optional extensions for CEP):
 
+- target and existing framework
+- generate all code from scratch, including the code for how to dispatch event to concurrent regions, etc
+
+Both approaches have pros and cons. Using a framework typically reduces the size and complexity of the code to be generated (and of the compilers), as most of the code is directly written in the framework. However, frameworks tend to be generic and might typically include more than what is needed, hence have a larger overhead. The full generative approach gives more flexibility and makes it possible to control each bits and bytes, and optimize the code for a particular state machine (whereas the framework needs to handle any possible state machine), but are typically more complex to implement.
+
+The Java and JavaScript behavior compilers use a framework-based approach, which is rather idiomatic for those language, whereas the C compiler, which is expected to generate code able to run down to small micro-controllers (2KB RAM) uses a full generative approach to avoid any accidental overhead.
+
+Because of the diversity of solutions that can be implemented for this extension point, the high level interface is rather generic so as not to constrain the platform expert:
+
+```java
+public class ThingImplCompiler {
+
+    public void generateImplementation(Thing thing, Context ctx) {
+        
+    }
+
+}
+```
+
+Plaform experts are however encouraged to implement the `generateImplementation`  method in a modular way, split into several sub-methods.
+
+The following code snippet instantiate a composite state by using the state.js JavaScript library:
+```java
+    protected void generateCompositeState(CompositeState c, StringBuilder builder, Context ctx) {
+        String containerName = ctx.getContextAnnotation("container");
+        if (c.hasSeveralRegions()) {
+            builder.append("var " + c.qname("_") + " = new StateJS.Region(\"" + c.getName() + "\", " + containerName + ");\n");
+            builder.append("var " + c.qname("_") + "_default = new StateJS.Region(\"_default\", " + c.qname("_") + ");\n");
+            if (c.isHistory())
+                builder.append("var _initial_" + c.qname("_") + " = new StateJS.pseudoState(\"_initial\", " + c.qname("_") + ", StateJS.PseudoStateKind.ShallowHistory);\n");
+            else
+                builder.append("var _initial_" + c.qname("_") + " = new StateJS.pseudoState(\"_initial\", " + c.qname("_") + ", StateJS.PseudoStateKind.Initial);\n");
+            builder.append("_initial_" + c.qname("_") + ".to(" + c.getInitial().qname("_") + ");\n");
+            for (State s : c.getSubstate()) {
+                ctx.addContextAnnotation("container", c.qname("_") + "_default");
+                generateState(s, builder, ctx);
+            }
+            for (Region r : c.getRegion()) {
+                ctx.addContextAnnotation("container", c.qname("_"));
+                generateRegion(r, builder, ctx);
+            }
+        } else {
+            builder.append("var " + c.qname("_") + " = new StateJS.State(\"" + c.getName() + "\", " + containerName + ")");
+            generateActionsForState(c, builder, ctx);
+            builder.append(";\n");
+            for (State s : c.getSubstate()) {
+                ctx.addContextAnnotation("container", c.qname("_"));
+                generateState(s, builder, ctx);
+            }
+        }
+        if (c.isHistory())
+            builder.append("var _initial_" + c.qname("_") + " = new StateJS.PseudoState(\"_initial\", " + c.qname("_") + ", StateJS.PseudoStateKind.ShallowHistory);\n");
+        else
+            builder.append("var _initial_" + c.qname("_") + " = new StateJS.PseudoState(\"_initial\", " + c.qname("_") + ", StateJS.PseudoStateKind.Initial);\n");
+        builder.append("_initial_" + c.qname("_") + ".to(" + c.getInitial().qname("_") + ");\n");
+    }
+```
+
+> Based on its extensive suite of tests, the HEADS transformation framework was able to detect a few bugs in the popular [state.js library](https://github.com/steelbreeze/state.js) (~200 likes on GitHub and ~1000 Download a month on NPM), that were rapidly fixed by the repository maintainer.
