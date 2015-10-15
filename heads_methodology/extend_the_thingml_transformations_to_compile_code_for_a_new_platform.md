@@ -465,6 +465,116 @@ The following code snippet illustrate how to generate the code for the connector
         }
 ```
 
+### Project structure / Build script
+
+To make the HEADS components easily reusable, with our without the HEADS technologies, they must be properly package. For Java, we for example generate proper Maven project, for JavaScript, NPM projects, and for C, Makefile. If a platform expert would like to use Gradle instead of manage, he would need to re-define the following extension point:
+
+```java
+public class CfgBuildCompiler {
+
+
+    public void generateBuildScript(Configuration cfg, Context ctx) {
+        throw (new UnsupportedOperationException("Project structure and build scripts are platform-specific."));
+    }
+}
+```
+
+Here is for example how we generate a `package.json` for NPM projects:
+
+```java
+public class JSCfgBuildCompiler extends CfgBuildCompiler {
+
+    @Override
+    public void generateBuildScript(Configuration cfg, Context ctx) {
+        try {
+            final InputStream input = this.getClass().getClassLoader().getResourceAsStream("javascript/lib/package.json");
+            final List<String> packLines = IOUtils.readLines(input);
+            String pack = "";
+            for (String line : packLines) {
+                pack += line + "\n";
+            }
+            input.close();
+            pack = pack.replace("<NAME>", cfg.getName());
+
+            final JsonObject json = JsonObject.readFrom(pack);
+            final JsonValue deps = json.get("dependencies");
+            for (Thing t : cfg.allThings()) {
+                for (String dep : t.annotation("js_dep")) {
+                    deps.asObject().add(dep.split(":")[0].trim(), dep.split(":")[1].trim());
+                }
+
+            }
+
+            boolean addCEPdeps = false;
+            boolean addDebugDeps = !ctx.getCompiler().getDebugProfiles().isEmpty();
+
+            for (Thing t : cfg.allThings()) {
+                if (t.getStreams().size() > 0) {
+                    addCEPdeps = true;
+                }
+            }
+
+            if(addCEPdeps) {
+                deps.asObject().add("rx", "^2.5.3");
+                deps.asObject().add("events", "^1.0.2");
+            }
+
+            if(addDebugDeps) {
+                deps.asObject().add("colors", "^1.1.2");
+            }
+
+            final File f = new File(ctx.getOutputDirectory() + "/" + cfg.getName() + "/package.json");
+            f.setWritable(true);
+            final PrintWriter w = new PrintWriter(new FileWriter(f));
+            w.println(json.toString());
+            w.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+
+```
+
+This would produce this kind of output:
+
+```json
+{
+	"name" : "TestTimerJS",
+	"version" : "1.0.0",
+	"description" : "TestTimerJS configuration generated from ThingML",
+	"main" : "main.js",
+	"private" : true,
+	"dependencies" : {
+		"state.js" : "^5.3.4",
+		"colors" : "^1.1.2"
+	},
+	"devDependencies" : {},
+	"scripts" : {}
+
+}
+```
+
+Note that this compiler (as well as others) uses a template to simplify the code generation, since most of the content of `package.json` is fixed:
+
+```json
+{
+  "name": "<NAME>",
+  "version": "1.0.0",
+  "description": "<NAME> configuration generated from ThingML",
+  "main": "main.js",
+  "private": true,
+  "dependencies": {
+    "state.js": "^5.3.4"
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+  }
+}
+```
+
 ## Lightweight extension to existing compilers
 
 When new target languages, operating systems or core libraries need to be supported, the platform expert has to extend the ThingML compilers/transformation. The ThingML compilers are modular so that different parts can be reused and extended separately.
