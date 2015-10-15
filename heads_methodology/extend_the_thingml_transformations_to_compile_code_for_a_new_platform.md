@@ -321,3 +321,23 @@ struct TimerLinux_Instance TestTimerLinux_timer_var;
 register_TimerLinux_send_timer_timer_timeout_listener(&printCallBack);
 TimerLinux_handle_timer_timer_start(&TestTimerLinux_timer_var, 5000);//timeout! to be displayed in 5000 ms
 ```
+
+As this code is only structural (basically a set of methods), it is fairly easy to generate. Here is how we generate Java interfaces of components:
+
+```java
+    //Generate interfaces that the thing will implement, for others to call this API
+    for (Port p : thing.allPorts()) {
+        if (!p.isDefined("public", "false") && p.getReceives().size() > 0) {
+            final StringBuilder builder = ctx.getBuilder(src + "/api/I" + ctx.firstToUpper(thing.getName()) + "_" + p.getName() + ".java");
+            builder.append("package " + pack + ".api;\n\n");
+            builder.append("import " + pack + ".api.*;\n\n");
+            builder.append("public interface " + "I" + ctx.firstToUpper(thing.getName()) + "_" + p.getName() + "{\n");
+            for (Message m : p.getReceives()) {
+                builder.append("void " + m.getName() + "_via_" + p.getName() + "(");
+                JavaHelper.generateParameter(m, builder, ctx);
+                builder.append(");\n");
+            }
+            builder.append("}");
+        }
+    }
+```
