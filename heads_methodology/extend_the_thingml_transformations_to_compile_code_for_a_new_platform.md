@@ -306,3 +306,18 @@ timer.getTimer_timeoutontimerListeners().push(function(){console.log("timeout!")
 timer.init();
 timer.timer_startOntimer(5000);//timeout! to be displayed in 5000 ms
 ```
+
+And in C:
+
+```C
+void TimerLinux_handle_timer_timer_start(struct TimerLinux_Instance *_instance, int delay);
+void TimerLinux_handle_timer_timer_cancel(struct TimerLinux_Instance *_instance);
+void register_external_TimerLinux_send_timer_timer_timeout_listener(void (*_listener)(struct TimerLinux_Instance *));
+
+void printCallBack(){
+    fprintf("timeout!\n");
+}
+struct TimerLinux_Instance TestTimerLinux_timer_var;
+register_TimerLinux_send_timer_timer_timeout_listener(&printCallBack);
+TimerLinux_handle_timer_timer_start(&TestTimerLinux_timer_var, 5000);//timeout! to be displayed in 5000 ms
+```
