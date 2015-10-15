@@ -275,7 +275,7 @@ public interface ITimerJava_timerClient{
 ```
 
 A third-party wanting to use this simple HEADS-enabled timer would thus, in plain Java implement `ITimerJava_timerClient` interface, and after instantiating a timer, register as a listener:
-```
+```java
 TimerJava timer = new TimerJava().buildBehavior();
 timer.registerOnTimer(new ITimerJava_timerClient(){
     @Override 
