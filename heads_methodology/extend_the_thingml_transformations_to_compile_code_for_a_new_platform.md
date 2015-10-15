@@ -116,3 +116,65 @@ public class CommonThingActionCompiler extends ThingActionCompiler {
     ...
 }
 ```
+
+The general C compiler just need to redefine some methods (9 in total):
+
+```java
+public abstract class CThingActionCompiler extends CommonThingActionCompiler {
+    @Override
+    public void generate(BooleanLiteral expression, StringBuilder builder, Context ctx) {
+        if (expression.isBoolValue())
+            builder.append("1");
+        else
+            builder.append("0");
+    }
+    ...
+}
+```
+
+Finally, the Linux/POSIX compiler only needs to redefine two methods related to printing on the standard/error output:
+```java
+public class CThingActionCompilerPosix extends CThingActionCompiler {
+
+    @Override
+    public void generate(ErrorAction action, StringBuilder builder, Context ctx) {
+        final StringBuilder b = new StringBuilder();
+        generate(action.getMsg(), b, ctx);
+        builder.append("fprintf(stderr, " + b.toString() + ");\n");
+    }
+
+    @Override
+    public void generate(PrintAction action, StringBuilder builder, Context ctx) {
+        final StringBuilder b = new StringBuilder();
+        generate(action.getMsg(), b, ctx);
+        builder.append("fprintf(stdout, " + b.toString() + ");\n");
+    }
+
+}
+```
+
+The same goes for the Arduino compiler:
+```java
+public class CThingActionCompilerArduino extends CThingActionCompiler {
+
+    @Override
+    public void generate(ErrorAction action, StringBuilder builder, Context ctx) {
+        final StringBuilder b = new StringBuilder();
+        generate(action.getMsg(), b, ctx);
+
+        builder.append("// PRINT ERROR: " + b.toString());
+    }
+
+    @Override
+    public void generate(PrintAction action, StringBuilder builder, Context ctx) {
+        final StringBuilder b = new StringBuilder();
+        generate(action.getMsg(), b, ctx);
+        if (ctx.getCurrentConfiguration().hasAnnotation("arduino_stdout")) {
+            builder.append(ctx.getCurrentConfiguration().annotation("arduino_stdout").iterator().next() + ".print(" + b.toString() + ");\n");
+        } else {
+            builder.append("// PRINT: " + b.toString());
+        }
+    }
+
+}
+```
