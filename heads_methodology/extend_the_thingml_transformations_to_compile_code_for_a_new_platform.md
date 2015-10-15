@@ -287,3 +287,22 @@ timer.init();
 timer.start();
 timer.timer_start_via_timer(5000);//timeout! to be displayed in 5000 ms
 ```
+
+Similarly in JavaScript:
+
+```
+// Public methods on the timer
+TimerJS.prototype.timer_startOntimer = function(delay) {
+...
+};
+
+TimerJS.prototype.timer_cancelOntimer = function() {
+...
+};
+
+var timer = new TimerJS();
+timer.build();
+timer.getTimer_timeoutontimerListeners().push(function(){console.log("timeout!");});
+timer.init();
+timer.timer_startOntimer(5000);//timeout! to be displayed in 5000 ms
+```
