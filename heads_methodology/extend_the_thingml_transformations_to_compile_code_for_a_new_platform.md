@@ -391,7 +391,79 @@ In HEADS, connectors and channels are managed by the HEADS runtime. By default t
     }
 ```
 
+### Message queuing / Scheduling / Dispatch
 
+TODO: @ffleurey
+
+### Initialization and "Main"
+
+This extension point is responsible for instantiating components and properly set the attributes of these instances with proper values. It is also responsible for connecting instances together. Here is an example of a "main" in JavaScript:
+
+```js
+//import types
+var TimerJS = require('./TimerJS');
+var SimpleTimerClient = require('./SimpleTimerClient');
+
+//Create and initialize instances
+var TestTimerJS_timer = new TimerJS("TestTimerJS_timer", false);
+TestTimerJS_timer.setThis(TestTimerJS_timer);
+TestTimerJS_timer.build();
+var TestTimerJS_client = new SimpleTimerClient("TestTimerJS_client", 1000, 5000, true);
+TestTimerJS_client.setThis(TestTimerJS_client);
+TestTimerJS_client.build();
+
+//Connect instances together
+TestTimerJS_timer.getTimer_timeoutontimerListeners().push(TestTimerJS_client.receivetimer_timeoutOntimer.bind(TestTimerJS_client));
+TestTimerJS_client.getTimer_startontimerListeners().push(TestTimerJS_timer.receivetimer_startOntimer.bind(TestTimerJS_timer));
+TestTimerJS_client.getTimer_cancelontimerListeners().push(TestTimerJS_timer.receivetimer_cancelOntimer.bind(TestTimerJS_timer));
+
+//start instances
+TestTimerJS_timer._init();
+TestTimerJS_client._init();
+
+//register hookup to properly stop instances
+process.on('SIGINT', function () {
+	console.log("Stopping components...");
+	TestTimerJS_timer._stop();
+	TestTimerJS_client._stop();
+});
+```
+
+The plaform expert needs to extend the following class to generate the main:
+
+```java
+public class CfgMainGenerator {
+    public void generateMainAndInit(Configuration cfg, ThingMLModel model, Context ctx) {
+    }
+}
+```
+
+The following code snippet illustrate how to generate the code for the connectors:
+
+```java
+        for (Connector c : cfg.allConnectors()) {
+            for (Message req : c.getRequired().getReceives()) {
+                for (Message prov : c.getProvided().getSends()) {
+                    if (req.getName().equals(prov.getName())) {
+                        builder.append(prefix + c.getSrv().getInstance().getName() + ".get" + ctx.firstToUpper(prov.getName()) + "on" + c.getProvided().getName() + "Listeners().push(");
+                        builder.append(prefix + c.getCli().getInstance().getName() + ".receive" + req.getName() + "On" + c.getRequired().getName() + ".bind(" + prefix + c.getCli().getInstance().getName() + ")");
+                        builder.append(");\n");
+                        break;
+                    }
+                }
+            }
+            for (Message req : c.getProvided().getReceives()) {
+                for (Message prov : c.getRequired().getSends()) {
+                    if (req.getName().equals(prov.getName())) {
+                        builder.append(prefix + c.getCli().getInstance().getName() + ".get" + ctx.firstToUpper(prov.getName()) + "on" + c.getRequired().getName() + "Listeners().push(");
+                        builder.append(prefix + c.getSrv().getInstance().getName() + ".receive" + req.getName() + "On" + c.getProvided().getName() + ".bind(" + prefix + c.getSrv().getInstance().getName() + ")");
+                        builder.append(");\n");
+                        break;
+                    }
+                }
+            }
+        }
+```
 
 ## Lightweight extension to existing compilers
 
