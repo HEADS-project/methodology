@@ -98,7 +98,7 @@ public class CommonThingActionCompiler extends ThingActionCompiler {
 }
 ```
 
-The general C compiler just need to redefine some methods (9 in total):
+The ActionCompiler class basically defines a method for each of the concepts of the HEADS action language. It is thus possible to organize a hierarchy of sub-classes that gradually redfine those methods. For example, the general C compiler just need to redefine some methods (9 in total):
 
 ```java
 public abstract class CThingActionCompiler extends CommonThingActionCompiler {
@@ -160,6 +160,8 @@ public class CThingActionCompilerArduino extends CThingActionCompiler {
 }
 ```
 
+> In case a platform expert wants to target a language that is very different from the Java/C/JavaScript family (*e.g* LISP using a prefix/Polish notation where a typical/infix `a + b` would be expressed `+ a b`), he might need to redefine all the concepts, directly by inheriting from the top class `ThingActionCompiler`
+
 ## Lightweight extension to existing compilers
 
 When new target languages, operating systems or core libraries need to be supported, the platform expert has to extend the ThingML compilers/transformation. The ThingML compilers are modular so that different parts can be reused and extended separately.
@@ -190,3 +192,7 @@ The C compiler will interprete this annotation and generate multi-threaded code,
 ```
 
 > If an annotation is intensively used and relevant for most compilers, the concept can be promoted directly into the language so that it can be benefit from better tool support (annotations being simple string-based key/value entries). The extension of the HEADS modelling language is however beyond the scope of the HEADS project, but interested reader can read about the way we extended the language to support Complex Event Processing. 
+
+### Behavior Implementation
+
+
