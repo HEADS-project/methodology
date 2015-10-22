@@ -4,6 +4,8 @@ The service developer uses ThingML to define the components of the HD-Service an
 
 State machines are a common formalism to express reactive behavior that needs to react on some events, correlate events, and produce some new events. A state machine-based programming language, and ThingML in particular, is thus a good candidate to implement Kevoree components and write the logic that orchestrates the different ports of this component.
 
+## Define interfaces: 
+
 Let's consider a simple ThingML program made of two things, basically involving message to deal with a timer:
 
 ```
@@ -28,40 +30,59 @@ thing fragment Timer includes TimerMsgs
 	}
 }
 ```
+## Implement the logic using state machines and action languages
 
-Second, a simple client:
+A simple client using the timer could be:
 ```
-thing TimerClient includes TimerMsgs
-{
+thing HelloTimer includes TimerMsgs {
 
-	required port timer
-    {
+    required port timer {
 		receives timer_timeout
 		sends timer_start, timer_cancel
-	}
-
-    statechart Default init Tick {
-
-        property counter : Integer = 0
-
-        state Tick {
-            on entry
-            do
-                timer!timer_start(1000)
-            end
-
-            transition tock -> Tick
-            event timer?timer_timeout
-            action do
-                print("tick")
-                print(counter)
-                counter = counter + 1
-            end
-        }
-
     }
 
+    readonly property period : Integer = 1000
+    property counter : Integer = 0
+	
+	statechart behavior init Init {
+	
+		state Init {
+			on entry do
+				timer!timer_start(period)
+			end
+			
+			transition -> Init //this will loop on the Init state, and start a new timer
+			event timer?timer_timeout
+			action do
+                		print "hello "
+				print counter
+                		print "\n"
+                		counter = counter + 1
+			end
+		}
+	}
 }
 ```
 
-This simple, platform-independent service basically outputs a "tick" every second. This is realized by starting a timer when entering the `Tick` state. On timeout, a `timer_timeout` message is received, triggering the print of "tick", before it re-enters the `Tick` state.
+This simple, platform-independent service basically outputs a "hello n" every second. This is realized by starting a timer when entering the `Init` state. On timeout, a `timer_timeout` message is received, triggering the prints, before it re-enters the `Init` state.
+
+Basically, this would produce the following outputs:
+```
+hello 0
+hello 1
+hello 2
+```
+
+## Debugging
+
+Traces are a common way of understanding the execution of a program, identify and solve bugs. Traces can automatically be added to trace:
+
+- the initialization of instances, with values for all attributes. Those traces appear in light blue in the figure below.
+- the execution of the state machine (which states are being entered/exited, which transition are triggered, etc). Those traces appear in yellow in the figure below.
+- the emission/reception of messages on ports. Those traces appear in green in the figure below.
+- the affectation of variables. Those traces appear in magenta/purple in the figure below.
+- the execution of functions. Those traces appear in dark blue (not present in the figure below).
+
+Using `@debug "true"` and `@debug "false"` the service developer can finely filter the elements he wants to trace.
+
+![Traces](traces.png)
