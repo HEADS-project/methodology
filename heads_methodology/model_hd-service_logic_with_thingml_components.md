@@ -120,6 +120,10 @@ Like in most programming languages, functions are particularly useful to encapsu
 - variable definitions and affectations `var i : Integer = 0`,
 - algebraic (`+`, `-`, etc) and boolean operators (`and` and `or`)
 - control structures `if (true) do ... end else do ... end`, `while(true) do ... end`
+- `print "hello"` and `error "alert!"`
+- function calls `myFunction(0, 1)`
+In addition to the "normal" statements common with those language, HEADS provides:
+- send a message `myPort!myMessage()`, `myPort!myMessage2(a, b, 0)` for asynchronous message passing between components
 
 ## Debugging
 
