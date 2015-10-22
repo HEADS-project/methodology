@@ -123,8 +123,14 @@ Like in most programming languages, functions are particularly useful to encapsu
 - `print "hello"` and `error "alert!"`
 - function calls `myFunction(0, 1)`
 
-In addition to the "normal" statements common with those language, HEADS provides:
+> In addition to the "normal" statements common with those language, HEADS provides:
 - send a message `myPort!myMessage()`, `myPort!myMessage2(a, b, 0)` for asynchronous message passing between components
+
+## Implement advanced logic with Complex Event Processing
+
+The HEADS modelling language has been extended with CEP concepts (See D2.2 for more details). CEP complements state machines and provides more powerful abstractions to handle streams of events, for example to compute the average of the values provided by a sensor on a given time window, or to when some behavior should be triggered when two events happen "at the same time". While this can be expressed with state machines, this typically implies instantiating timers and arrays (to manage time windows), managing different interleaving, etc, *i.e.* this generates accidental complexity.
+
+
 
 ## Debugging
 
