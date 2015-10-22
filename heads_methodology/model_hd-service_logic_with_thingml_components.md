@@ -73,6 +73,54 @@ hello 1
 hello 2
 ```
 
+Alternatively, the previous example can be refactored in the following way to keep the state machine clean:
+```
+thing HelloTimer includes TimerMsgs {
+
+    required port timer {
+		receives timer_timeout
+		sends timer_start, timer_cancel
+    }
+
+    readonly property period : Integer = 1000
+    property counter : Integer = 0
+
+    function printHello() do
+        print "hello "
+	print counter
+        print "\n"
+        counter = counter + 1
+    end
+	
+    statechart behavior init Init {
+	
+        state Init {
+	    on entry do
+	        timer!timer_start(period)
+	    end
+			
+	    transition -> Init //this will loop on the Init state, and start a new timer
+	    event timer?timer_timeout
+	    action printHello()
+	}
+    }
+}
+```
+
+More generally the general syntax for a function is:
+```
+function myFunction(param1 : ParamType1, param2 : ParamType2) : ReturnType do
+    ...
+end
+```
+
+Like in most programming languages, functions are particularly useful to encapsulate code that is called from multiple places, to avoid duplication.
+
+> The HEADS action and expression language is fairly aligned with major programming languages such as Java, JavaScript or C: 
+- variable definitions and affectations `var i : Integer = 0`,
+- algebraic (`+`, `-`, etc) and boolean operators (`and` and `or`)
+- control structures `if (true) do ... end else do ... end`, `while(true) do ... end`
+
 ## Debugging
 
 Traces are a common way of understanding the execution of a program, identify and solve bugs. Traces can automatically be added to trace:
