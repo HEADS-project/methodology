@@ -138,17 +138,81 @@ The [join operator](http://reactivex.io/documentation/operators/join.html) "*com
 
 This is expressed in the HEADS modelling language using this syntax:
 ```
-stream simpleJoin @TTL "100" do //@TTL1 and @TTL2 can be used to provide different TTLs (time windows)
-    from [e1 : receivePort?m1 & e2 : receivePort?m2 -> cep1()]
-    action sendPort!cep1()
+stream simpleJoinWithParams @TTL "100" do
+    from [e1 : receivePort?m1 & e2 : receivePort?m2 -> cep1(e1.v1 + e2.v1)]
+    select a : #0, b : #1
+    action sendPort!cep1(a, b)
 end
 ```
 
 Whenever a message `m1` and a message `m2` are received within 100 ms, it will produce a `cep1` message.
 
-The same query expressed directly using the ReactiveX API would require about 15 lines of code (in Java or JavaScript). The declarative syntax of the HEADS modelling language for CEP concepts hence greatly simplifies the expression of CEP queries. Moreover, the stream expressed above can be compiled to Java or JavaScript with no modification, the compiler taking care of mapping to the Java and JS version of the ReactiveX APIs.
+The same query expressed directly using the ReactiveX API would require about 15 lines of code (in Java or here in JavaScript):
+
+```js
+//Code sample taken from ReactiveX documentation
+var xs = Rx.Observable.interval(100)
+    .map(function (x) { return 'first' + x; });
+
+var ys = Rx.Observable.interval(100)
+    .map(function (x) { return 'second' + x; });
+
+var source = xs
+    .join(
+        ys,
+        function () { return Rx.Observable.timer(0); },
+        function () { return Rx.Observable.timer(0); },
+        function (x, y) { return x + y; }
+    )
+    .take(5);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });
+```
+
+The declarative syntax of the HEADS modelling language for CEP concepts hence greatly simplifies the expression of CEP queries. Moreover, the stream expressed above can be compiled to Java or JavaScript with no modification, the compiler taking care of mapping to the Java and JS version of the ReactiveX APIs.
 
 ### Merge
+
+The [Merge operator](http://reactivex.io/documentation/operators/merge.html) "*combine multiple Observables into one by merging their emissions*". See the figure below (taken from ReactiveX documentation) to get an idea of how it works.
+
+![Merge](http://reactivex.io/documentation/operators/images/merge.png)
+
+This is expressed in the HEADS modelling language using this syntax:
+
+```
+stream simpleMerge @TTL "250" do
+    from [e1 : receivePort?m1 | e2 : receivePort?m2 -> cep1()]
+    action sendPort!cep1()
+end
+```
+
+The same query expressed directly using the ReactiveX API would require about 15 lines of code (in JavaScript or here in Java):
+
+```java
+Observable<Integer> odds = Observable.just(1, 3, 5).subscribeOn(someScheduler);
+Observable<Integer> evens = Observable.just(2, 4, 6);
+
+Observable.merge(odds, evens)
+          .subscribe(new Subscriber<Integer>() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });
+```
 
 ## Debugging
 
