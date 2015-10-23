@@ -262,9 +262,37 @@ Observable.just(1, 2, 3, 4, 5)
     });
 ```
 
-### Aggregator
+### Aggregator and Windows
 
+A [Window (or Buffer)](http://reactivex.io/documentation/operators/buffer.html) "*periodically gathers items emitted by an Observable into bundles and emit these bundles rather than emitting the items one at a time*". See the figure below (taken from ReactiveX documentation) to get an idea of how it works.
 
+![Buffer](http://reactivex.io/documentation/operators/images/Buffer.png)
+
+This is expressed in the HEADS modelling language using this syntax:
+
+```
+stream lengthW do // compute min, max, average of m2.x on windows of 5 seconds
+    from e : [recv?m2]::timeWindow(5000, 5000)
+    select avg : average(e.x[]), min : min(e.x[]), max : max(e.x[])
+    action send!res2(avg, min, max)
+end
+```
+
+Aggregators are normal functions that takes arrays (corresponding to the content of a window/buffer) as parameter:
+
+```
+function average(x : Integer[]) : Float do
+    var i : Integer = 0
+    var sum : Integer = 0
+    while (i < x.length) do
+        sum = sum + x[i]
+	i = i + 1
+    end
+    return sum / x.length
+end
+```
+
+Those aggregators are typically defined in a reusable libraries that any stream can then use directly.
 
 ## Debugging
 
