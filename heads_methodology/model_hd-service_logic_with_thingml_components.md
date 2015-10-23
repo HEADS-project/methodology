@@ -183,7 +183,7 @@ The [Merge operator](http://reactivex.io/documentation/operators/merge.html) "*c
 This is expressed in the HEADS modelling language using this syntax:
 
 ```
-stream simpleMerge @TTL "250" do
+stream simpleMerge do
     from [e1 : receivePort?m1 | e2 : receivePort?m2 -> cep1()]
     action sendPort!cep1()
 end
@@ -192,6 +192,7 @@ end
 The same query expressed directly using the ReactiveX API would require about 15 lines of code (in JavaScript or here in Java):
 
 ```java
+//Code sample taken from ReactiveX documentation
 Observable<Integer> odds = Observable.just(1, 3, 5).subscribeOn(someScheduler);
 Observable<Integer> evens = Observable.just(2, 4, 6);
 
