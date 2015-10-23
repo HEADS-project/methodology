@@ -128,9 +128,27 @@ Like in most programming languages, functions are particularly useful to encapsu
 
 ## Implement advanced logic with Complex Event Processing
 
-The HEADS modelling language has been extended with CEP concepts (See D2.2 for more details). CEP complements state machines and provides more powerful abstractions to handle streams of events, for example to compute the average of the values provided by a sensor on a given time window, or to when some behavior should be triggered when two events happen "at the same time". While this can be expressed with state machines, this typically implies instantiating timers and arrays (to manage time windows), managing different interleaving, etc, *i.e.* this generates accidental complexity.
+The HEADS modelling language has been extended with CEP concepts (See D2.2 for more details). CEP complements state machines and provides more powerful abstractions to handle streams of events, for example to compute the average of the values provided by a sensor on a given time window, or to when some behavior should be triggered when two events happen "at the same time". While this can be expressed with state machines, this typically implies instantiating timers and arrays (to manage time windows), managing different interleaving, etc, *i.e.* this generates accidental complexity. Those CEP concepts are mapped to the ones provided by [ReactiveX](http://reactivex.io/).
 
+### Join
 
+The [join operator](http://reactivex.io/documentation/operators/join.html) "*combines items emitted by two Observables whenever an item from one Observable is emitted during a time window defined according to an item emitted by the other Observable*". See the figure below (taken from ReactiveX documentation) to get an idea of how it works.
+
+![Join](http://reactivex.io/documentation/operators/images/join.c.png)
+
+This is expressed in the HEADS modelling language using this syntax:
+```
+stream simpleJoin @TTL "100" do //@TTL1 and @TTL2 can be used to provide different TTLs (time windows)
+    from [e1 : receivePort?m1 & e2 : receivePort?m2 -> cep1()]
+    action sendPort!cep1()
+end
+```
+
+Whenever a message `m1` and a message `m2` are received within 100 ms, it will produce a `cep1` message.
+
+The same query expressed directly using the ReactiveX API would require about 15 lines of code (in Java or JavaScript). The declarative syntax of the HEADS modelling language for CEP concepts hence greatly simplifies the expression of CEP queries. Moreover, the stream expressed above can be compiled to Java or JavaScript with no modification, the compiler taking care of mapping to the Java and JS version of the ReactiveX APIs.
+
+### Merge
 
 ## Debugging
 
