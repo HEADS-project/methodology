@@ -215,6 +215,57 @@ Observable.merge(odds, evens)
     });
 ```
 
+### Filter
+
+A [Filter](http://reactivex.io/documentation/operators/filter.html) "*emit only those items from an Observable that pass a predicate test*".
+
+![Filter](http://reactivex.io/documentation/operators/images/filter.png)
+
+This is expressed in the HEADS modelling language using this syntax:
+
+```
+operator lessThan4(m : m1) : Boolean 
+    return m.x < 4
+
+stream filterLessThan4 do
+        from m : [ e1 : recv?m1 -> res(e1.x)]::filter(lessThan4(m))
+        select a : #0
+        action send!res(a)
+    end
+```
+
+The same query expressed directly using the ReactiveX API would require about 15 lines of code (in JavaScript or here in Java):
+
+```java
+//Code sample taken from ReactiveX documentation
+Observable.just(1, 2, 3, 4, 5)
+          .filter(new Func1<Integer, Boolean>() {
+              @Override
+              public Boolean call(Integer item) {
+                return( item < 4 );
+              }
+          }).subscribe(new Subscriber<Integer>() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });
+```
+
+### Aggregator
+
+
+
 ## Debugging
 
 Traces are a common way of understanding the execution of a program, identify and solve bugs. Traces can automatically be added to trace:
