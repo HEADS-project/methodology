@@ -8,7 +8,7 @@ The java platform in particular follow its own naming rules.
 
  1. Every Kevoree related component should be prefixed with "kevoree" (e.g. [kevoree-book](https://github.com/kevoree/kevoree-book), [kevoree-browser-runtime](https://github.com/kevoree/kevoree-browser-runtime), [kevoree-web-editor](https://github.com/kevoree/kevoree-web-editor))
  2. Every component related to a specific platform should be prefixed with "kevoree-${platform}" (e.g. [kevoree-js](https://github.com/kevoree/kevoree-js), [kevoree-dotnet](https://github.com/kevoree/kevoree-dotnet)).
- 3. Every generic component (i.e. described in the [platform itegration](README.md) part of the book) have a common name who should be followed platforms wide (e.g. [kevoree-js-kevscript](https://github.com/kevoree/kevoree-js-kevscript), [kevoree-donet-annotation](https://github.com/kevoree/kevoree-dotnet-annotation)). The following list is a uncomprehensive list of reserved keywords.
+ 3. Every generic component (i.e. described in the [platform itegration](index.md) part of the book) have a common name who should be followed platforms wide (e.g. [kevoree-js-kevscript](https://github.com/kevoree/kevoree-js-kevscript), [kevoree-donet-annotation](https://github.com/kevoree/kevoree-dotnet-annotation)). The following list is a uncomprehensive list of reserved keywords.
    * kevscript
    * core
    * runtime
