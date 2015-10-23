@@ -217,7 +217,7 @@ Observable.merge(odds, evens)
 
 ### Filter
 
-A [Filter](http://reactivex.io/documentation/operators/filter.html) "*emit only those items from an Observable that pass a predicate test*".
+A [Filter](http://reactivex.io/documentation/operators/filter.html) "*emits only those items from an Observable that pass a predicate test*". See the figure below (taken from ReactiveX documentation) to get an idea of how it works.
 
 ![Filter](http://reactivex.io/documentation/operators/images/filter.png)
 
