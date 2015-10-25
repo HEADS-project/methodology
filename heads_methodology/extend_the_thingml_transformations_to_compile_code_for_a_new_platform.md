@@ -393,7 +393,117 @@ In HEADS, connectors and channels are managed by the HEADS runtime. By default t
 
 ### Message queuing / Scheduling / Dispatch
 
+This extension point allows customizing the code generated for handling how the messages and the control are distributed among of set of component instances. From a semantic point of view, each component instance is an independent process which exchanges messages with other components in an asynchronous way. To implement this semantic, a wide range of alternatives for queuing messages, distributing them to the components can be used depending on the capabilities of the targeted platforms. Features for message exchange and multi-tasking are typically provided by operating systems or middleware platforms. In the case of resource constrained devices with no operating system, code has to be generated to fully handle the scheduling and message dispatch between components.
+
+The API for customizing the code generator for those aspect is in class "org.thingml.compilers.configuration.CfgMainGenerator" and its sub-classes for the different platforms.
+
+The example bellow shows how messages are queued when generating code for microcontrollers. The generated code includes a compact FIFO implementation for storing messages. The messages are serialized in the FIFO when they are emitted by a component and later processed and dispatched to the receiving components.
+
+```
+// Enqueue of messages HelloTimer::timer::timer_start
+void enqueue_HelloTimer_send_timer_timer_start(struct HelloTimer_Instance *_instance, int delay){
+	if ( fifo_byte_available() > 6 ) {
+	
+		_fifo_enqueue( (3 >> 8) & 0xFF );
+		_fifo_enqueue( 3 & 0xFF );
+
+		// ID of the source port of the instance
+		_fifo_enqueue( (_instance->id_timer >> 8) & 0xFF );
+		_fifo_enqueue( _instance->id_timer & 0xFF );
+
+		// parameter delay
+		union u_delay_t {
+			int p;
+			byte bytebuffer[2];
+		} u_delay;
+		u_delay.p = delay;
+		_fifo_enqueue( u_delay.bytebuffer[1] & 0xFF );
+		_fifo_enqueue( u_delay.bytebuffer[0] & 0xFF );
+	}
+}
+```
+
+The following listing shows how the messages are dispatched from the FIFO to the appropriate component.
+
+```
+void processMessageQueue() {
+	if (fifo_empty()) return; // return if there is nothing to do
+
+	byte mbuf[4];
+	uint8_t mbufi = 0;
+
+	// Read the code of the next port/message in the queue
+	uint16_t code = fifo_dequeue() << 8;
+
+	code += fifo_dequeue();
+
+	// Switch to call the appropriate handler
+	switch(code) {
+		case 2:
+			while (mbufi < 2) mbuf[mbufi++] = fifo_dequeue();
+			dispatch_timer_cancel((mbuf[0] << 8) + mbuf[1] /* instance port*/);
+			break;
+		case 3:
+			while (mbufi < 4) mbuf[mbufi++] = fifo_dequeue();
+			union u_timer_start_delay_t {
+				int p;
+				byte bytebuffer[2];
+			} u_timer_start_delay;
+			u_timer_start_delay.bytebuffer[1] = mbuf[2];
+			u_timer_start_delay.bytebuffer[0] = mbuf[3];
+			dispatch_timer_start((mbuf[0] << 8) + mbuf[1] /* instance port*/,
+			u_timer_start_delay.p /* delay */ );
+			break;
+		case 1:
+			while (mbufi < 2) mbuf[mbufi++] = fifo_dequeue();
+			dispatch_timer_timeout((mbuf[0] << 8) + mbuf[1] /* instance port*/);
+			break;
+	}
+}
+```
+
+In the Arduino code generator, the main loop of the scheduler simply activates the components which use polling and processes messages from the queue.  The component receiving a message is given the CPU for processing this message. Any message produced by the component is queued and will be later processed by the receiver. This strategy ensures that each component gets activated in turn and that the processing of a message in executed as a whole. In the case of microcontrollers, it can be interrupted by microcontroller interrupts but not by the processing of another message.
+
+```
+void loop() {
+	TimerArduino_handle_Polling_poll(&TestTimerArduino_timer_var);
+	HelloTimer_handle_empty_event(&TestTimerArduino_client_var);
+    processMessageQueue();
+}
+```
+Depending on the level of dynamicity required, code can be generated statically for one particular configuration (and set of connector), but even on tiny and small targets code can be generated to handle dynamically dispatching messages according to a dynamic set of connectors. The code bellow illustrates how it is done in the Arduino compiler.
+
+```
+//Dynamic dispatch for message timer_start
+void dispatch_timer_start(uint16_t sender, int param_delay) {
+void executor_dispatch_timer_start(struct Msg_Handler ** head, struct Msg_Handler ** tail) {
+struct Msg_Handler ** cur = head;
+while (cur != NULL) {
+   void (*handler)(void *, int param_delay) = NULL;
+   int i;
+   for(i = 0; i < (**cur).nb_msg; i++) {
+       if((**cur).msg[i] == 2) {
+           handler = (void (*) (void *, int)) (**cur).msg_handler[i];
+           break;
+       }
+   }
+   if(handler != NULL) {
+       handler((**cur).instance, param_delay);
+}
+   if(cur == tail){
+       cur = NULL;}
+   else {
+   cur++;}
+}
+}
+if (sender == TestTimerC_client_var.id_timer) {
+executor_dispatch_timer_start(TestTimerC_client_var.timer_receiver_list_head, TestTimerC_client_var.timer_receiver_list_tail);}
+}
+```
+
 TODO: @ffleurey
+
+
 
 ### Initialization and "Main"
 
