@@ -501,9 +501,6 @@ executor_dispatch_timer_start(TestTimerC_client_var.timer_receiver_list_head, Te
 }
 ```
 
-TODO: @ffleurey
-
-
 
 ### Initialization and "Main"
 
