@@ -1,4 +1,4 @@
-gitbook build . /tmp/heads
+gitbook build --output="/tmp/heads"
 git add -A
 git commit -m 'update sources'
 git push
