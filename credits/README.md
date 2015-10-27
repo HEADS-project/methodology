@@ -12,6 +12,7 @@ By alphabetical order (family name):
 - Vladimir Cvetkovic (M2M)
 - Franck Fleurey (SINTEF)
 - Brice Morin (SINTEF)
+- Martin Skorsky (SAG)
 - Maxime Tricoire (Inria)
 - Anatoly Vasilevskiy (SINTEF)
-- Walter Waterfelf (SAG)
+- Walter Waterfeld (SAG)
