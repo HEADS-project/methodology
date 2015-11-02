@@ -8,5 +8,5 @@ mv -f /tmp/heads/* .
 git add -A
 git commit -m 'update website'
 git push
-rm -rf /tmp/heads
+#rm -rf /tmp/heads
 git checkout master
