@@ -1,4 +1,3 @@
-
 gitbook build . /tmp/heads
 git add -A
 git commit -m 'update sources'
