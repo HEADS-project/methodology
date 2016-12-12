@@ -7,4 +7,4 @@ If some platforms are not yet supported by the HEADS IDE, the platform experts n
 
 The service developer also has to interact with the Service operator which is responsible for the deployment and runtime monitoring of the HD-Service.
 
-The service developer is mainly using ThingML to create the models of the HD-Service and might create and/or use some re-usable ThingML libraries. The tasks associated with the HEADS Service Developer are detailed in section XXX.
+The service developer is mainly using ThingML to create the models of the HD-Service and might create and/or use some re-usable ThingML libraries. The tasks associated with the HEADS Service Developer are detailed in section [3.2](https://heads-project.github.io/methodology/heads_methodology/for_service_developers.html).
