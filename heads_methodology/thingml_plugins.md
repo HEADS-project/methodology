@@ -18,7 +18,7 @@ Meanwhile, a part of this complexity needs to be exposed to the ThingML code to 
 - Configuration: Through the mean of annotation on the ThingML keyword protocol, configuration at design time can be provided to the code generator in order to generate a tailor-made network interface. 
 - Control: A part of the communication handling (such as error management, client management) is inherently dynamic and hence the need for information exchange between the application logic and the generated network library at run time.
 
-TODO FIGURE
+![Overview of a generated network library](thingml-plugins.png)
 
 Two broad types of annotations can be used to control more precisely a generated library at run time. Annotated messages can be transformed into instructions addressed at the generated network library and not forwarded (for example, a reconnection instruction). Similarly, annotated messages can become feedback originating from the network library and transmitted to the application (for example if the connection has been lost). But additional parameters (that
 will not be forwarded) can also be added to messages in order to customize at run time the way those messages are forwarded (for example destination information).
