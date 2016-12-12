@@ -4,4 +4,4 @@ The HEADS service operator is responsible for the deployment of the HD-Service a
 
 The Service operator does not necessarily have detailed knowledge of the HD-Service implementation details or platforms it is running on. It is typically an administrator or a super-user of the HD-Service itself.
 
-The service operator is mainly using Kevoree to accomplish its tasks. The tasks associated with the HEADS Platform Expert are detailed in section XXX.
+The service operator is mainly using Kevoree to accomplish its tasks. The tasks associated with the HEADS Platform Expert are detailed in section [3.3](https://heads-project.github.io/methodology/heads_methodology/for_service_operators.html).
