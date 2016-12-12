@@ -12,6 +12,8 @@
    * [For Platform Experts](heads_methodology/for_platform_experts.md)
        * [Create libraries to support platform specific features / library / component](heads_methodology/create_libraries_to_support_platform_specific_features__library__component.md)
        * [Extend the ThingML compilers to target a new platform](heads_methodology/extend_the_thingml_transformations_to_compile_code_for_a_new_platform.md)
+       * [Implement a ThingML plugin to target a new protocol](heads_methodology/thingml_plugins.md)
+       * [Test the ThingML compilers and plugins](heads_methodology/thingml_test.md)
        * [Extend Kevoree to deploy code for a new platform](heads_methodology/kevoree-platform-integration/index.md)
            * [Generalities](heads_methodology/kevoree-platform-integration/generalities.md)
            * [Kevoree Model](heads_methodology/kevoree-platform-integration/model.md)
