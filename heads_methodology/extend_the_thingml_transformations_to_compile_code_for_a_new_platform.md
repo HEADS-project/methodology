@@ -1,4 +1,4 @@
-# Extend the ThingML transformations to compile code for a new platform
+# Extend the ThingML compilers to target a new platform
 
 When a platform expert needs to address a new platform, he typically needs to use the HEADS transformation framework, described in detail in D2.2. This modular Object-Oriented framework defines a set of extension points, each encapsulated as a Java class. For each different language (e.g. Java, JavaScript and C) each of these extension point typically needs to be redefined. For different dialects of the same language (e.g. C for Linux and C for the Arduino microcontrollers), the plaftorm expert can reuse already defined extension point and simply redefine a few of them to finely customize the code that is generated and accomodate with the contraints and specificities of the new platform.
 
