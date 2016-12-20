@@ -14,4 +14,4 @@
 
 - [**ThingML**](http://thingml.org): LGPL-3.0
 - [**Kevoree**](http://kevoree.org): LGPL-3.0
-- [**SoftwareAG's Terracotta**](http://www.softwareag.com/corporate/products/az/terracotta/default.asp): Commercial (with possibilities for academic licenses)
+- [**Software AG's Apama (Community Edition)**](http://www.apamacommunity.com): Free with limitations, see http://www.apamacommunity.com/terms-conditions/ 
