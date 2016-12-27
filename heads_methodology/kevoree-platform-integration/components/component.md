@@ -34,7 +34,7 @@ A few interfaces to the external system are provided to the components by inject
 The core will match every KevoreeInject annotated field and will look for a instance of its interface.
 
 The provided interfaces are :
- * Logger : Offers a way to log messages. For more detail read the [Logger](../logger.md) page
+ * Logger : Offers a way to log messages.
  * Context : Provider accessors to the node node, the instance path and the instance name.
  * ModelService : Offers operators on the node's model. For example you can use it to publish a new model, which will be adapted by the core.
 
