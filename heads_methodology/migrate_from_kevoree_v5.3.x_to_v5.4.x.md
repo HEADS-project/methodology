@@ -41,7 +41,8 @@ If you want to connect to a third-party registry, just modify the content of the
 
 We have introduced two new keywords in the language in order to solve DeployUnit resolutions by the KevScript interpreter:
  - LATEST
- - RELEASE
+ - RELEASE  
+ 
 TypeDefinition versions can now be specified using whether an **integer** or **LATEST** which will indicate to the KevScript interpret which version the service developers expect. For the DeployUnits, the possibilities are whether **LATEST** or **RELEASE**. Refer to the table at the end of this <a href="https://github.com/kevoree/kevoree-js/wiki/Migrate-to-new-registry-(v5.4.0-SNAPSHOT-and-above)#what-does-it-change-for-the-kevscript" target="_blank">wiki page</a> for more details about those keywords.
 
 ### Platform specific details
