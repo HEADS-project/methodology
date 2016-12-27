@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="3.2.4" data-basepath=".." data-revision="Tue Dec 27 2016 11:33:36 GMT+0100 (CET)">
+    <div class="book" data-level="3.2.4" data-basepath=".." data-revision="Tue Dec 27 2016 17:02:36 GMT+0100 (CET)">
     
 
 <div class="book-summary">
@@ -673,6 +673,21 @@
             
         </li>
     
+        <li class="chapter " data-level="3.2.7" data-path="heads_methodology/migrate_from_kevoree_v5.3.x_to_v5.4.x.html">
+            
+                
+                    <a href="../heads_methodology/migrate_from_kevoree_v5.3.x_to_v5.4.x.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.7.</b>
+                        
+                        Migrate from Kevoree v5.3.x to v5.4.x
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -954,10 +969,9 @@ You can also specify the name of the node you want to launch.</p>
   });
 
   grunt.registerTask(<span class="hljs-string">&apos;default&apos;</span>, <span class="hljs-string">&apos;build&apos;</span>);
-  grunt.registerTask(<span class="hljs-string">&apos;build&apos;</span>, [<span class="hljs-string">&apos;kevoree_genmodel&apos;</span>, <span class="hljs-string">&apos;browser&apos;</span>]);
-  grunt.registerTask(<span class="hljs-string">&apos;browser&apos;</span>, <span class="hljs-string">&apos;webpack&apos;</span>);
-  grunt.registerTask(<span class="hljs-string">&apos;kev&apos;</span>, [<span class="hljs-string">&apos;kevoree_genmodel&apos;</span>, <span class="hljs-string">&apos;kevoree&apos;</span>]);
-  grunt.registerTask(<span class="hljs-string">&apos;publish&apos;</span>, [<span class="hljs-string">&apos;kevoree_genmodel&apos;</span>, <span class="hljs-string">&apos;kevoree_registry&apos;</span>]);
+  grunt.registerTask(<span class="hljs-string">&apos;build&apos;</span>, <span class="hljs-string">&apos;kevoree_genmodel&apos;</span>);
+  grunt.registerTask(<span class="hljs-string">&apos;kev&apos;</span>, [<span class="hljs-string">&apos;build&apos;</span>, <span class="hljs-string">&apos;kevoree&apos;</span>]);
+  grunt.registerTask(<span class="hljs-string">&apos;publish&apos;</span>, [<span class="hljs-string">&apos;build&apos;</span>, <span class="hljs-string">&apos;kevoree_registry&apos;</span>]);
 };
 </code></pre>
 <p>You can get more details on their own repos <a href="https://github.com/kevoree/grunt-kevoree" target="_blank"><code>grunt-kevoree</code></a> and <a href="https://github.com/kevoree/grunt-kevoree-genmodel" target="_blank"><code>grunt-kevoree-genmodel</code></a></p>
