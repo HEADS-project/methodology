@@ -28,19 +28,21 @@ KevScript           <- ws *((Statement | :Comment eol) ws) :?Comment
 
 Statement           <- Add | Remove | Move | Attach | Detach | Set | AddBinding | DelBinding | Include | Network | AddRepo | Namespace | Start | Stop | Pause
 
-Add                 <- AddToken ws NameList ws :':' ws TypeDef                                  # add group0, group1 : WebSocketGroup
+Add                 <- AddToken ws NameList ws :':' ws TypeDef                                  # kevs.add group0, group1 : WebSocketGroup
 
 Remove              <- RemoveToken ws NameList                                                  # remove node0, node0.comp1, sync
 
 Move                <- MoveToken ws NameList ws InstancePath                                    # move node0.comp0, node2.* node1
 
-Attach              <- AttachToken ws NameList ws InstancePath                                  # attach node0, node1 group0
+Attach              <- AttachToken ws NameList ws InstancePath                                  # kevs.attach node0, node1 group0
 
-Detach              <- DetachToken ws NameList ws InstancePath                                  # detach node0, node1 group0
+Detach              <- DetachToken ws NameList ws InstancePath                                  # kevs.detach node0, node1 group0
 
-Set                 <- SetToken ws InstancePath ?(:'/' InstancePath) ws :'=' ws RealString      # set node0.comp0.myAtt = 'foo'
+Set                 <- SetToken ws InstancePath ?(:'/' InstancePath) ws :'=' ws (CtxVar | GenCtxVar | RealString)      # set node0.comp0.myAtt = 'foo'
+                                                                                                # set sync.myAtt/node0 = "foo"
+                                                                                                # set node0.started = "false" -> is used to define if the instance is started or not
 
-Network             <- NetworkToken ws InstancePath ws String2                                  # network node1.lan.eth0 192.168.0.1
+Network             <- NetworkToken ws InstancePath ws (CtxVar | String2)                       # network node1.lan.eth0 192.168.0.1
 
 AddBinding          <- BindToken ws InstancePath ws InstancePath                                # bind node1.comp0.sendMsg chan42
 
@@ -49,10 +51,14 @@ DelBinding          <- UnbindToken ws InstancePath ws InstancePath              
 AddRepo             <- RepoToken ws RealStringNoNewLine                                         # repo "http://org.sonatype.org/foo/bar?a=b&c=d"
 
 Include             <- IncludeToken ws String :':' String2                                      # include npm:kevoree-chan-websocket
+																					            # include mvn:org.kevoree.library.javase:websocketgrp:2.0.5-SNAPSHOT
 
 NameList            <- InstancePath ws *(:[,] ws InstancePath)                                  # node42
+                                                                                                # node0, node0.comp1, node42
 
 TypeDef             <- TypeFQN ?(:'/' Version)                                                  # FooType/0.0.1 (specific vers.)
+                                                                                                # FooType       (last vers.)
+                                                                                                # org.kevoree.Foo/0.42.0 (fully qualified name)
 
 TypeFQN             <- String3 *([.] String3)
 
@@ -64,9 +70,16 @@ Stop                <- StopToken ws NameList                                    
 
 Pause               <- PauseToken ws NameList                                                   # pause node0.comp
 
-InstancePath        <- (Wildcard | String) *(:[.] (Wildcard | String))                          # node0.*.att
+InstancePath        <- (Wildcard | String | CtxVar | GenCtxVar) *(:[.] (Wildcard | String | CtxVar | GenCtxVar))
+                                                                                                # node0.*.att
+                                                                                                # %%ctxVar%%
+                                                                                                # node0.%%genVar%%
 
 Wildcard            <- '*'
+
+CtxVar              <- :'%' String :'%'
+
+GenCtxVar           <- :'%%' String :'%%'
 
 String              <- +[a-zA-Z0-9_-]
 
@@ -74,7 +87,13 @@ String2             <- +[a-zA-Z0-9.:%@_-]
 
 String3             <= +[a-zA-Z0-9_]
 
-Version             <- +[a-zA-Z0-9._-]
+Version             <- (TdefVersion ?(:'/' DuVersion))
+TdefVersion         <- Integer | Latest | CtxVar
+DuVersion           <- Release | Latest | CtxVar
+
+Integer             <- +[0-9]
+Release             <- ReleaseToken
+Latest              <- LatestToken
 
 Line                <- +(!eol .) 																 # anything but EOL
 
@@ -97,12 +116,12 @@ NewLine             <- :'\r\n' | :'\n' | :'\r'
 # =============
 RepoToken       <: 'repo'
 IncludeToken    <: 'include'
-AddToken        <: 'add'
+AddToken        <: 'kevs.add'
 RemoveToken     <: 'remove'
 MoveToken       <: 'move'
 SetToken        <: 'set'
-AttachToken     <: 'attach'
-DetachToken     <: 'detach'
+AttachToken     <: 'kevs.attach'
+DetachToken     <: 'kevs.detach'
 NetworkToken    <: 'network'
 BindToken       <: 'bind'
 UnbindToken     <: 'unbind'
@@ -110,6 +129,8 @@ NamespaceToken  <: 'namespace'
 StartToken      <: 'start'
 StopToken       <: 'stop'
 PauseToken      <: 'pause'
+LatestToken     <: 'LATEST'
+ReleaseToken    <: 'RELEASE'
 Comment         <: '//' ?Line
 eol             <: '\r\n' | '\n' | '\r'
 ws              <: *([ \t] | eol)

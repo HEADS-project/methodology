@@ -33,7 +33,6 @@ This picture shows the different parts involved in a Kevoree platfom:
  * **[Kevoree Model](model.md)**: How to port Kevoree's data model to your platform
  * **[Remote code loader](remote_code_loader.md)**: How to load remote code in your runtime
  * **[Kevoree Model generation](model_generator.md)**: How to quickly obtain a kevoree model code base
- * **[Logger](logger.md)**: Specifications of the logging system.
  * **[Core](core.md)**: The Model@Runtime conductor
  * **[Generate instances of the Kevoree Metamodel](model_generator.md)**: How to quickly obtain a kevoree model code base
  * **[Registry client](registry_client.md)**: A simple REST client for the registry
@@ -42,7 +41,7 @@ This picture shows the different parts involved in a Kevoree platfom:
  * **[Runtime](runtime.md)**: A Bootstrap is a runtime tool dedicated to the startup of a node instance
  * **Kevoree's components**:
  <!---
-Should we define a strict way to implement this (using annotation...) or just explaining that it is necessary to implement and document something powerful enought to express everything allowed by the model ?
+Should we define a strict way to implement this (using annotation...) or just explaining that it is necessary to implement and document something powerful enough to express everything allowed by the model ?
  -->
     * **[Component](components/component.md)** : Component development guide
     * **[Node](components/node.md)** : Node development guide

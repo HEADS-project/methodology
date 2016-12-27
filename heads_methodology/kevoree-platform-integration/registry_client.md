@@ -1,7 +1,5 @@
 # Registry client
 ## Description
-The registry client is a a simple JSON-REST client for the Registry Kevoree.
+The registry client is a a simple JSON-REST client for the [Registry Kevoree](https://registry.kevoree.org).
 
-It should be able to do the operations specified on this page : https://github.com/kevoree/kevoree-registry
-
-It is probably one of the simplest part of the whole codebase.
+The Kevoree Registry source-code is available here: https://github.com/kevoree/kevoree-registry

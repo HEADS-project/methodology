@@ -6,26 +6,37 @@ After the platform specific binaries have been compiled, Kevoree should be used 
 ## The Kevoree Maven Plugin
 
 The Kevoree Maven plugin extracts the Component-Model from the annotations placed in your code, and stores it into a Kevoree Model packed along with the compiled class files.
-Also, for the ease of use, the Kevoree Maven plugin embeds a Kevoree runner. This runner launches a Kevoree runtime using a KevScript file. This file is supposed to be `src/main/resources/kevs/main.kevs` in the project. Alternatively, you can specify the location of the KevScript file you want to use in the configuration of the plugin.
+Also, for the ease of use, the Kevoree Maven plugin embeds a Kevoree runner. This runner launches a Kevoree runtime using a KevScript file. This file is supposed to be `src/main/kevs/main.kevs` in the project. Alternatively, you can specify the location of the KevScript file you want to use in the configuration of the plugin.
 You can also specify the name of the node you want to launch.
 
 ```
-<plugin>
-	<groupId>org.kevoree.tools</groupId>
-	<artifactId>org.kevoree.tools.mavenplugin</artifactId>
-	<version>${kevoree.version}</version>
-	<executions>
-		<execution>
-			<goals>
-				<goal>generate</goal>
-			</goals>
-		</execution>
-	</executions>
-	<configuration>
-		<nodename>MyNode</nodename>
-		<model>src/main/kevs/main.kevs</model>
-	</configuration>
-</plugin>
+<project>
+  <!-- classic pom.xml file content ... (this hasnt changed) -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.kevoree.tools</groupId>
+        <artifactId>org.kevoree.tools.mavenplugin</artifactId>
+        <!-- ${kevoree.version} must be v5.4.0-SNAPSHOT or greater -->
+        <version>${kevoree.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+              <goal>deploy</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <!-- your Kevoree registry namespace -->
+          <namespace>mynamespace</namespace>
+          <nodeName>anotherName</nodeName>
+          <kevscript>src/main/kevs/anotherModel.kevs</kevscript>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
 ```
 
 ### Available actions
@@ -47,32 +58,22 @@ Those Grunt tasks must be defined in a `Gruntfile.js` at the root of your projec
 
 ```js
 module.exports = function (grunt) {
+	require('load-grunt-tasks')(grunt);
 
-    grunt.initConfig({
-    	// grunt-kevoree-genmodel
-    	kevoree_genmodel: {
-            main: {
-                options: {
-                    quiet: false,
-                    verbose: true
-                }
-            }
-        },
-    	
-    	// grunt-kevoree
-    	kevoree: {
-    	    options: {
-    	    	name: 'node0'
-    	    },
-            run: {
-                kevscript: 'kevs/main.kevs'
-            }
-        }
-    });
+  grunt.initConfig({
+    kevoree_genmodel: { main: {} },
+    kevoree: { main: {} },
+    kevoree_registry: {
+      src: 'kevlib.json'
+    }
+  });
+
+  grunt.registerTask('default', 'build');
+  grunt.registerTask('build', ['kevoree_genmodel', 'browser']);
+  grunt.registerTask('browser', 'webpack');
+  grunt.registerTask('kev', ['kevoree_genmodel', 'kevoree']);
+  grunt.registerTask('publish', ['kevoree_genmodel', 'kevoree_registry']);
 };
 ```
 
-You can get more details on their own repos [`grunt-kevoree`](https://github.com/kevoree/kevoree-js/blob/master/tools/grunt-kevoree/README.md) and [`grunt-kevoree-genmodel`](https://github.com/kevoree/kevoree-js/blob/master/tools/grunt-kevoree-genmodel/README.md)
-
-# C++
-> todo
+You can get more details on their own repos [`grunt-kevoree`](https://github.com/kevoree/grunt-kevoree) and [`grunt-kevoree-genmodel`](https://github.com/kevoree/grunt-kevoree-genmodel)

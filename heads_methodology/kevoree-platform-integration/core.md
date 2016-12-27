@@ -15,12 +15,12 @@ create a new ContainerNode instance and keep a reference to it in order to ask t
 ### Deployment phase
 Using pseudo-code, the deployment algorithm (model@run.time) looks like this:
 
-```go
+```js
 fun deployNewModel(newModel: KevModel) {
     // check the validity of the new model
     if (isValid(newModel)) {
         // compare new model with current model
-        val compareResult: AdaptationModel = node.compare(currentModel, newModel);
+        const compareResult: AdaptationModel = node.compare(currentModel, newModel);
         // execute a list of command to adapt the current system
         // according to the new model
         if (compareResult.execute()) {
@@ -52,7 +52,7 @@ From a component or fragment perspective, one might want to apply reconfiguratio
 
 In **Java**, accessing the runtime core can be done like that:
 ```java
-@Component
+@Component(version = 1)
 public class MyComponent {
 
     @KevoreeInject
@@ -75,13 +75,14 @@ public class MyComponent {
 
 In **JavaScript**, each instance can access the core locally:
 ```js
-var AbstractComponent = require('kevoree-entities').AbstractComponent;
+const AbstractComponent = require('kevoree-entities/lib/AbstractComponent');
 
 module.export = AbstractComponent.extend({
     toString: 'MyComponent',
+		tdef_version: 1,
 
     doSomethingWithCore: function () {
-        this.core.deploy(aModel, function (err) {
+        this.getKevoreeCore().deploy(aModel, function (err) {
             if (err) {
                 // problem with adaptation: not done
             } else {

@@ -1,4 +1,5 @@
 # Code generator
+
 The Kevoree Registry is a public application, accessible at http://registry.kevoree.org.  
 This application is basically a map of TypeDefinition <-> DeployUnit links. It is used to resolve
 the components, nodes, channels and groups binaries based on their TypeDefinition.  
@@ -37,62 +38,48 @@ And finally, the generator will create a clean project based on the Kevoree Regi
 ```
 $ tree -L 2
 .
-├── browser
-│   ├── kevoree-comp-ticker.html
-│   └── ui-config.json
 ├── Gruntfile.js
 ├── kevs
 │   └── main.kevs
 ├── lib
 │   └── Ticker.js
-├── node_modules
-│   ├── grunt
-│   ├── grunt-browserify
-│   ├── grunt-contrib-uglify
-│   ├── grunt-contrib-watch
-│   ├── grunt-kevoree
-│   ├── grunt-kevoree-genmodel
-│   ├── grunt-kevoree-registry
-│   └── kevoree-entities
 ├── package.json
-└── README.md
+├── README.md
+└── (...)
 ```
 
 With the **Ticker** skeleton be:
 
 ```js
-var AbstractComponent = require('kevoree-entities').AbstractComponent;
+var AbstractComponent = require('kevoree-entities/lib/AbstractComponent');
 
 var Ticker = AbstractComponent.extend({
-    toString: 'Ticker',
+	toString: 'Ticker',
+	tdef_version: 1,
 
-    dic_random: {
-        optional: true,
-        defaultValue: false,
-    },
-    dic_period: {
-        optional: true,
-        defaultValue: 3000,
-    },
+	dic_random: {
+		optional: true,
+		defaultValue: false,
+	},
+	dic_period: {
+		optional: true,
+		defaultValue: 3000,
+	},
 
-    start: function (done) {
-        this.log.debug(this.toString(), 'START');
-        done();
-    },
+	start: function (done) {
+		this.log.debug(this.toString(), 'START');
+		done();
+	},
 
-    stop: function (done) {
-        this.log.debug(this.toString(), 'STOP');
-        done();
-    },
+	stop: function (done) {
+		this.log.debug(this.toString(), 'STOP');
+		done();
+	},
 
-    out_tick: function (msg) { /* noop */ },
-
-    uiController: function () {
-        return [function () {
-            // ui controller
-        }];
-    }
+	out_tick: function (msg) { /* noop */ }
 });
 
 module.exports = Ticker;
 ```
+
+> The Yeoman code generator v3.5.2 only complies with Kevoree v5.3.x or less

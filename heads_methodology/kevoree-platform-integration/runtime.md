@@ -18,7 +18,7 @@ attach node0 sync
 ```
 
 And in the model editor:  
-![Bootstrap model](img/javanode_bootstrap.png)
+![Bootstrap model](../img/javanode_bootstrap.png)
 
 
 
@@ -28,4 +28,3 @@ A runtime depends, at least, on the following Kevoree parts:
  * [model API](model.md)
  * [kevscript interpreter](kevscript.md)
  * [remote code loader](remote_code_loader.md)
- * [logger](logger.md)
