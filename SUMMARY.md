@@ -39,6 +39,7 @@
        * [Deploy platform specific code using Kevoree](heads_methodology/deploy_platform_specific_code_using_kevoree.md)
        * [Services with CEP and distributed CEP](heads_methodology/cep_service_developers.md)
        * [Developing Services with Apama CEP](heads_methodology/cep_how_to.md)
+       * [Migrate from Kevoree v5.3.x to v5.4.x](heads_methodology/migrate_from_kevoree_v5.3.x_to_v5.4.x.md)
    * [For Service Operators](heads_methodology/for_service_operators.md)
        * [Visualize the configuration and status of a running HD-Service](heads_methodology/visualize_the_configuration_and_status_of_a_running_hd-service.md)
        * [Modify the configuration and deployment of a running HD-Service](heads_methodology/modify_the_configuration_and_deployment_of_a_running_hd-service.md)
