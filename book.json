@@ -1,5 +1,8 @@
 {
     "links": {
+	"title" : "Heads Methodology",
+	"description" : "This document is the final version of the HEADS methodology",
+	"author": "HEADS consortium", 
         "home": "https://heads-project.github.io/methodology/",
         "about": "http://heads-project.eu",
         "issues": false,
