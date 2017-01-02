@@ -14,6 +14,8 @@
        * [Extend the ThingML compilers to target a new platform](heads_methodology/extend_the_thingml_transformations_to_compile_code_for_a_new_platform.md)
        * [Implement a ThingML plugin to target a new protocol](heads_methodology/thingml_plugins.md)
        * [Test the ThingML compilers and plugins](heads_methodology/thingml_test.md)
+       * [Prepare, build and flash any openWRT device to run Heads Artefacts](heads_methodology/openwrtplatform/index.md)
+       * [Prepare, build and flash any buildroot compatible device to run Kevoree](heads_methodology/buildroot/index.md)
        * [Extend Kevoree to deploy code for a new platform](heads_methodology/kevoree-platform-integration/index.md)
            * [Generalities](heads_methodology/kevoree-platform-integration/generalities.md)
            * [Kevoree Model](heads_methodology/kevoree-platform-integration/model.md)
