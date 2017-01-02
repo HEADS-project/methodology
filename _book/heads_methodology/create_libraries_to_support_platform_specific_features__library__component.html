@@ -1,0 +1,1131 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Create libraries to support platform specific features / library / component · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="extend_the_thingml_transformations_to_compile_code_for_a_new_platform.html" />
+    
+    
+    <link rel="prev" href="for_platform_experts.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../heads_actors/">
+            
+                <a href="../heads_actors/">
+            
+                    
+                    HEADS Actors
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../heads_actors/platform_experts.html">
+            
+                <a href="../heads_actors/platform_experts.html">
+            
+                    
+                    Platform Experts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../heads_actors/service_developers.html">
+            
+                <a href="../heads_actors/service_developers.html">
+            
+                    
+                    Service Developers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../heads_actors/service_operators.html">
+            
+                <a href="../heads_actors/service_operators.html">
+            
+                    
+                    Service Operators
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../heads_ide/">
+            
+                <a href="../heads_ide/">
+            
+                    
+                    HEADS IDE
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../heads_ide/design-time.html">
+            
+                <a href="../heads_ide/design-time.html">
+            
+                    
+                    @Design-time
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../heads_ide/runtime.html">
+            
+                <a href="../heads_ide/runtime.html">
+            
+                    
+                    @Runtime
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../heads_ide/installation_guide.html">
+            
+                <a href="../heads_ide/installation_guide.html">
+            
+                    
+                    Installation Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    HEADS Methodology
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="for_platform_experts.html">
+            
+                <a href="for_platform_experts.html">
+            
+                    
+                    For Platform Experts
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.4.1.1" data-path="create_libraries_to_support_platform_specific_features__library__component.html">
+            
+                <a href="create_libraries_to_support_platform_specific_features__library__component.html">
+            
+                    
+                    Create libraries to support platform specific features / library / component
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" data-path="extend_the_thingml_transformations_to_compile_code_for_a_new_platform.html">
+            
+                <a href="extend_the_thingml_transformations_to_compile_code_for_a_new_platform.html">
+            
+                    
+                    Extend the ThingML compilers to target a new platform
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.3" data-path="thingml_plugins.html">
+            
+                <a href="thingml_plugins.html">
+            
+                    
+                    Implement a ThingML plugin to target a new protocol
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.4" data-path="thingml_test.html">
+            
+                <a href="thingml_test.html">
+            
+                    
+                    Test the ThingML compilers and plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.5" data-path="openwrtplatform/">
+            
+                <a href="openwrtplatform/">
+            
+                    
+                    Prepare, build and flash any openWRT device to run Heads Artefacts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.6" data-path="buildroot/">
+            
+                <a href="buildroot/">
+            
+                    
+                    Prepare, build and flash any buildroot compatible device to run Kevoree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7" data-path="kevoree-platform-integration/">
+            
+                <a href="kevoree-platform-integration/">
+            
+                    
+                    Extend Kevoree to deploy code for a new platform
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.7.1" data-path="kevoree-platform-integration/generalities.html">
+            
+                <a href="kevoree-platform-integration/generalities.html">
+            
+                    
+                    Generalities
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.2" data-path="kevoree-platform-integration/model.html">
+            
+                <a href="kevoree-platform-integration/model.html">
+            
+                    
+                    Kevoree Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.3" data-path="kevoree-platform-integration/core.html">
+            
+                <a href="kevoree-platform-integration/core.html">
+            
+                    
+                    Core
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.4" data-path="kevoree-platform-integration/remote_code_loader.html">
+            
+                <a href="kevoree-platform-integration/remote_code_loader.html">
+            
+                    
+                    Remote Code Loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.5" data-path="kevoree-platform-integration/registry_client.html">
+            
+                <a href="kevoree-platform-integration/registry_client.html">
+            
+                    
+                    Registry Client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.6" data-path="kevoree-platform-integration/model_generator.html">
+            
+                <a href="kevoree-platform-integration/model_generator.html">
+            
+                    
+                    Kevoree Model generation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.7" data-path="kevoree-platform-integration/registry_client.html">
+            
+                <a href="kevoree-platform-integration/registry_client.html">
+            
+                    
+                    Registry Client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.8" data-path="kevoree-platform-integration/code_generator.html">
+            
+                <a href="kevoree-platform-integration/code_generator.html">
+            
+                    
+                    Code generator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.9" data-path="kevoree-platform-integration/runtime.html">
+            
+                <a href="kevoree-platform-integration/runtime.html">
+            
+                    
+                    Runtime
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.10" data-path="kevoree-platform-integration/kevscript.html">
+            
+                <a href="kevoree-platform-integration/kevscript.html">
+            
+                    
+                    Kevscript Tools
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.11" data-path="kevoree-platform-integration/components/">
+            
+                <a href="kevoree-platform-integration/components/">
+            
+                    
+                    Components
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.7.11.1" data-path="kevoree-platform-integration/components/component.html">
+            
+                <a href="kevoree-platform-integration/components/component.html">
+            
+                    
+                    Component
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.11.2" data-path="kevoree-platform-integration/components/node.html">
+            
+                <a href="kevoree-platform-integration/components/node.html">
+            
+                    
+                    Node
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.11.3" data-path="kevoree-platform-integration/components/group.html">
+            
+                <a href="kevoree-platform-integration/components/group.html">
+            
+                    
+                    Group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.11.4" data-path="kevoree-platform-integration/components/channel.html">
+            
+                <a href="kevoree-platform-integration/components/channel.html">
+            
+                    
+                    Channel
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.8" data-path="extend_kevoree_to_support_a_new_communication_channel.html">
+            
+                <a href="extend_kevoree_to_support_a_new_communication_channel.html">
+            
+                    
+                    Extend Kevoree to support a new communication channel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.9" data-path="cep_platform_experts.html">
+            
+                <a href="cep_platform_experts.html">
+            
+                    
+                    Using platforms for CEP with Apama
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="for_service_developers.html">
+            
+                <a href="for_service_developers.html">
+            
+                    
+                    For Service Developers
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="model_hd-service_logic_with_thingml_components.html">
+            
+                <a href="model_hd-service_logic_with_thingml_components.html">
+            
+                    
+                    Model HD-Service logic with ThingML components
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="compile_thingml_components_to_platform_specific_code.html">
+            
+                <a href="compile_thingml_components_to_platform_specific_code.html">
+            
+                    
+                    Compile ThingML components to platform specific code
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.3" data-path="model_hd-service_deployment_with_kevoree.html">
+            
+                <a href="model_hd-service_deployment_with_kevoree.html">
+            
+                    
+                    Model HD-Service deployment with Kevoree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.4" data-path="deploy_platform_specific_code_using_kevoree.html">
+            
+                <a href="deploy_platform_specific_code_using_kevoree.html">
+            
+                    
+                    Deploy platform specific code using Kevoree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.5" data-path="cep_service_developers.html">
+            
+                <a href="cep_service_developers.html">
+            
+                    
+                    Services with CEP and distributed CEP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.6" data-path="cep_how_to.html">
+            
+                <a href="cep_how_to.html">
+            
+                    
+                    Developing Services with Apama CEP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.7" data-path="migrate_from_kevoree_v5.3.x_to_v5.4.x.html">
+            
+                <a href="migrate_from_kevoree_v5.3.x_to_v5.4.x.html">
+            
+                    
+                    Migrate from Kevoree v5.3.x to v5.4.x
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="for_service_operators.html">
+            
+                <a href="for_service_operators.html">
+            
+                    
+                    For Service Operators
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="visualize_the_configuration_and_status_of_a_running_hd-service.html">
+            
+                <a href="visualize_the_configuration_and_status_of_a_running_hd-service.html">
+            
+                    
+                    Visualize the configuration and status of a running HD-Service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.2" data-path="modify_the_configuration_and_deployment_of_a_running_hd-service.html">
+            
+                <a href="modify_the_configuration_and_deployment_of_a_running_hd-service.html">
+            
+                    
+                    Modify the configuration and deployment of a running HD-Service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.3" data-path="re-deployadaptreconfigure_a_running_hd-service.html">
+            
+                <a href="re-deployadaptreconfigure_a_running_hd-service.html">
+            
+                    
+                    Re-deploy/adapt/reconfigure a running HD-Service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4" data-path="cep_service_operators.html">
+            
+                <a href="cep_service_operators.html">
+            
+                    
+                    Operating services for CEP with Apama
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../credits/">
+            
+                <a href="../credits/">
+            
+                    
+                    Credits
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../license/">
+            
+                <a href="../license/">
+            
+                    
+                    License
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Create libraries to support platform specific features / library / component</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="create-libraries-to-support-platform-specific-features--library--component">Create libraries to support platform specific features / library / component</h1>
+<p>In the case that the target language is supported by an existing transformation, support for platform specific features can be added by creating platform specific libraries in ThingML. These platform specific libraries integrated ThingML structures and code together with code written in the target language and specific to the target platform.</p>
+<p>This section details how to implement a driver for ThingML. A driver basically wraps an existing piece of code (in Java, C, C++, ...) and exposes it as a ThingML API, which can then be seamlessly used by service designers, with no need to cope with low-level details related to Java, C, C++, ...</p>
+<p>We will use a simple random integer generator as a running example, that we will wrap in C and also in Java.</p>
+<blockquote>
+<p>Generating random integers could certainly be implemented directly in ThingML, however, as all programming languages already provide facilities for random generation, this would have been like... re-inventing the wheel. <strong>Better wrap what already works!</strong></p>
+</blockquote>
+<h3 id="defining-the-interface">Defining the interface</h3>
+<p>A ThingML driver is a plain ThingML component (or <em>thing</em>). In this respect, it is usually recommended to first describe the interface of a component, and then implement it, possibly for different platforms. This is realized in two steps.</p>
+<p>First, declare a thing fragment containing all the messages that are relevant:</p>
+<pre><code class="lang-thingml">thing fragment RandomMsg{
+    message request();
+    message answer(v: Integer);
+}
+</code></pre>
+<blockquote>
+<p>As ThingML is asynchronous, <strong>the request and the answer should be defined in two distinct messages</strong>. In synchronous Java, this would have been a single method like <code>public int random()</code>, blocking the caller until the random is computed.</p>
+</blockquote>
+<p>Then declare a second thing fragment, which includes the former one, and group messages into a port:</p>
+<pre><code class="lang-thingml">thing fragment Random includes RandomMsg{
+    provided port random {
+        receives request
+        sends answer
+    }
+}
+</code></pre>
+<blockquote>
+<p>ThingML would allow defining only one thing fragment containing both the message declarations and the port. However, if a thing want to use a timer, it will need to include the timer messages. <strong>Splitting message and port declarations favors a better reuse</strong>:</p>
+</blockquote>
+<pre><code>thing fragment RandomUser includes RandomMsg{
+    required port random {
+        sends request
+        receives answer
+    }
+}
+</code></pre><h3 id="calling-native-code-from-thingml">Calling native code from ThingML</h3>
+<p>Calling native code, for any target language, is realized as follows:</p>
+<ul>
+<li>for pure native statement: they should be place between simple quotes, such as <code>&apos;srand(time(NULL));</code></li>
+<li>for mixed code, typically if a call to a native function should be passed with parameters coming from ThingML, it is realized as follows: <code>&apos;&apos; &amp; rn &amp; &apos;.nextInt(Short.MAX_VALUE + 1)&apos;</code>, where rn is a ThingML variable (holding a Java type).</li>
+</ul>
+<p>The implementation (wrapping) of the random facility is given below, for C and for Java.</p>
+<h4 id="calling-cc-code">calling C/C++ code</h4>
+<pre><code class="lang-thingml">import &quot;../random.thingml&quot;
+
+thing RandomLinux includes Random
+@c_headers &quot;#include &lt;time.h&gt;&quot;
+{
+    statechart Random init start {
+        state start {
+            on entry &apos;srand(time(NULL));&apos;
+            transition -&gt;waiting
+        }
+        state waiting {
+          internal waiting
+            event random?request
+            action random!answer(&apos;rand()&apos;)
+        }
+    }
+}
+</code></pre>
+<p>First, the <code>@c_headers &quot;#include &lt;time.h&gt;&quot;</code> annotation ensure the <code>RandomLinux</code> thing includes the proper C headers. When the thing is initialized, it will initialize the random sequence by calling the C <code>srand(time(NULL))</code> function and will then wait for request and serve random integers by calling the C <code>rand</code> function.</p>
+<h4 id="calling-java-code">calling Java code</h4>
+<pre><code class="lang-thingml">import &quot;../random.thingml&quot;
+
+datatype JavaRandom
+@java_type &quot;java.util.Random&quot;;
+
+thing RandomJava includes Random
+{
+    property rn : JavaRandom = &apos;new java.util.Random()&apos;
+    statechart Random init waiting {
+        state waiting {
+          internal waiting
+            event random?request
+            action random!answer(&apos;&apos; &amp; rn &amp; &apos;.nextInt(Short.MAX_VALUE + 1)&apos;)
+        }
+    }
+}
+</code></pre>
+<p>First, a datatype is created, backed by the <code>java.util.Random</code> class. This datatype is initialized in the <code>RandomJava</code> thing as follows: <code>property rn : JavaRandom = &apos;new java.util.Random()&apos;</code>.</p>
+<blockquote>
+<p>The call to <code>new</code> is actually plain Java code and not a ThingML keyword, as it is placed between single quotes.</p>
+</blockquote>
+<p>Similarly to the C thing, this thing will then wait for request and serve random integers using <code>&apos;&apos; &amp; rn &amp; &apos;.nextInt(Short.MAX_VALUE + 1)&apos;</code>.</p>
+<p>This statement mixes ThingML code: <code>rn</code> is a ThingML property (though it is mapped to a Java type), while <code>.nextInt(Short.MAX_VALUE + 1)</code> is plain Java code.</p>
+<blockquote>
+<p>ThingML Integer are actually 2-byte long and thus cannot be mapped to Java int. They are rather mapped on Java short. The <code>Short.MAX_VALUE + 1</code> expression ensures the java int produced by <code>nextInt</code>does not overflow the ThingML Integer (<em>i.e.</em>, a Java short).</p>
+</blockquote>
+<h3 id="calling-thingml-code-from-native-code">Calling ThingML code from native code</h3>
+<p>The previous example simply called native code from a ThingML program. In more advanced cases, it is however useful to be able to call ThingML code from a native API (typically when wrapping a library relying on callbacks).</p>
+<h4 id="in-cc">in C/C++</h4>
+<p>To do so one should adapt/wrap a native C/C++ library in such a away that the library can call callbacks which execute the ThingML generated code. We propose to adapt/wrap the native (wrapped) library in a library (wrapping library) which can call the generated code in ThingML. The explanation below is given using C++, but the same approach can be used in C as well.</p>
+<p>Context:
+A sensor returns a value once in a while. There is a library that handles a value update. The library provides a callback which is called on the value update. Thus, a user can implement this callback to process the value or define some logic when a new value is returned. We would like to use this library in ThingML and define logic and process the given value.</p>
+<p>1) Create a type definition for a callback and structure which holds the callback to call from the wrapping library. The type definition and structure should look as follows:</p>
+<pre><code>typedef void (*pthingMLCallback)(void* _instance, ...);
+
+struct ThingMLCallback {
+    pthingMLCallback fn_callback;
+    void* instance;
+
+    ThingMLCallback(pthingMLCallback _callback, void* _instance):
+        fn_callback(_callback),
+        instance(_instance){
+    };
+};
+</code></pre><p>As one may notice, we use the ellipsis (&quot;...&quot;). Thus, the wrapping library can call a function with any number of arguments following <code>_instance</code>. The <code>_instance</code> argument is used by ThingML to identify a thing. Therefore, <code>_instance</code> is an internal concern of ThingML. One should just make sure that a reference to a thing (<code>_instance</code>) is passed together with a reference to the callback. ThingMLCallback has two arguments, i.e. a reference <code>_callback</code> to the callback and void reference <code>_instance</code> to the thing, which is passed as the first argument when the callback is called.</p>
+<p>2) The wrapping library that calls the callback should hold a reference to an instance of ThingMLCallback. For example:</p>
+<pre><code>class BinarySensor {
+    private:
+        ThingMLCallback* valueUpdatedCallback;
+    public:
+        ...
+        //set ThingML callback
+        void setValueUpdatedCallback(ThingMLCallback* _callback){valueUpdatedCallback = _callback;};
+
+        //function is called by a native library
+        void valueupdate(int value);
+        ...
+}
+</code></pre><p>3) Call the callback from the wrapping libarary as follows.</p>
+<pre><code>void BinarySensor::valueupdate(int value){
+    this-&gt;valueUpdatedCallback-&gt;fn_callback(this-&gt;valueUpdatedCallback-&gt;instance, value);
+}
+</code></pre><p>Note, that the <code>valueupdate(int value)</code> function is called by the native (wrapped) library.</p>
+<p>4) Define a thing which uses the wrapping library. The wrapping library calls the callback <code>function value_change_binarysensor_callback()</code> defined in the thing <code>ZWaveBinarySensor</code>.</p>
+<pre><code>import &quot;thingml.thingml&quot;
+
+datatype BinarySensor
+@c_type &quot;BinarySensor*&quot;;
+
+thing ZWaveBinarySensor 
+@c_header &quot;
+#include &lt;stdlib.h&gt;
+#include &lt;cstdarg&gt;
+#include \&quot;BinarySensor.h\&quot;
+
+using namespace TinyOpenZWaveApi;
+&quot;
+{
+    property bs : BinarySensor
+
+    provided port bsport {
+        receives initialize
+    }
+
+    //these are two internal ports shoud be bound together
+    provided port bsportintsend {
+        sends status
+    }
+
+    required port bsportintrecv {
+        receives status
+    }
+
+
+    function value_change_binarysensor_callback()
+    @c_prototype &quot;void value_change_binarysensor_callback(void *_instance, ...)&quot;
+    @c_instance_var_name &quot;(ZWaveBinarySensor_Instance *) _instance&quot;
+    do
+        &apos;va_list arguments;&apos;
+        &apos;va_start(arguments, _instance);&apos;
+        &apos;int state = va_arg(arguments, int);&apos;
+        &apos;va_end(arguments);&apos;
+        bsportintsend!status(&apos;state&apos;)
+    end
+
+    function init_binarysensor() do
+        print &quot;ZwaveBinarySensor: initializing ... \n&quot;
+        &apos;ThingMLCallback* value_changed = new ThingMLCallback(value_change_binarysensor_callback, _instance);&apos;
+        bs = &apos;new BinarySensor();&apos;
+        &apos;&apos;&amp;bs&amp;&apos;-&gt;setValueUpdatedCallback(value_changed);&apos;
+    end
+
+    function getState() : Integer do
+        return &apos;&apos;&amp;bs&amp;&apos;-&gt;getCurrentValue()&apos;
+    end
+
+
+    statechart behavior init Start {
+
+
+        state Start {
+            on entry do
+                print &quot;ZwaveBinarySensor: waiting for initialize command ...\n&quot;
+            end
+            transition-&gt;Ready
+            event bsport?initialize
+            action do
+                init_binarysensor()
+            end
+        }
+
+        state Ready {
+            on entry do
+                print &quot;ZwaveBinarySensor: ready ...\n&quot;
+            end
+
+            internal event e : bsportintrecv?status
+            action do
+                // here may go some code
+            end
+        }
+
+    }
+}
+</code></pre><p>Note, we use the ThingML capability to bland the ThingML code and sources which are native to some platform (in this case C++). The C++ code is enclosed by the single quotes. </p>
+<p>We have defined the callback <code>value_change_binarysensor_callback</code> with the signature that corresponds to the <code>typedef</code> from point 1. Make sure that this callback in ThingML should be annotated with <code>@c_prototype</code> and <code>@c_instance_var_name</code>. The annotation <code>@c_prototype</code> instructs ThingML to generate a function with the signature given in the double quotes, <code>@c_instance_var_name</code> casts <code>_instance</code> to the proper type. These annotations are required to perform a call of the callback on the right thing (it is the <code>ZWaveBinarySensor</code> thing in our case) </p>
+<p>Further, we create an instance of ThingMLCallback that holds references to the callback <code>value_change_binarysensor_callback</code> and <code>ZWaveBinarySensor</code> thing (<code>_instance</code>), i.e. <code>ThingMLCallback* value_changed = new ThingMLCallback(value_change_binarysensor_callback, _instance);</code>. Subsequently, <code>value_changed</code> is passed to the wrapping library, i.e. <code>&apos;&apos;&amp;bs&amp;&apos;-&gt;setValueUpdatedCallback(value_changed);&apos;</code>. Now if the native (wrapped) library calls the function which we have implemented in the wrrapping library, i.e. <code>void valueupdate(int)</code>(see the point  2), the wrapper calls the callback <code>function value_change_binarysensor_callback()</code>. Finnally, we can extract a value passed to the callback using <code>va_list</code> and <code>va_arg</code> in <code>function value_change_binarysensor_callback()</code> as well as we can use any ThingML instructions. </p>
+<h4 id="in-java">in Java</h4>
+<p>In Java, the easiest way to call ThingML code from a plain Java class is to</p>
+<ol>
+<li>Make the Thing extend a Java interface. This is realized by annotating the thing: <code>thing MyThing @java_interface &quot;my.package.MyInterface&quot;</code>. The methods defined in this Java interface should be implemented in the thing. As ThingML functions are private by default, the function corresponding to the Java methods to be implemented need to be annotated: <code>function myFunction()@override &quot;true&quot;</code>. This function needs to have the exact same signature as the one defined in the Java interface.</li>
+<li>In the external Java class, import the Java interface, define a pointer to that interface (a reference or a list), and call the methods of that interface in the Java class</li>
+<li>Implement a registration mechanism in the Java class, so that I can actually call the class generated from the thing (and extending the interface). This can typically be done by defining an extra argument (typed by the interface) in the constructor. The plain Java class can then be created from the thing as follows: <code>&apos;new my.package.MyClass(this)&apos;</code>. The Java class can then hold a reference to the thingml object (<code>this</code>) and call methods on it.</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="for_platform_experts.html" class="navigation navigation-prev " aria-label="Previous page: For Platform Experts">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="extend_the_thingml_transformations_to_compile_code_for_a_new_platform.html" class="navigation navigation-next " aria-label="Next page: Extend the ThingML compilers to target a new platform">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Create libraries to support platform specific features / library / component","level":"1.4.1.1","depth":3,"next":{"title":"Extend the ThingML compilers to target a new platform","level":"1.4.1.2","depth":3,"path":"heads_methodology/extend_the_thingml_transformations_to_compile_code_for_a_new_platform.md","ref":"heads_methodology/extend_the_thingml_transformations_to_compile_code_for_a_new_platform.md","articles":[]},"previous":{"title":"For Platform Experts","level":"1.4.1","depth":2,"path":"heads_methodology/for_platform_experts.md","ref":"heads_methodology/for_platform_experts.md","articles":[{"title":"Create libraries to support platform specific features / library / component","level":"1.4.1.1","depth":3,"path":"heads_methodology/create_libraries_to_support_platform_specific_features__library__component.md","ref":"heads_methodology/create_libraries_to_support_platform_specific_features__library__component.md","articles":[]},{"title":"Extend the ThingML compilers to target a new platform","level":"1.4.1.2","depth":3,"path":"heads_methodology/extend_the_thingml_transformations_to_compile_code_for_a_new_platform.md","ref":"heads_methodology/extend_the_thingml_transformations_to_compile_code_for_a_new_platform.md","articles":[]},{"title":"Implement a ThingML plugin to target a new protocol","level":"1.4.1.3","depth":3,"path":"heads_methodology/thingml_plugins.md","ref":"heads_methodology/thingml_plugins.md","articles":[]},{"title":"Test the ThingML compilers and plugins","level":"1.4.1.4","depth":3,"path":"heads_methodology/thingml_test.md","ref":"heads_methodology/thingml_test.md","articles":[]},{"title":"Prepare, build and flash any openWRT device to run Heads Artefacts","level":"1.4.1.5","depth":3,"path":"heads_methodology/openwrtplatform/index.md","ref":"heads_methodology/openwrtplatform/index.md","articles":[]},{"title":"Prepare, build and flash any buildroot compatible device to run Kevoree","level":"1.4.1.6","depth":3,"path":"heads_methodology/buildroot/index.md","ref":"heads_methodology/buildroot/index.md","articles":[]},{"title":"Extend Kevoree to deploy code for a new platform","level":"1.4.1.7","depth":3,"path":"heads_methodology/kevoree-platform-integration/index.md","ref":"heads_methodology/kevoree-platform-integration/index.md","articles":[{"title":"Generalities","level":"1.4.1.7.1","depth":4,"path":"heads_methodology/kevoree-platform-integration/generalities.md","ref":"heads_methodology/kevoree-platform-integration/generalities.md","articles":[]},{"title":"Kevoree Model","level":"1.4.1.7.2","depth":4,"path":"heads_methodology/kevoree-platform-integration/model.md","ref":"heads_methodology/kevoree-platform-integration/model.md","articles":[]},{"title":"Core","level":"1.4.1.7.3","depth":4,"path":"heads_methodology/kevoree-platform-integration/core.md","ref":"heads_methodology/kevoree-platform-integration/core.md","articles":[]},{"title":"Remote Code Loader","level":"1.4.1.7.4","depth":4,"path":"heads_methodology/kevoree-platform-integration/remote_code_loader.md","ref":"heads_methodology/kevoree-platform-integration/remote_code_loader.md","articles":[]},{"title":"Registry Client","level":"1.4.1.7.5","depth":4,"path":"heads_methodology/kevoree-platform-integration/registry_client.md","ref":"heads_methodology/kevoree-platform-integration/registry_client.md","articles":[]},{"title":"Kevoree Model generation","level":"1.4.1.7.6","depth":4,"path":"heads_methodology/kevoree-platform-integration/model_generator.md","ref":"heads_methodology/kevoree-platform-integration/model_generator.md","articles":[]},{"title":"Registry Client","level":"1.4.1.7.7","depth":4,"path":"heads_methodology/kevoree-platform-integration/registry_client.md","ref":"heads_methodology/kevoree-platform-integration/registry_client.md","articles":[]},{"title":"Code generator","level":"1.4.1.7.8","depth":4,"path":"heads_methodology/kevoree-platform-integration/code_generator.md","ref":"heads_methodology/kevoree-platform-integration/code_generator.md","articles":[]},{"title":"Runtime","level":"1.4.1.7.9","depth":4,"path":"heads_methodology/kevoree-platform-integration/runtime.md","ref":"heads_methodology/kevoree-platform-integration/runtime.md","articles":[]},{"title":"Kevscript Tools","level":"1.4.1.7.10","depth":4,"path":"heads_methodology/kevoree-platform-integration/kevscript.md","ref":"heads_methodology/kevoree-platform-integration/kevscript.md","articles":[]},{"title":"Components","level":"1.4.1.7.11","depth":4,"path":"heads_methodology/kevoree-platform-integration/components/README.md","ref":"heads_methodology/kevoree-platform-integration/components/README.md","articles":[{"title":"Component","level":"1.4.1.7.11.1","depth":5,"path":"heads_methodology/kevoree-platform-integration/components/component.md","ref":"heads_methodology/kevoree-platform-integration/components/component.md","articles":[]},{"title":"Node","level":"1.4.1.7.11.2","depth":5,"path":"heads_methodology/kevoree-platform-integration/components/node.md","ref":"heads_methodology/kevoree-platform-integration/components/node.md","articles":[]},{"title":"Group","level":"1.4.1.7.11.3","depth":5,"path":"heads_methodology/kevoree-platform-integration/components/group.md","ref":"heads_methodology/kevoree-platform-integration/components/group.md","articles":[]},{"title":"Channel","level":"1.4.1.7.11.4","depth":5,"path":"heads_methodology/kevoree-platform-integration/components/channel.md","ref":"heads_methodology/kevoree-platform-integration/components/channel.md","articles":[]}]}]},{"title":"Extend Kevoree to support a new communication channel","level":"1.4.1.8","depth":3,"path":"heads_methodology/extend_kevoree_to_support_a_new_communication_channel.md","ref":"heads_methodology/extend_kevoree_to_support_a_new_communication_channel.md","articles":[]},{"title":"Using platforms for CEP with Apama","level":"1.4.1.9","depth":3,"path":"heads_methodology/cep_platform_experts.md","ref":"heads_methodology/cep_platform_experts.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":false,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"title":"Heads Methodology","description":"This document is the final version of the HEADS methodology","author":"HEADS consortium","home":"https://heads-project.github.io/methodology/","about":"http://heads-project.eu","issues":false,"contribute":"https://github.com/HEADS-project/methodology","sharing":{"google":false,"facebook":false,"twitter":"https://twitter.com/HEADSeu"}},"gitbook":"*"},"file":{"path":"heads_methodology/create_libraries_to_support_platform_specific_features__library__component.md","mtime":"2016-03-05T22:52:09.706Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-02T21:36:38.062Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

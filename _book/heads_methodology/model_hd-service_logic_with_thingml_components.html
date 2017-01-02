@@ -1,0 +1,1155 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Model HD-Service logic with ThingML components · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="compile_thingml_components_to_platform_specific_code.html" />
+    
+    
+    <link rel="prev" href="for_service_developers.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../heads_actors/">
+            
+                <a href="../heads_actors/">
+            
+                    
+                    HEADS Actors
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../heads_actors/platform_experts.html">
+            
+                <a href="../heads_actors/platform_experts.html">
+            
+                    
+                    Platform Experts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../heads_actors/service_developers.html">
+            
+                <a href="../heads_actors/service_developers.html">
+            
+                    
+                    Service Developers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../heads_actors/service_operators.html">
+            
+                <a href="../heads_actors/service_operators.html">
+            
+                    
+                    Service Operators
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../heads_ide/">
+            
+                <a href="../heads_ide/">
+            
+                    
+                    HEADS IDE
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../heads_ide/design-time.html">
+            
+                <a href="../heads_ide/design-time.html">
+            
+                    
+                    @Design-time
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../heads_ide/runtime.html">
+            
+                <a href="../heads_ide/runtime.html">
+            
+                    
+                    @Runtime
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../heads_ide/installation_guide.html">
+            
+                <a href="../heads_ide/installation_guide.html">
+            
+                    
+                    Installation Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    HEADS Methodology
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="for_platform_experts.html">
+            
+                <a href="for_platform_experts.html">
+            
+                    
+                    For Platform Experts
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="create_libraries_to_support_platform_specific_features__library__component.html">
+            
+                <a href="create_libraries_to_support_platform_specific_features__library__component.html">
+            
+                    
+                    Create libraries to support platform specific features / library / component
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" data-path="extend_the_thingml_transformations_to_compile_code_for_a_new_platform.html">
+            
+                <a href="extend_the_thingml_transformations_to_compile_code_for_a_new_platform.html">
+            
+                    
+                    Extend the ThingML compilers to target a new platform
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.3" data-path="thingml_plugins.html">
+            
+                <a href="thingml_plugins.html">
+            
+                    
+                    Implement a ThingML plugin to target a new protocol
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.4" data-path="thingml_test.html">
+            
+                <a href="thingml_test.html">
+            
+                    
+                    Test the ThingML compilers and plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.5" data-path="openwrtplatform/">
+            
+                <a href="openwrtplatform/">
+            
+                    
+                    Prepare, build and flash any openWRT device to run Heads Artefacts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.6" data-path="buildroot/">
+            
+                <a href="buildroot/">
+            
+                    
+                    Prepare, build and flash any buildroot compatible device to run Kevoree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7" data-path="kevoree-platform-integration/">
+            
+                <a href="kevoree-platform-integration/">
+            
+                    
+                    Extend Kevoree to deploy code for a new platform
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.7.1" data-path="kevoree-platform-integration/generalities.html">
+            
+                <a href="kevoree-platform-integration/generalities.html">
+            
+                    
+                    Generalities
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.2" data-path="kevoree-platform-integration/model.html">
+            
+                <a href="kevoree-platform-integration/model.html">
+            
+                    
+                    Kevoree Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.3" data-path="kevoree-platform-integration/core.html">
+            
+                <a href="kevoree-platform-integration/core.html">
+            
+                    
+                    Core
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.4" data-path="kevoree-platform-integration/remote_code_loader.html">
+            
+                <a href="kevoree-platform-integration/remote_code_loader.html">
+            
+                    
+                    Remote Code Loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.5" data-path="kevoree-platform-integration/registry_client.html">
+            
+                <a href="kevoree-platform-integration/registry_client.html">
+            
+                    
+                    Registry Client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.6" data-path="kevoree-platform-integration/model_generator.html">
+            
+                <a href="kevoree-platform-integration/model_generator.html">
+            
+                    
+                    Kevoree Model generation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.7" data-path="kevoree-platform-integration/registry_client.html">
+            
+                <a href="kevoree-platform-integration/registry_client.html">
+            
+                    
+                    Registry Client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.8" data-path="kevoree-platform-integration/code_generator.html">
+            
+                <a href="kevoree-platform-integration/code_generator.html">
+            
+                    
+                    Code generator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.9" data-path="kevoree-platform-integration/runtime.html">
+            
+                <a href="kevoree-platform-integration/runtime.html">
+            
+                    
+                    Runtime
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.10" data-path="kevoree-platform-integration/kevscript.html">
+            
+                <a href="kevoree-platform-integration/kevscript.html">
+            
+                    
+                    Kevscript Tools
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.11" data-path="kevoree-platform-integration/components/">
+            
+                <a href="kevoree-platform-integration/components/">
+            
+                    
+                    Components
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.7.11.1" data-path="kevoree-platform-integration/components/component.html">
+            
+                <a href="kevoree-platform-integration/components/component.html">
+            
+                    
+                    Component
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.11.2" data-path="kevoree-platform-integration/components/node.html">
+            
+                <a href="kevoree-platform-integration/components/node.html">
+            
+                    
+                    Node
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.11.3" data-path="kevoree-platform-integration/components/group.html">
+            
+                <a href="kevoree-platform-integration/components/group.html">
+            
+                    
+                    Group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.11.4" data-path="kevoree-platform-integration/components/channel.html">
+            
+                <a href="kevoree-platform-integration/components/channel.html">
+            
+                    
+                    Channel
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.8" data-path="extend_kevoree_to_support_a_new_communication_channel.html">
+            
+                <a href="extend_kevoree_to_support_a_new_communication_channel.html">
+            
+                    
+                    Extend Kevoree to support a new communication channel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.9" data-path="cep_platform_experts.html">
+            
+                <a href="cep_platform_experts.html">
+            
+                    
+                    Using platforms for CEP with Apama
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="for_service_developers.html">
+            
+                <a href="for_service_developers.html">
+            
+                    
+                    For Service Developers
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.4.2.1" data-path="model_hd-service_logic_with_thingml_components.html">
+            
+                <a href="model_hd-service_logic_with_thingml_components.html">
+            
+                    
+                    Model HD-Service logic with ThingML components
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="compile_thingml_components_to_platform_specific_code.html">
+            
+                <a href="compile_thingml_components_to_platform_specific_code.html">
+            
+                    
+                    Compile ThingML components to platform specific code
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.3" data-path="model_hd-service_deployment_with_kevoree.html">
+            
+                <a href="model_hd-service_deployment_with_kevoree.html">
+            
+                    
+                    Model HD-Service deployment with Kevoree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.4" data-path="deploy_platform_specific_code_using_kevoree.html">
+            
+                <a href="deploy_platform_specific_code_using_kevoree.html">
+            
+                    
+                    Deploy platform specific code using Kevoree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.5" data-path="cep_service_developers.html">
+            
+                <a href="cep_service_developers.html">
+            
+                    
+                    Services with CEP and distributed CEP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.6" data-path="cep_how_to.html">
+            
+                <a href="cep_how_to.html">
+            
+                    
+                    Developing Services with Apama CEP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.7" data-path="migrate_from_kevoree_v5.3.x_to_v5.4.x.html">
+            
+                <a href="migrate_from_kevoree_v5.3.x_to_v5.4.x.html">
+            
+                    
+                    Migrate from Kevoree v5.3.x to v5.4.x
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="for_service_operators.html">
+            
+                <a href="for_service_operators.html">
+            
+                    
+                    For Service Operators
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="visualize_the_configuration_and_status_of_a_running_hd-service.html">
+            
+                <a href="visualize_the_configuration_and_status_of_a_running_hd-service.html">
+            
+                    
+                    Visualize the configuration and status of a running HD-Service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.2" data-path="modify_the_configuration_and_deployment_of_a_running_hd-service.html">
+            
+                <a href="modify_the_configuration_and_deployment_of_a_running_hd-service.html">
+            
+                    
+                    Modify the configuration and deployment of a running HD-Service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.3" data-path="re-deployadaptreconfigure_a_running_hd-service.html">
+            
+                <a href="re-deployadaptreconfigure_a_running_hd-service.html">
+            
+                    
+                    Re-deploy/adapt/reconfigure a running HD-Service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4" data-path="cep_service_operators.html">
+            
+                <a href="cep_service_operators.html">
+            
+                    
+                    Operating services for CEP with Apama
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../credits/">
+            
+                <a href="../credits/">
+            
+                    
+                    Credits
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../license/">
+            
+                <a href="../license/">
+            
+                    
+                    License
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Model HD-Service logic with ThingML components</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="model-hd-service-logic-with-thingml-components">Model HD-Service logic with ThingML components</h1>
+<p>The service developer uses ThingML to define the components of the HD-Service and implement the logic of those components.</p>
+<p>State machines are a common formalism to express reactive behavior that needs to react on some events, correlate events, and produce some new events. A state machine-based programming language, and ThingML in particular, is thus a good candidate to implement Kevoree components and write the logic that orchestrates the different ports of this component.</p>
+<h2 id="define-interfaces">Define interfaces:</h2>
+<p>Let&apos;s consider a simple ThingML program made of two things, basically involving message to deal with a timer:</p>
+<pre><code>thing fragment TimerMsgs {
+    // Start the Timer
+    message timer_start(delay : Integer);
+    // Cancel the Timer
+    message timer_cancel();
+    // Notification that the timer has expired
+    message timer_timeout();
+}
+</code></pre><p>First, a timer:</p>
+<pre><code>thing fragment Timer includes TimerMsgs
+{
+    provided port timer
+    {
+        sends timer_timeout
+        receives timer_start, timer_cancel
+    }
+}
+</code></pre><h2 id="implement-the-logic-using-state-machines-and-action-languages">Implement the logic using state machines and action languages</h2>
+<p>A simple client using the timer could be:</p>
+<pre><code>thing HelloTimer includes TimerMsgs {
+
+    required port timer {
+        receives timer_timeout
+        sends timer_start, timer_cancel
+    }
+
+    readonly property period : Integer = 1000
+    property counter : Integer = 0
+
+    statechart behavior init Init {
+
+        state Init {
+            on entry do
+                timer!timer_start(period)
+            end
+
+            transition -&gt; Init //this will loop on the Init state, and start a new timer
+            event timer?timer_timeout
+            action do
+                        print &quot;hello &quot;
+                print counter
+                        print &quot;\n&quot;
+                        counter = counter + 1
+            end
+        }
+    }
+}
+</code></pre><p>This simple, platform-independent service basically outputs a &quot;hello n&quot; every second. This is realized by starting a timer when entering the <code>Init</code> state. On timeout, a <code>timer_timeout</code> message is received, triggering the prints, before it re-enters the <code>Init</code> state.</p>
+<p>Basically, this would produce the following outputs:</p>
+<pre><code>hello 0
+hello 1
+hello 2
+</code></pre><p>Alternatively, the previous example can be refactored in the following way to keep the state machine clean:</p>
+<pre><code>thing HelloTimer includes TimerMsgs {
+
+    required port timer {
+        receives timer_timeout
+        sends timer_start, timer_cancel
+    }
+
+    readonly property period : Integer = 1000
+    property counter : Integer = 0
+
+    function printHello() do
+        print &quot;hello &quot;
+    print counter
+        print &quot;\n&quot;
+        counter = counter + 1
+    end
+
+    statechart behavior init Init {
+
+        state Init {
+        on entry do
+            timer!timer_start(period)
+        end
+
+        transition -&gt; Init //this will loop on the Init state, and start a new timer
+        event timer?timer_timeout
+        action printHello()
+    }
+    }
+}
+</code></pre><p>More generally the general syntax for a function is:</p>
+<pre><code>function myFunction(param1 : ParamType1, param2 : ParamType2) : ReturnType do
+    ...
+end
+</code></pre><p>Like in most programming languages, functions are particularly useful to encapsulate code that is called from multiple places, to avoid duplication.</p>
+<blockquote>
+<p>The HEADS action and expression language is fairly aligned with major programming languages such as Java, JavaScript or C: </p>
+<ul>
+<li>variable definitions and affectations <code>var i : Integer = 0</code>,</li>
+<li>algebraic (<code>+</code>, <code>-</code>, etc) and boolean operators (<code>and</code> and <code>or</code>)</li>
+<li>control structures <code>if (true) do ... end else do ... end</code>, <code>while(true) do ... end</code></li>
+<li><code>print &quot;hello&quot;</code> and <code>error &quot;alert!&quot;</code></li>
+<li>function calls <code>myFunction(0, 1)</code></li>
+</ul>
+<p>In addition to the &quot;normal&quot; statements common with those language, HEADS provides:</p>
+<ul>
+<li>send a message <code>myPort!myMessage()</code>, <code>myPort!myMessage2(a, b, 0)</code> for asynchronous message passing between components</li>
+</ul>
+</blockquote>
+<h2 id="implement-advanced-logic-with-complex-event-processing">Implement advanced logic with Complex Event Processing</h2>
+<p>The HEADS modelling language has been extended with CEP concepts (See D2.2 for more details). CEP complements state machines and provides more powerful abstractions to handle streams of events, for example to compute the average of the values provided by a sensor on a given time window, or to when some behavior should be triggered when two events happen &quot;at the same time&quot;. While this can be expressed with state machines, this typically implies instantiating timers and arrays (to manage time windows), managing different interleaving, etc, <em>i.e.</em> this generates accidental complexity. Those CEP concepts are mapped to the ones provided by <a href="http://reactivex.io/" target="_blank">ReactiveX</a>.</p>
+<h3 id="join">Join</h3>
+<p>The <a href="http://reactivex.io/documentation/operators/join.html" target="_blank">join operator</a> &quot;<em>combines items emitted by two Observables whenever an item from one Observable is emitted during a time window defined according to an item emitted by the other Observable</em>&quot;. See the figure below (taken from ReactiveX documentation) to get an idea of how it works.</p>
+<p><img src="http://reactivex.io/documentation/operators/images/join.c.png" alt="Join"></p>
+<p>This is expressed in the HEADS modelling language using this syntax:</p>
+<pre><code>stream simpleJoinWithParams @TTL &quot;100&quot; do
+    from [e1 : receivePort?m1 &amp; e2 : receivePort?m2 -&gt; cep1(e1.v1 + e2.v1)]
+    select a : #0, b : #1
+    action sendPort!cep1(a, b)
+end
+</code></pre><p>Whenever a message <code>m1</code> and a message <code>m2</code> are received within 100 ms, it will produce a <code>cep1</code> message.</p>
+<p>The same query expressed directly using the ReactiveX API would require about 15 lines of code (in Java or here in JavaScript):</p>
+<pre><code class="lang-js"><span class="hljs-comment">//Code sample taken from ReactiveX documentation</span>
+<span class="hljs-keyword">var</span> xs = Rx.Observable.interval(<span class="hljs-number">100</span>)
+    .map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;first&apos;</span> + x; });
+
+<span class="hljs-keyword">var</span> ys = Rx.Observable.interval(<span class="hljs-number">100</span>)
+    .map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;second&apos;</span> + x; });
+
+<span class="hljs-keyword">var</span> source = xs
+    .join(
+        ys,
+        <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> Rx.Observable.timer(<span class="hljs-number">0</span>); },
+        <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> Rx.Observable.timer(<span class="hljs-number">0</span>); },
+        <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x, y</span>) </span>{ <span class="hljs-keyword">return</span> x + y; }
+    )
+    .take(<span class="hljs-number">5</span>);
+
+<span class="hljs-keyword">var</span> subscription = source.subscribe(
+    <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x</span>) </span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Next: &apos;</span> + x); },
+    <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err</span>) </span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Error: &apos;</span> + err); },
+    <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Completed&apos;</span>); });
+</code></pre>
+<p>The declarative syntax of the HEADS modelling language for CEP concepts hence greatly simplifies the expression of CEP queries. Moreover, the stream expressed above can be compiled to Java or JavaScript with no modification, the compiler taking care of mapping to the Java and JS version of the ReactiveX APIs.</p>
+<h3 id="merge">Merge</h3>
+<p>The <a href="http://reactivex.io/documentation/operators/merge.html" target="_blank">Merge operator</a> &quot;<em>combine multiple Observables into one by merging their emissions</em>&quot;. See the figure below (taken from ReactiveX documentation) to get an idea of how it works.</p>
+<p><img src="http://reactivex.io/documentation/operators/images/merge.png" alt="Merge"></p>
+<p>This is expressed in the HEADS modelling language using this syntax:</p>
+<pre><code>stream simpleMerge do
+    from [e1 : receivePort?m1 | e2 : receivePort?m2 -&gt; cep1()]
+    action sendPort!cep1()
+end
+</code></pre><p>The same query expressed directly using the ReactiveX API would require about 15 lines of code (in JavaScript or here in Java):</p>
+<pre><code class="lang-java"><span class="hljs-comment">//Code sample taken from ReactiveX documentation</span>
+Observable&lt;Integer&gt; odds = Observable.just(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>).subscribeOn(someScheduler);
+Observable&lt;Integer&gt; evens = Observable.just(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>);
+
+Observable.merge(odds, evens)
+          .subscribe(<span class="hljs-keyword">new</span> Subscriber&lt;Integer&gt;() {
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onNext</span><span class="hljs-params">(Integer item)</span> </span>{
+            System.out.println(<span class="hljs-string">&quot;Next: &quot;</span> + item);
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onError</span><span class="hljs-params">(Throwable error)</span> </span>{
+            System.err.println(<span class="hljs-string">&quot;Error: &quot;</span> + error.getMessage());
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCompleted</span><span class="hljs-params">()</span> </span>{
+            System.out.println(<span class="hljs-string">&quot;Sequence complete.&quot;</span>);
+        }
+    });
+</code></pre>
+<h3 id="filter">Filter</h3>
+<p>A <a href="http://reactivex.io/documentation/operators/filter.html" target="_blank">Filter</a> &quot;<em>emits only those items from an Observable that pass a predicate test</em>&quot;. See the figure below (taken from ReactiveX documentation) to get an idea of how it works.</p>
+<p><img src="http://reactivex.io/documentation/operators/images/filter.png" alt="Filter"></p>
+<p>This is expressed in the HEADS modelling language using this syntax:</p>
+<pre><code>operator lessThan4(m : m1) : Boolean 
+    return m.x &lt; 4
+
+stream filterLessThan4 do
+        from m : [ e1 : recv?m1 -&gt; res(e1.x)]::filter(lessThan4(m))
+        select a : #0
+        action send!res(a)
+    end
+</code></pre><p>The same query expressed directly using the ReactiveX API would require about 15 lines of code (in JavaScript or here in Java):</p>
+<pre><code class="lang-java"><span class="hljs-comment">//Code sample taken from ReactiveX documentation</span>
+Observable.just(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)
+          .filter(<span class="hljs-keyword">new</span> Func1&lt;Integer, Boolean&gt;() {
+              <span class="hljs-meta">@Override</span>
+              <span class="hljs-function"><span class="hljs-keyword">public</span> Boolean <span class="hljs-title">call</span><span class="hljs-params">(Integer item)</span> </span>{
+                <span class="hljs-keyword">return</span>( item &lt; <span class="hljs-number">4</span> );
+              }
+          }).subscribe(<span class="hljs-keyword">new</span> Subscriber&lt;Integer&gt;() {
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onNext</span><span class="hljs-params">(Integer item)</span> </span>{
+            System.out.println(<span class="hljs-string">&quot;Next: &quot;</span> + item);
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onError</span><span class="hljs-params">(Throwable error)</span> </span>{
+            System.err.println(<span class="hljs-string">&quot;Error: &quot;</span> + error.getMessage());
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCompleted</span><span class="hljs-params">()</span> </span>{
+            System.out.println(<span class="hljs-string">&quot;Sequence complete.&quot;</span>);
+        }
+    });
+</code></pre>
+<h3 id="aggregator-and-windows">Aggregator and Windows</h3>
+<p>A <a href="http://reactivex.io/documentation/operators/buffer.html" target="_blank">Window (or Buffer)</a> &quot;<em>periodically gathers items emitted by an Observable into bundles and emit these bundles rather than emitting the items one at a time</em>&quot;. See the figure below (taken from ReactiveX documentation) to get an idea of how it works.</p>
+<p><img src="http://reactivex.io/documentation/operators/images/Buffer.png" alt="Buffer"></p>
+<p>This is expressed in the HEADS modelling language using this syntax:</p>
+<pre><code>stream lengthW do // compute min, max, average of m2.x on windows of 5 seconds
+    from e : [recv?m2]::timeWindow(5000, 5000)
+    select avg : average(e.x[]), min : min(e.x[]), max : max(e.x[])
+    action send!res2(avg, min, max)
+end
+</code></pre><p>Aggregators are normal functions that takes arrays (corresponding to the content of a window/buffer) as parameter:</p>
+<pre><code>function average(x : Integer[]) : Float do
+    var i : Integer = 0
+    var sum : Integer = 0
+    while (i &lt; x.length) do
+        sum = sum + x[i]
+    i = i + 1
+    end
+    return sum / x.length
+end
+</code></pre><p>Those aggregators are typically defined in a reusable libraries that any stream can then use directly.</p>
+<h2 id="debugging">Debugging</h2>
+<p>Traces are a common way of understanding the execution of a program, identify and solve bugs. Traces can automatically be added to trace:</p>
+<ul>
+<li>the initialization of instances, with values for all attributes. Those traces appear in light blue in the figure below.</li>
+<li>the execution of the state machine (which states are being entered/exited, which transition are triggered, etc). Those traces appear in yellow in the figure below.</li>
+<li>the emission/reception of messages on ports. Those traces appear in green in the figure below.</li>
+<li>the affectation of variables. Those traces appear in magenta/purple in the figure below.</li>
+<li>the execution of functions. Those traces appear in dark blue (not present in the figure below).</li>
+</ul>
+<p>Using <code>@debug &quot;true&quot;</code> and <code>@debug &quot;false&quot;</code> the service developer can finely filter the elements he wants to trace.</p>
+<p><img src="traces.png" alt="Traces"></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="for_service_developers.html" class="navigation navigation-prev " aria-label="Previous page: For Service Developers">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="compile_thingml_components_to_platform_specific_code.html" class="navigation navigation-next " aria-label="Next page: Compile ThingML components to platform specific code">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Model HD-Service logic with ThingML components","level":"1.4.2.1","depth":3,"next":{"title":"Compile ThingML components to platform specific code","level":"1.4.2.2","depth":3,"path":"heads_methodology/compile_thingml_components_to_platform_specific_code.md","ref":"heads_methodology/compile_thingml_components_to_platform_specific_code.md","articles":[]},"previous":{"title":"For Service Developers","level":"1.4.2","depth":2,"path":"heads_methodology/for_service_developers.md","ref":"heads_methodology/for_service_developers.md","articles":[{"title":"Model HD-Service logic with ThingML components","level":"1.4.2.1","depth":3,"path":"heads_methodology/model_hd-service_logic_with_thingml_components.md","ref":"heads_methodology/model_hd-service_logic_with_thingml_components.md","articles":[]},{"title":"Compile ThingML components to platform specific code","level":"1.4.2.2","depth":3,"path":"heads_methodology/compile_thingml_components_to_platform_specific_code.md","ref":"heads_methodology/compile_thingml_components_to_platform_specific_code.md","articles":[]},{"title":"Model HD-Service deployment with Kevoree","level":"1.4.2.3","depth":3,"path":"heads_methodology/model_hd-service_deployment_with_kevoree.md","ref":"heads_methodology/model_hd-service_deployment_with_kevoree.md","articles":[]},{"title":"Deploy platform specific code using Kevoree","level":"1.4.2.4","depth":3,"path":"heads_methodology/deploy_platform_specific_code_using_kevoree.md","ref":"heads_methodology/deploy_platform_specific_code_using_kevoree.md","articles":[]},{"title":"Services with CEP and distributed CEP","level":"1.4.2.5","depth":3,"path":"heads_methodology/cep_service_developers.md","ref":"heads_methodology/cep_service_developers.md","articles":[]},{"title":"Developing Services with Apama CEP","level":"1.4.2.6","depth":3,"path":"heads_methodology/cep_how_to.md","ref":"heads_methodology/cep_how_to.md","articles":[]},{"title":"Migrate from Kevoree v5.3.x to v5.4.x","level":"1.4.2.7","depth":3,"path":"heads_methodology/migrate_from_kevoree_v5.3.x_to_v5.4.x.md","ref":"heads_methodology/migrate_from_kevoree_v5.3.x_to_v5.4.x.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":false,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"title":"Heads Methodology","description":"This document is the final version of the HEADS methodology","author":"HEADS consortium","home":"https://heads-project.github.io/methodology/","about":"http://heads-project.eu","issues":false,"contribute":"https://github.com/HEADS-project/methodology","sharing":{"google":false,"facebook":false,"twitter":"https://twitter.com/HEADSeu"}},"gitbook":"*"},"file":{"path":"heads_methodology/model_hd-service_logic_with_thingml_components.md","mtime":"2016-03-05T22:52:09.710Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-02T21:36:38.062Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

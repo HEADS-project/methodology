@@ -1,0 +1,1293 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Prepare, build and flash any openWRT device to run Heads Artefacts · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../buildroot/" />
+    
+    
+    <link rel="prev" href="../thingml_test.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../heads_actors/">
+            
+                <a href="../../heads_actors/">
+            
+                    
+                    HEADS Actors
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../heads_actors/platform_experts.html">
+            
+                <a href="../../heads_actors/platform_experts.html">
+            
+                    
+                    Platform Experts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../heads_actors/service_developers.html">
+            
+                <a href="../../heads_actors/service_developers.html">
+            
+                    
+                    Service Developers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../heads_actors/service_operators.html">
+            
+                <a href="../../heads_actors/service_operators.html">
+            
+                    
+                    Service Operators
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../heads_ide/">
+            
+                <a href="../../heads_ide/">
+            
+                    
+                    HEADS IDE
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../heads_ide/design-time.html">
+            
+                <a href="../../heads_ide/design-time.html">
+            
+                    
+                    @Design-time
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../heads_ide/runtime.html">
+            
+                <a href="../../heads_ide/runtime.html">
+            
+                    
+                    @Runtime
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../heads_ide/installation_guide.html">
+            
+                <a href="../../heads_ide/installation_guide.html">
+            
+                    
+                    Installation Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    HEADS Methodology
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../for_platform_experts.html">
+            
+                <a href="../for_platform_experts.html">
+            
+                    
+                    For Platform Experts
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="../create_libraries_to_support_platform_specific_features__library__component.html">
+            
+                <a href="../create_libraries_to_support_platform_specific_features__library__component.html">
+            
+                    
+                    Create libraries to support platform specific features / library / component
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" data-path="../extend_the_thingml_transformations_to_compile_code_for_a_new_platform.html">
+            
+                <a href="../extend_the_thingml_transformations_to_compile_code_for_a_new_platform.html">
+            
+                    
+                    Extend the ThingML compilers to target a new platform
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.3" data-path="../thingml_plugins.html">
+            
+                <a href="../thingml_plugins.html">
+            
+                    
+                    Implement a ThingML plugin to target a new protocol
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.4" data-path="../thingml_test.html">
+            
+                <a href="../thingml_test.html">
+            
+                    
+                    Test the ThingML compilers and plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.1.5" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Prepare, build and flash any openWRT device to run Heads Artefacts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.6" data-path="../buildroot/">
+            
+                <a href="../buildroot/">
+            
+                    
+                    Prepare, build and flash any buildroot compatible device to run Kevoree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7" data-path="../kevoree-platform-integration/">
+            
+                <a href="../kevoree-platform-integration/">
+            
+                    
+                    Extend Kevoree to deploy code for a new platform
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.7.1" data-path="../kevoree-platform-integration/generalities.html">
+            
+                <a href="../kevoree-platform-integration/generalities.html">
+            
+                    
+                    Generalities
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.2" data-path="../kevoree-platform-integration/model.html">
+            
+                <a href="../kevoree-platform-integration/model.html">
+            
+                    
+                    Kevoree Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.3" data-path="../kevoree-platform-integration/core.html">
+            
+                <a href="../kevoree-platform-integration/core.html">
+            
+                    
+                    Core
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.4" data-path="../kevoree-platform-integration/remote_code_loader.html">
+            
+                <a href="../kevoree-platform-integration/remote_code_loader.html">
+            
+                    
+                    Remote Code Loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.5" data-path="../kevoree-platform-integration/registry_client.html">
+            
+                <a href="../kevoree-platform-integration/registry_client.html">
+            
+                    
+                    Registry Client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.6" data-path="../kevoree-platform-integration/model_generator.html">
+            
+                <a href="../kevoree-platform-integration/model_generator.html">
+            
+                    
+                    Kevoree Model generation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.7" data-path="../kevoree-platform-integration/registry_client.html">
+            
+                <a href="../kevoree-platform-integration/registry_client.html">
+            
+                    
+                    Registry Client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.8" data-path="../kevoree-platform-integration/code_generator.html">
+            
+                <a href="../kevoree-platform-integration/code_generator.html">
+            
+                    
+                    Code generator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.9" data-path="../kevoree-platform-integration/runtime.html">
+            
+                <a href="../kevoree-platform-integration/runtime.html">
+            
+                    
+                    Runtime
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.10" data-path="../kevoree-platform-integration/kevscript.html">
+            
+                <a href="../kevoree-platform-integration/kevscript.html">
+            
+                    
+                    Kevscript Tools
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.11" data-path="../kevoree-platform-integration/components/">
+            
+                <a href="../kevoree-platform-integration/components/">
+            
+                    
+                    Components
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.7.11.1" data-path="../kevoree-platform-integration/components/component.html">
+            
+                <a href="../kevoree-platform-integration/components/component.html">
+            
+                    
+                    Component
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.11.2" data-path="../kevoree-platform-integration/components/node.html">
+            
+                <a href="../kevoree-platform-integration/components/node.html">
+            
+                    
+                    Node
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.11.3" data-path="../kevoree-platform-integration/components/group.html">
+            
+                <a href="../kevoree-platform-integration/components/group.html">
+            
+                    
+                    Group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7.11.4" data-path="../kevoree-platform-integration/components/channel.html">
+            
+                <a href="../kevoree-platform-integration/components/channel.html">
+            
+                    
+                    Channel
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.8" data-path="../extend_kevoree_to_support_a_new_communication_channel.html">
+            
+                <a href="../extend_kevoree_to_support_a_new_communication_channel.html">
+            
+                    
+                    Extend Kevoree to support a new communication channel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.9" data-path="../cep_platform_experts.html">
+            
+                <a href="../cep_platform_experts.html">
+            
+                    
+                    Using platforms for CEP with Apama
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../for_service_developers.html">
+            
+                <a href="../for_service_developers.html">
+            
+                    
+                    For Service Developers
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="../model_hd-service_logic_with_thingml_components.html">
+            
+                <a href="../model_hd-service_logic_with_thingml_components.html">
+            
+                    
+                    Model HD-Service logic with ThingML components
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="../compile_thingml_components_to_platform_specific_code.html">
+            
+                <a href="../compile_thingml_components_to_platform_specific_code.html">
+            
+                    
+                    Compile ThingML components to platform specific code
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.3" data-path="../model_hd-service_deployment_with_kevoree.html">
+            
+                <a href="../model_hd-service_deployment_with_kevoree.html">
+            
+                    
+                    Model HD-Service deployment with Kevoree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.4" data-path="../deploy_platform_specific_code_using_kevoree.html">
+            
+                <a href="../deploy_platform_specific_code_using_kevoree.html">
+            
+                    
+                    Deploy platform specific code using Kevoree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.5" data-path="../cep_service_developers.html">
+            
+                <a href="../cep_service_developers.html">
+            
+                    
+                    Services with CEP and distributed CEP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.6" data-path="../cep_how_to.html">
+            
+                <a href="../cep_how_to.html">
+            
+                    
+                    Developing Services with Apama CEP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.7" data-path="../migrate_from_kevoree_v5.3.x_to_v5.4.x.html">
+            
+                <a href="../migrate_from_kevoree_v5.3.x_to_v5.4.x.html">
+            
+                    
+                    Migrate from Kevoree v5.3.x to v5.4.x
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../for_service_operators.html">
+            
+                <a href="../for_service_operators.html">
+            
+                    
+                    For Service Operators
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="../visualize_the_configuration_and_status_of_a_running_hd-service.html">
+            
+                <a href="../visualize_the_configuration_and_status_of_a_running_hd-service.html">
+            
+                    
+                    Visualize the configuration and status of a running HD-Service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.2" data-path="../modify_the_configuration_and_deployment_of_a_running_hd-service.html">
+            
+                <a href="../modify_the_configuration_and_deployment_of_a_running_hd-service.html">
+            
+                    
+                    Modify the configuration and deployment of a running HD-Service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.3" data-path="../re-deployadaptreconfigure_a_running_hd-service.html">
+            
+                <a href="../re-deployadaptreconfigure_a_running_hd-service.html">
+            
+                    
+                    Re-deploy/adapt/reconfigure a running HD-Service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4" data-path="../cep_service_operators.html">
+            
+                <a href="../cep_service_operators.html">
+            
+                    
+                    Operating services for CEP with Apama
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../credits/">
+            
+                <a href="../../credits/">
+            
+                    
+                    Credits
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../../license/">
+            
+                <a href="../../license/">
+            
+                    
+                    License
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Prepare, build and flash any openWRT device to run Heads Artefacts</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="prepare-build-and-flash-any-openwrt-device-to-run-heads-artefacts">Prepare, build and flash any openWRT device to run Heads Artefacts</h1>
+<h2 id="what-is-openwrt">What is OpenWrt?</h2>
+<p>OpenWrt is described as a Linux distribution for embedded devices.
+Instead of trying to create a single, static firmware, OpenWrt provides a fully writable filesystem with package management. This frees you from the application selection and configuration provided by the vendor and allows you to customize the device through the use of packages to suit any application. For developer, OpenWrt is the framework to build an application without having to build a complete firmware around it; for users this means the ability for full customization, to use the device in ways never envisioned.</p>
+<p>We use in particular the lede project. </p>
+<p>The LEDE project is a Linux-based, embedded meta-distribution based on OpenWrt, targeting a wide range of wireless SOHO routers and non-network devices. LEDE is an acronym for &#x201C;Linux Embedded Development Environment&#x201D;.</p>
+<p>LEDE spun away from the mother project in May 2016, with goals of continuing to develop superior software in an open governance model and encouraging new developers to contribute to the development effort.</p>
+<p>In this section, we will describe the different step to build a compatible firmware for the WG3526 router that has been chosen in one of the case study. The same kind of methodology can be followed for another device. </p>
+<h2 id="preparing-the-docker-environment-to-cross-compile-your-firmware">Preparing the docker environment to cross compile your firmware</h2>
+<p>First you need a docker image for crosscompiling lede firmware. </p>
+<p>You can build it.  The docker file is the following:</p>
+<pre><code class="lang-txt">FROM ubuntu:16.04
+RUN apt-get update -y &amp;&amp; apt-get upgrade -y
+RUN apt-get install git git-core build-essential libssl-dev libncurses5-dev unzip gawk file wget python svn
+RUN git clone https://github.com/lede-project/source
+RUN mv /opt/source /opt/lede
+RUN cd /opt/lede
+RUN ./scripts/feeds update -a
+RUN ./scripts/feeds install -a    
+WORKDIR /opt/lede
+CMD /bin/bash
+</code></pre>
+<p>You can build this image in creating a text file nammed Dockerfile. Put the following context and call the command</p>
+<pre><code class="lang-bash"> docker docker build -t barais/lede .
+</code></pre>
+<p>Next run the following command </p>
+<pre><code class="lang-bash">docker run -ti barais/lede /bin/bash
+<span class="hljs-comment">#if you build your image</span>
+<span class="hljs-built_in">cd</span> /opt/lede
+</code></pre>
+<h2 id="creating-a-new-firmware">Creating a new firmware</h2>
+<pre><code class="lang-bash"><span class="hljs-built_in">cd</span> /opt/lede
+make menuconfig
+<span class="hljs-comment">#select the correct devices. </span>
+<span class="hljs-comment">#Select the package you need. You need at least nodejs and blockmount.</span>
+</code></pre>
+<p>In particular, you need to remove support for /etc/fstab in </p>
+<pre><code class="lang-txt">base system -&gt; busybox -&gt; custom busy box options -&gt; Linux System Utilities -&gt; Mount -&gt; Support fstab and -a
+</code></pre>
+<p>You need also to include mount-utils</p>
+<pre><code class="lang-txt"> &gt; Utilities -&gt; mount-utils................................... related (u)mount utilities
+</code></pre>
+<p>and </p>
+<pre><code class="lang-txt">&gt; Utilities -&gt; Disc  blkid........................... locate and print block device attribute
+</code></pre>
+<p>Next configure the kernel </p>
+<pre><code class="lang-bash">FORCE_UNSAFE_CONFIGURE=1 make kernel_menuconfig  -j1 V=s
+</code></pre>
+<p>Select at least the option in the kernel</p>
+<pre><code class="lang-txt">kernel FPU emulation. 
+Kernel Type  ---&gt;
+  MIPS FPU EMULATOR Y
+</code></pre>
+<p>Do not forget to enable USBStorage
+NOTE: USB_STORAGE enables SCSI, and &apos;SCSI disk support&apos;&quot; &quot;may also be needed; see USB_STORAGE Help for more information&quot;
+Do not forget to enable ext4 and vfat in FS. </p>
+<pre><code class="lang-txt">Device Drivers  ---&gt;
+  SCSI device support  ---&gt;
+
+## (Although SCSI will be enabled automatically when selecting USB Mass Storage,
+we need to enable disk support.)
+---   SCSI support type (disk, tape, CD-ROM)
+&lt;*&gt;   SCSI disk support
+
+## (Then move back a level and go into USB support)
+USB support  ---&gt;
+
+## (This is the root hub and is required for USB support.
+If you&apos;d like to compile this as a module, it will be called usbcore.)
+&lt;*&gt; Support for Host-side USB
+
+## (Select at least one of the HCDs. If you are unsure, picking all is fine.)
+--- USB Host Controller Drivers
+&lt;*&gt; xHCI HCD (USB 3.0) support 
+&lt;*&gt; EHCI HCD (USB 2.0) support
+&lt; &gt; OHCI HCD support
+&lt;*&gt; UHCI HCD (most Intel and VIA) support
+
+## (Moving a little further down, we come to CDC and mass storage.)
+&lt; &gt; USB Modem (CDC ACM) support
+&lt;*&gt; USB Printer support
+&lt;*&gt; USB Mass Storage support
+
+## (If you have a USB Network Card like the RTL8150, you&apos;ll need this)
+USB Network Adapters  ---&gt;
+    &lt;*&gt; USB RTL8150 based ethernet device support (EXPERIMENTAL)
+
+## (If you have a serial to USB converter like the Prolific 2303, you&apos;ll need this)
+USB Serial Converter support  ---&gt;
+    &lt;*&gt; USB Serial Converter support
+    &lt;*&gt; USB Prolific 2303 Single Port Serial Driver (NEW)
+
+## In most cases enabling RFCOMM, HIDP, HCI USB and/or HCI UART should be sufficient.
+
+## It is also a good idea to enable the UHID (Userspace Human Interface Device) driver for Bluetooth input devices such as keyboards and mice.
+
+## Tallying up the options: CONFIG_BT, BT_BREDR, CONFIG_BT_RFCOMM, CONFIG_BT_HIDP, BT_LE, CONFIG_BT_HCIBTUSB, CONFIG_BT_HCIUART, CONFIG_RFKILL, CONFIG_UHID
+
+KERNEL Enable bluetooth support
+[*] Networking support ---&gt;
+      &lt;*&gt;   Bluetooth subsystem support ---&gt;
+              [*]   Bluetooth Classic (BR/EDR) features
+              &lt;*&gt;     RFCOMM protocol support
+              [ ]       RFCOMM TTY support
+              &lt; &gt;     BNEP protocol support
+              [ ]       Multicast filter support
+              [ ]       Protocol filter support
+              &lt;*&gt;     HIDP protocol support
+              [*]     Bluetooth High Speed (HS) features
+              [*]   Bluetooth Low Energy (LE) features
+                    Bluetooth device drivers ---&gt;
+                      &lt;*&gt; HCI USB driver
+                      &lt;*&gt; HCI UART driver
+      &lt;*&gt;   RF switch subsystem support ---&gt;
+    Device Drivers ---&gt;
+          HID support ---&gt;
+            &lt;*&gt;   User-space I/O driver support for HID subsystem
+</code></pre>
+<p>Do no forget to check in the config file that is unselected. For this specific device, there is a bug with sdcard reader; See <a href="https://dev.openwrt.org/changeset/49131" target="_blank">https://dev.openwrt.org/changeset/49131</a></p>
+<p>You have also to include the following packages: bluez-libs bluez-utils usbutils.</p>
+<p>When you are happy with your current configuration, you can build the firmware. </p>
+<pre><code class="lang-bash">make -j1 V=s
+</code></pre>
+<p>If there is some questions, please answer the missing configuration part. 
+Next, take a big big coffee. When it finishes. </p>
+<p>Copy the bin/targets/ramips/mt7621/*.bin into your host. </p>
+<pre><code class="lang-bash">scp bin/targets/ramips/mt7621/*.bin user@172.17.0.1:~
+</code></pre>
+<h2 id="flash-the-router">Flash the router</h2>
+<p>Next connect the router to your laptop using an ethernet cable. For the WG3526, the easiest way to update the router locally is to use a pen or something to keep the reset button pressed when starting the router. Then, when your machine gets an IP (192.168.1.X), enter 192.168.1.1, click on the big button with chinese text and choose the firmware available in your home folder.  It takes a couple of minutes to flash the router, but once it is done, the router will reboot and you should get a new IP adress 192.168.1.X and everything should be fine again.</p>
+<p>You can login to the router through ssh. </p>
+<pre><code class="lang-bash">ssh root@192.168.1.1
+</code></pre>
+<p>You can connect to the luci interface <a href="http://192.168.1.1" target="_blank">here</a> login, admin no passwword.</p>
+<h2 id="extend-the-filesystem-on-a-usb-key">Extend the filesystem on a USB key.</h2>
+<p>First thing you have to do is to extend the File system. Plug a USB key. </p>
+<p>You can follow this <a href="https://wiki.openwrt.org/doc/howto/extroot" target="_blank">tutorial</a></p>
+<p>If you put blockmount in the default package and usb in the kernel, you don-t have to install them, else install them using. </p>
+<pre><code class="lang-bash">opkg update ; opkg install block-mount
+</code></pre>
+<pre><code class="lang-bash">mount /dev/sda1 /mnt ; tar -C /overlay -cvf - . | tar -C /mnt -xf - ; umount /mnt
+
+block detect &gt; /etc/config/fstab; \
+   sed -i s/option$<span class="hljs-string">&apos;\t&apos;</span>enabled$<span class="hljs-string">&apos;\t&apos;</span>\<span class="hljs-string">&apos;0\&apos;</span>/option$<span class="hljs-string">&apos;\t&apos;</span>enabled$<span class="hljs-string">&apos;\t&apos;</span>\<span class="hljs-string">&apos;1\&apos;</span>/ /etc/config/fstab; \
+   sed -i s<span class="hljs-comment">#/mnt/sda1#/overlay# /etc/config/fstab; \</span>
+   cat /etc/config/fstab;
+</code></pre>
+<p>You&apos;ll end up with an fstab looking something like this:</p>
+<pre><code class="lang-txt">config &apos;global&apos;
+        option  anon_swap       &apos;0&apos;
+        option  anon_mount      &apos;0&apos;
+        option  auto_swap       &apos;1&apos;
+        option  auto_mount      &apos;1&apos;
+        option  delay_root      &apos;5&apos;
+        option  check_fs        &apos;0&apos;
+
+config &apos;mount&apos;
+        option  target  &apos;/overlay&apos;
+        option  uuid    &apos;c91232a0-c50a-4eae-adb9-14b4d3ce3de1&apos;
+        option  fstype  &apos;ext4&apos;
+        option  enabled &apos;1&apos;
+
+config &apos;swap&apos;
+        option  uuid    &apos;08b4f0a3-f7ab-4ee1-bde9-55fc2481f355&apos;
+        option  enabled &apos;1&apos;
+
+config &apos;mount&apos;
+        option  target  &apos;/data&apos;
+        option  uuid    &apos;c1068d91-863b-42e2-bcb2-b35a241b0fe2&apos;
+        option  enabled &apos;1&apos;
+</code></pre>
+<p>Check if it is mountable to overlay:</p>
+<pre><code class="lang-bash">root@lede:~<span class="hljs-comment"># mount /dev/sda1 /overlay</span>
+root@lede:~<span class="hljs-comment"># df</span>
+Filesystem           1K-blocks      Used Available Use% Mounted on
+rootfs                     896       244       652  27% /
+/dev/root                 2048      2048         0 100% /rom
+tmpfs                    14708        64     14644   0% /tmp
+/dev/mtdblock6         7759872    477328   7221104   6% /overlay
+overlayfs:/overlay         896       244       652  27% /
+tmpfs                      512         0       512   0% /dev
+/dev/sda1              7759872    477328   7221104   6% /overlay
+root@OpenWrt:~<span class="hljs-comment">#</span>
+</code></pre>
+<p>Note that only /overlay has grown but not the /</p>
+<p>Reboot the router</p>
+<p>Verify that the partitions were mounted properly:
+Next you can configure your router to be sure it is connected to internet. </p>
+<h2 id="adding-new-packages">Adding new packages</h2>
+<p>Just edit the file /etc/opkg/customfeeds.conf</p>
+<pre><code class="lang-bash">vi /etc/opkg/customfeeds.conf
+</code></pre>
+<p>add the following line</p>
+<pre><code class="lang-txt">src/gz newpackage http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/packages/
+</code></pre>
+<p>next</p>
+<pre><code class="lang-bash">opkg update
+<span class="hljs-comment">#to install node</span>
+opkg install wget
+opkg install git
+<span class="hljs-comment">#Download the following file https://github.com/barais/WG3526Notes/blob/master/node_v4.4.5-1_mipsel_24kc.ipk?raw=true</span>
+<span class="hljs-comment"># copy it on the router and next</span>
+opkg install --force-checksum node_v4.4.5-1_mipsel_24kc.ipk 
+<span class="hljs-comment">#to install nano</span>
+opkg install nano
+<span class="hljs-comment">#to install mosquitto</span>
+opkg install mosquitto
+</code></pre>
+<h2 id="install-kevoreejs">Install KevoreeJS</h2>
+<p>Next you can do an update and install npm</p>
+<pre><code class="lang-bash">npm update -g npm. 
+npm i -g grunt-cli
+npm i -g bower
+npm i -g generator-kevoree
+npm i -g kevoree-cli
+</code></pre>
+<h2 id="install-kevoree-nodejs-runtime">Install Kevoree NodeJS Runtime</h2>
+<p>Prefer a global install for this module as it is intended to be used that way:</p>
+<pre><code class="lang-bash">npm i -g kevoree-cli
+</code></pre>
+<p>This will allow you to start a new Kevoree JavaScript runtime from the command-line by using:</p>
+<pre><code class="lang-bash">$ kevoree
+</code></pre>
+<h3 id="usage">Usage</h3>
+<p> Usage documentation is available by using the -h flag:</p>
+<pre><code class="lang-bash">$ kevoreejs -h
+</code></pre>
+<p><strong>NB</strong> You can override the Kevoree registry your runtime uses by specifying two ENV VAR:</p>
+<pre><code class="lang-bash">KEVOREE_REGISTRY_HOST=localhost KEVOREE_REGISTRY_PORT=9000 kevoreejs
+</code></pre>
+<p>Enjoy</p>
+<h2 id="cross-compiling-node-modules">Cross compiling node modules</h2>
+<p>Follow the <a href="https://github.com/netbeast/docs/wiki/Cross-Compile-NPM-modules" target="_blank">tutorial </a> to crosscompule some npm modules.</p>
+<h3 id="openzwave">Openzwave</h3>
+<p>in your cross-compile docker container.</p>
+<p>go to /opt/source</p>
+<pre><code class="lang-bash"><span class="hljs-built_in">cd</span> /opt/<span class="hljs-built_in">source</span>
+
+<span class="hljs-built_in">cd</span> packages/libs
+git <span class="hljs-built_in">clone</span> https://github.com/cabal/openwrt
+<span class="hljs-built_in">cd</span> openwrt
+mv openzwave ..
+<span class="hljs-built_in">cd</span> ..
+rm -rf openwrt
+<span class="hljs-built_in">cd</span> ../..
+make package/libs/openzwave/compile V=s
+<span class="hljs-built_in">cd</span> dl
+wget http://old.openzwave.com/downloads/openzwave-1.2.919.tar.gz
+<span class="hljs-built_in">cd</span> ..
+make menuconfig
+
+<span class="hljs-comment">#in libraries select now openzwave as module to get an ipkg</span>
+make -j1 V=s
+</code></pre>
+<p>in /opt/source/bin/targets/ramips/mt7621/packages
+you will get a file named
+openzwave_1.2.919-1_mipsel_24kc.ipk</p>
+<p>just copy it and copy the libudev* on the router and install it. </p>
+<pre><code class="lang-bash">opk install  libudev_3.2-1_mipsel_24kc.ipk --force-checksum
+opkg install openzwave_1.2.919-1_mipsel_24kc.ipk  --force-checksum --force-depends
+</code></pre>
+<p>next you have to cross-compile <a href="https://github.com/OpenZWave/node-openzwave-shared" target="_blank">openzwave-shared</a></p>
+<p>It is not so easy to compile it. </p>
+<p>You have to clone the openzwave-shared in your container. </p>
+<p>Next you can patch the binding.gyp</p>
+<p>The linux part should be something like that. </p>
+<pre><code class="lang-txt">
+    [&quot;OS==&apos;linux&apos;&quot;, {
+                &quot;variables&quot;: {
+                    &quot;OZW_LIB_PATH&quot;    : &quot;/opt/source/build_dir/target-mipsel_24kc_musl-1.1.15/openzwave-1.2.919/&quot;,
+                    &quot;OZW_INC&quot;         : &quot;/opt/source/dl/openzwave-1.2.919/cpp/src/&quot;,
+                },
+                &quot;defines&quot;: [
+                    &quot;OPENZWAVE_ETC=/usr/local/etc/openzwave&quot;,
+                    &quot;OPENZWAVE_DOC=/usr/local/share/doc/openzwave&quot;,
+                    &quot;OPENZWAVE_SECURITY=0&quot;
+                ],
+                &quot;link_settings&quot;: {
+                    &quot;libraries&quot;: [&quot;-lopenzwave&quot;]
+                },
+                &quot;include_dirs&quot;: [
+                    &quot;&lt;!(node -p -e \&quot;require(&apos;path&apos;).dirname(require.resolve(&apos;nan&apos;))\&quot;)&quot;,
+                    &quot;&lt;(OZW_INC)&quot;,
+                    &quot;&lt;(OZW_INC)/value_classes&quot;
+                ],
+                &quot;cflags&quot;: [ &quot;-Wno-ignored-qualifiers -Wno-write-strings -Wno-unknown-pragmas&quot; ],
+            }],
+</code></pre>
+<p>Next set the following envs variable</p>
+<pre><code class="lang-bash"><span class="hljs-built_in">export</span> CC=/opt/<span class="hljs-built_in">source</span>/staging_dir/toolchain-mipsel_24kc_gcc-5.4.0_musl-1.1.15/bin/mipsel-openwrt-linux-gcc
+<span class="hljs-built_in">export</span> CXX=/opt/<span class="hljs-built_in">source</span>/staging_dir/toolchain-mipsel_24kc_gcc-5.4.0_musl-1.1.15/bin/mipsel-openwrt-linux-g++
+<span class="hljs-built_in">export</span> STAGING_DIR=/opt/<span class="hljs-built_in">source</span>/staging_dir
+<span class="hljs-built_in">export</span> PKG_CONFIG_PATH=/opt/<span class="hljs-built_in">source</span>/build_dir/target-mipsel_24kc_musl-1.1.15/openzwave-1.2.919
+<span class="hljs-built_in">export</span> npm_config_arch=mips
+<span class="hljs-comment"># path to the node source that was used to create the cross-compiled version</span>
+<span class="hljs-built_in">export</span> npm_config_nodedir=/opt/<span class="hljs-built_in">source</span>/build_dir/target-mipsel_24kc_musl-1.1.15/node-v4.4.5/
+</code></pre>
+<p>Please install nodejs in version 4.4.5 in your docker container. You can do it using nvm. </p>
+<p>next install the module</p>
+<pre><code class="lang-bash">npm i -g node-gyp
+</code></pre>
+<p>in the folder where you clone node-openzwave-shared</p>
+<pre><code class="lang-bash">npm install --unsafe-perm
+</code></pre>
+<p>next put the resulting folder in a node_modules and copy it to your global npm folder on the router. </p>
+<p>Great, we can do a kevoree component that use this library. </p>
+<h3 id="node-usb-noble-bleno">node-usb, noble, bleno</h3>
+<p>I just prepare the pre-compiled libraries for noble and bleno. </p>
+<p>You have to install  the <a href="https://github.com/barais/WG3526Notes/blob/master/libusb-1.0_1.0.20-1_mipsel_24kc.ipk" target="_blank">libusb ipk</a> which is in this github repository. 
+Copy it on the router, copy also the <a href="https://github.com/barais/WG3526Notes/blob/master/node-noble.tgz" target="_blank">node-noble.tgz</a> on the router. </p>
+<p>Install the libusb-1.0_1.0.20-1_mipsel_24kc.ipk file.</p>
+<pre><code class="lang-bash">opkg install --force-checksum libusb-1.0_1.0.20-1_mipsel_24kc.ipk
+</code></pre>
+<p>next uncompress the node-noble.tgz in /root
+and copy all the content of the node_module foler in /usr/lib/node_modules</p>
+<pre><code class="lang-bash"><span class="hljs-built_in">cd</span> ~
+rm -rf node_modules
+tar -czf node-noble.tgz
+mv node_modules/* /usr/lib/node_modules
+</code></pre>
+<p>Just for information, to create this node_modules, I had to cross-compile the node-usb.</p>
+<pre><code class="lang-bash">git <span class="hljs-built_in">clone</span> --recursive https://github.com/nonolith/node-usb.git
+<span class="hljs-built_in">cd</span> node-usb
+npm i
+</code></pre>
+<p>next edit the binding.gyp file. </p>
+<pre><code class="lang-txt">--     &apos;use_system_libusb%&apos;: &apos;false&apos;,
+++   &apos;use_system_libusb%&apos;: &apos;true&apos;,
+
+-- [&apos;use_system_libusb==&quot;true&quot;&apos;, {
+--            &apos;include_dirs+&apos;: [
+--              &apos;&lt;!@(pkg-config libusb-1.0 --cflags-only-I | sed s/-I//g)&apos;
+--            ],
+--            &apos;libraries&apos;: [
+--              &apos;&lt;!@(pkg-config libusb-1.0 --libs)&apos;
+--            ],
+--          }],
+
+++[&apos;use_system_libusb==&quot;true&quot;&apos;, {
+++            &apos;include_dirs+&apos;: [
+++              &apos;/opt/source/build_dir/target-mipsel_24kc_musl-1.1.15/libusb-1.0.20/libusb/&apos;,&apos;/opt/source/staging_dir/target-mipsel_24kc_musl-1.1.15/usr/include/&apos;
+++            ],
+++            &apos;libraries&apos;: [
+++              &apos;-lusb-1.0&apos;
+++            ],
+++          }],
+</code></pre>
+<pre><code class="lang-bash"><span class="hljs-comment">#link the libusb library</span>
+ln <span class="hljs-_">-s</span> /opt/<span class="hljs-built_in">source</span>/build_dir/target-mipsel_24kc_musl-1.1.15/libusb-1.0.20/ipkg-install/usr/lib/libusb-1.0.so /opt/<span class="hljs-built_in">source</span>/staging_dir/toolchain-mipsel_24kc_gcc-5.4.0_musl-1.1.15/mipsel-openwrt-linux-musl/bin/../../../toolchain-mipsel_24kc_gcc-5.4.0_musl-1.1.15/lib/
+
+<span class="hljs-comment">#chck if ld can find it</span>
+/opt/<span class="hljs-built_in">source</span>/staging_dir/toolchain-mipsel_24kc_gcc-5.4.0_musl-1.1.15/lib/gcc/mipsel-openwrt-linux-musl/5.4.0/../../../../mipsel-openwrt-linux-musl/bin/ld -lusb-1.0 --verbose
+
+
+<span class="hljs-comment">#Compile node-usb</span>
+<span class="hljs-built_in">export</span> CC=/opt/<span class="hljs-built_in">source</span>/staging_dir/toolchain-mipsel_24kc_gcc-5.4.0_musl-1.1.15/bin/mipsel-openwrt-linux-gcc
+<span class="hljs-built_in">export</span> CXX=/opt/<span class="hljs-built_in">source</span>/staging_dir/toolchain-mipsel_24kc_gcc-5.4.0_musl-1.1.15/bin/mipsel-openwrt-linux-g++
+<span class="hljs-built_in">export</span> STAGING_DIR=/opt/<span class="hljs-built_in">source</span>/staging_dir
+<span class="hljs-built_in">export</span> PKG_CONFIG_PATH=/opt/<span class="hljs-built_in">source</span>/build_dir/target-mipsel_24kc_musl-1.1.15/openzwave-1.2.919
+<span class="hljs-built_in">export</span> npm_config_arch=mips
+<span class="hljs-comment"># path to the node source that was used to create the cross-compiled version</span>
+<span class="hljs-built_in">export</span> npm_config_nodedir=/opt/<span class="hljs-built_in">source</span>/build_dir/target-mipsel_24kc_musl-1.1.15/node-v4.4.5/
+npm  install --unsafe-perm
+
+
+<span class="hljs-comment">#prepare the package</span>
+rm -rf .git
+<span class="hljs-built_in">cd</span> ..
+mv node-usb usb
+mkdir <span class="hljs-built_in">test</span>
+<span class="hljs-built_in">cd</span> <span class="hljs-built_in">test</span>
+mkdir node_modules
+mv ../usb node_modules
+mv node_modules/usb/node_modules/* node_modules
+npm i bleno 
+npm i noble
+
+<span class="hljs-comment">#Great it works you can zip the test folder.</span>
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../thingml_test.html" class="navigation navigation-prev " aria-label="Previous page: Test the ThingML compilers and plugins">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../buildroot/" class="navigation navigation-next " aria-label="Next page: Prepare, build and flash any buildroot compatible device to run Kevoree">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Prepare, build and flash any openWRT device to run Heads Artefacts","level":"1.4.1.5","depth":3,"next":{"title":"Prepare, build and flash any buildroot compatible device to run Kevoree","level":"1.4.1.6","depth":3,"path":"heads_methodology/buildroot/index.md","ref":"heads_methodology/buildroot/index.md","articles":[]},"previous":{"title":"Test the ThingML compilers and plugins","level":"1.4.1.4","depth":3,"path":"heads_methodology/thingml_test.md","ref":"heads_methodology/thingml_test.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":false,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"home":"https://heads-project.github.io/methodology/","about":"http://heads-project.eu","issues":false,"contribute":"https://github.com/HEADS-project/methodology","sharing":{"google":false,"facebook":false,"twitter":"https://twitter.com/HEADSeu"}},"gitbook":"*"},"file":{"path":"heads_methodology/openwrtplatform/index.md","mtime":"2017-01-02T11:09:06.927Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-02T11:19:51.349Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
