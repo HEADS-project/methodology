@@ -26,7 +26,7 @@ In the rest of this chapter we will detail the architecture of an implentation o
 
 ## Global architecture
 This picture shows the different parts involved in a Kevoree platfom:
-![Kevoree platform overview](img/overview.png)
+![Kevoree platform overview](../img/overview.png)
 
 ## Components
  * **[Generalities](generalities.md)**: A few cross platform advices
